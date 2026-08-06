@@ -1,4 +1,4 @@
-import TaskCard from "./TaskCard";
+import TaskCard from './TaskCard'
 
 export interface Task {
   id: string | number
@@ -19,54 +19,46 @@ interface TaskListProps {
   linkToTaskDetail?: boolean
 }
 
-const HARDCODED_TASKS: Task[] = [
+const defaultTasks: Task[] = [
   {
     id: 1,
-    title: "Task One",
-    description: "First hardcoded task",
-    priority: "High",
+    title: 'Task One',
+    description: 'First hardcoded task',
+    priority: 'High',
     completed: false,
   },
   {
     id: 2,
-    title: "Task Two",
-    description: "Second hardcoded task",
-    priority: "Medium",
+    title: 'Task Two',
+    description: 'Second hardcoded task',
+    priority: 'Medium',
     completed: false,
   },
   {
     id: 3,
-    title: "Task Three",
-    description: "Third hardcoded task",
-    priority: "Low",
+    title: 'Task Three',
+    description: 'Third hardcoded task',
+    priority: 'Low',
     completed: false,
   },
 ]
 
-
-
-export default function TaskList({
-  tasks,
-  countText,
-}: TaskListProps) {
-  const list: Task[] = tasks ?? HARDCODED_TASKS
+export default function TaskList(props: TaskListProps) {
+  const list = props.tasks ?? defaultTasks
 
   return (
-    <>
-      {countText && <p id="task-count">{countText}</p>}
-
-      <section id="task-list">
-        {list.map((task) => (
-          <TaskCard
-            key={task.id}
-            title={task.title}
-            description={task.description}
-            priority={task.priority}
-            completed={task.completed}
-            taskId={task.id}
-          />
-        ))}
-      </section>
-    </>
+    <section id="task-list">
+      {list.map((task) => (
+        <TaskCard
+          key={task.id}
+          title={task.title}
+          description={task.description}
+          priority={task.priority}
+          completed={task.completed}
+          taskId={task.id}
+          onToggle={props.onToggle}
+        />
+      ))}
+    </section>
   )
 }
