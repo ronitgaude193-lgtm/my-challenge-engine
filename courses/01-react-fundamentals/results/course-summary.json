@@ -1,10 +1,10 @@
 {
   "courseId": "01-react-fundamentals",
   "courseName": "React Fundamentals",
-  "lastUpdated": "2026-08-06T06:33:43.025Z",
+  "lastUpdated": "2026-08-06T14:41:07.676Z",
   "totalChallenges": 23,
   "completedChallenges": 1,
-  "averageScore": 90.7,
+  "averageScore": 83,
   "completionPercentage": 4.3,
   "badgeLevel": "none",
   "challengeResults": [
@@ -13,6 +13,12 @@
       "challengeName": "Static Task Display",
       "score": 90.7,
       "passed": true
+    },
+    {
+      "challengeId": "02-dynamic-task-rendering",
+      "challengeName": "Dynamic Task Rendering",
+      "score": 75.2,
+      "passed": false
     }
   ],
   "skillStrengths": [
