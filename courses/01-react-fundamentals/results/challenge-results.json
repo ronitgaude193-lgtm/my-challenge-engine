@@ -393,17 +393,17 @@
   {
     "challengeId": "02-dynamic-task-rendering",
     "challengeName": "Dynamic Task Rendering",
-    "timestamp": "2026-08-06T14:39:35.038Z",
+    "timestamp": "2026-08-06T19:47:41.650Z",
     "scores": {
       "functionalTests": 75,
       "codeQuality": 50,
       "architecture": 100,
       "bestPractices": 100,
-      "e2eTests": 60,
-      "aiReview": 83
+      "e2eTests": 100,
+      "aiReview": 88
     },
-    "totalScore": 75.2,
-    "passed": false,
+    "totalScore": 81.95,
+    "passed": true,
     "errors": [],
     "warnings": [],
     "testResults": {
@@ -423,7 +423,7 @@
               "fullName": " Challenge 02: Dynamic Task Rendering should render tasks from tasks prop",
               "status": "passed",
               "title": "should render tasks from tasks prop",
-              "duration": 64,
+              "duration": 37,
               "failureMessages": []
             },
             {
@@ -434,7 +434,7 @@
               "fullName": " Challenge 02: Dynamic Task Rendering should display task count with id task-count",
               "status": "failed",
               "title": "should display task count with id task-count",
-              "duration": 30,
+              "duration": 11,
               "failureMessages": [
                 "Unable to find an element with the text: 5 Tasks. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.\n\nIgnored nodes: comments, script, style\n\u001b[36m<body>\u001b[39m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<section\u001b[39m\n      \u001b[33mid\u001b[39m=\u001b[32m\"task-list\"\u001b[39m\n    \u001b[36m>\u001b[39m\n      \u001b[36m<article\u001b[39m\n        \u001b[33mid\u001b[39m=\u001b[32m\"task-card\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<h2>\u001b[39m\n          \u001b[0mA\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mD1\u001b[0m\n        \u001b[36m</p>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mPriority: \u001b[0m\n          \u001b[0mHigh\u001b[0m\n        \u001b[36m</p>\u001b[39m\n      \u001b[36m</article>\u001b[39m\n      \u001b[36m<article\u001b[39m\n        \u001b[33mid\u001b[39m=\u001b[32m\"task-card\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<h2>\u001b[39m\n          \u001b[0mB\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mD2\u001b[0m\n        \u001b[36m</p>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mPriority: \u001b[0m\n          \u001b[0mMedium\u001b[0m\n        \u001b[36m</p>\u001b[39m\n      \u001b[36m</article>\u001b[39m\n      \u001b[36m<article\u001b[39m\n        \u001b[33mid\u001b[39m=\u001b[32m\"task-card\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<h2>\u001b[39m\n          \u001b[0mC\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mD3\u001b[0m\n        \u001b[36m</p>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mPriority: \u001b[0m\n          \u001b[0mLow\u001b[0m\n        \u001b[36m</p>\u001b[39m\n      \u001b[36m</article>\u001b[39m\n      \u001b[36m<article\u001b[39m\n        \u001b[33mid\u001b[39m=\u001b[32m\"task-card\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<h2>\u001b[39m\n          \u001b[0mD\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mD4\u001b[0m\n        \u001b[36m</p>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mPriority: \u001b[0m\n          \u001b[0mHigh\u001b[0m\n        \u001b[36m</p>\u001b[39m\n      \u001b[36m</article>\u001b[39m\n      \u001b[36m<article\u001b[39m\n        \u001b[33mid\u001b[39m=\u001b[32m\"task-card\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<h2>\u001b[39m\n          \u001b[0mE\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mD5\u001b[0m\n        \u001b[36m</p>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mPriority: \u001b[0m\n          \u001b[0mMedium\u001b[0m\n        \u001b[36m</p>\u001b[39m\n      \u001b[36m</article>\u001b[39m\n    \u001b[36m</section>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m"
               ],
@@ -451,7 +451,7 @@
               "fullName": " Challenge 02: Dynamic Task Rendering should use unique keys when mapping (no duplicate keys)",
               "status": "passed",
               "title": "should use unique keys when mapping (no duplicate keys)",
-              "duration": 10,
+              "duration": 4,
               "failureMessages": []
             },
             {
@@ -462,12 +462,12 @@
               "fullName": " Challenge 02: Dynamic Task Rendering should use map in TaskList",
               "status": "passed",
               "title": "should use map in TaskList",
-              "duration": 1,
+              "duration": 0,
               "failureMessages": []
             }
           ],
-          "startTime": 1786027180293,
-          "endTime": 1786027180398,
+          "startTime": 1786045665634,
+          "endTime": 1786045665686,
           "status": "failed",
           "message": "",
           "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/01-react-fundamentals/project/tests/challenge-02.test.tsx"
@@ -535,10 +535,11 @@
       "note": "No best practices requirements specified in challenge"
     },
     "e2eResults": {
-      "score": 60,
+      "score": 100,
+      "passed": true,
       "totalTests": 5,
-      "passedTests": 3,
-      "failedTests": 2,
+      "passedTests": 5,
+      "failedTests": 0,
       "details": [
         {
           "title": "challenge-02.spec.ts",
@@ -569,12 +570,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 2606,
+                          "duration": 2041,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-06T14:39:48.674Z",
+                          "startTime": "2026-08-06T19:47:51.979Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -603,12 +604,12 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 796,
+                          "duration": 205,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-06T14:39:51.542Z",
+                          "startTime": "2026-08-06T19:47:54.205Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -623,7 +624,7 @@
                 },
                 {
                   "title": "should display task count with id task-count",
-                  "ok": false,
+                  "ok": true,
                   "tags": [],
                   "tests": [
                     {
@@ -636,154 +637,18 @@
                         {
                           "workerIndex": 0,
                           "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 5692,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:20:27",
-                            "location": {
-                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                              "column": 27,
-                              "line": 20
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 18 |\u001b[39m   test(\u001b[32m'should display task count with id task-count'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 19 |\u001b[39m     \u001b[36mconst\u001b[39m countEl \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#task-count'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countEl)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countEl)\u001b[33m.\u001b[39mtoContainText(\u001b[32m'Tasks'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                                "column": 27,
-                                "line": 20
-                              },
-                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n\n  18 |   test('should display task count with id task-count', async ({ page }) => {\n  19 |     const countEl = page.locator('#task-count');\n> 20 |     await expect(countEl).toBeVisible();\n     |                           ^\n  21 |     await expect(countEl).toContainText('Tasks');\n  22 |   });\n  23 |\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:20:27"
-                            }
-                          ],
+                          "status": "passed",
+                          "duration": 199,
+                          "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-06T14:39:52.397Z",
+                          "startTime": "2026-08-06T19:47:54.421Z",
                           "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--76daa-sk-count-with-id-task-count-chromium\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--76daa-sk-count-with-id-task-count-chromium\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                            "column": 27,
-                            "line": 20
-                          }
-                        },
-                        {
-                          "workerIndex": 1,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 6106,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:20:27",
-                            "location": {
-                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                              "column": 27,
-                              "line": 20
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 18 |\u001b[39m   test(\u001b[32m'should display task count with id task-count'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 19 |\u001b[39m     \u001b[36mconst\u001b[39m countEl \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#task-count'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countEl)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countEl)\u001b[33m.\u001b[39mtoContainText(\u001b[32m'Tasks'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                                "column": 27,
-                                "line": 20
-                              },
-                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n\n  18 |   test('should display task count with id task-count', async ({ page }) => {\n  19 |     const countEl = page.locator('#task-count');\n> 20 |     await expect(countEl).toBeVisible();\n     |                           ^\n  21 |     await expect(countEl).toContainText('Tasks');\n  22 |   });\n  23 |\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:20:27"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2026-08-06T14:40:03.788Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--76daa-sk-count-with-id-task-count-chromium-retry1\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--76daa-sk-count-with-id-task-count-chromium-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--76daa-sk-count-with-id-task-count-chromium-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                            "column": 27,
-                            "line": 20
-                          }
-                        },
-                        {
-                          "workerIndex": 2,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 5777,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:20:27",
-                            "location": {
-                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                              "column": 27,
-                              "line": 20
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 18 |\u001b[39m   test(\u001b[32m'should display task count with id task-count'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 19 |\u001b[39m     \u001b[36mconst\u001b[39m countEl \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'#task-count'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countEl)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m expect(countEl)\u001b[33m.\u001b[39mtoContainText(\u001b[32m'Tasks'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                                "column": 27,
-                                "line": 20
-                              },
-                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n\n  18 |   test('should display task count with id task-count', async ({ page }) => {\n  19 |     const countEl = page.locator('#task-count');\n> 20 |     await expect(countEl).toBeVisible();\n     |                           ^\n  21 |     await expect(countEl).toContainText('Tasks');\n  22 |   });\n  23 |\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:20:27"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 2,
-                          "startTime": "2026-08-06T14:40:15.955Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--76daa-sk-count-with-id-task-count-chromium-retry2\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--76daa-sk-count-with-id-task-count-chromium-retry2\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                            "column": 27,
-                            "line": 20
-                          }
+                          "attachments": []
                         }
                       ],
-                      "status": "unexpected"
+                      "status": "expected"
                     }
                   ],
                   "id": "42dc79384a61c0717494-19624ddb392834ce3483",
@@ -793,7 +658,7 @@
                 },
                 {
                   "title": "should show 5 Tasks in count",
-                  "ok": false,
+                  "ok": true,
                   "tags": [],
                   "tests": [
                     {
@@ -804,156 +669,20 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 3,
+                          "workerIndex": 0,
                           "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 5764,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:25:47",
-                            "location": {
-                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                              "column": 47,
-                              "line": 25
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 23 |\u001b[39m\n \u001b[90m 24 |\u001b[39m   test(\u001b[32m'should show 5 Tasks in count'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'#task-count'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'5 Tasks'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m   test(\u001b[32m'should display task titles from state'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                                "column": 47,
-                                "line": 25
-                              },
-                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n\n  23 |\n  24 |   test('should show 5 Tasks in count', async ({ page }) => {\n> 25 |     await expect(page.locator('#task-count')).toContainText('5 Tasks');\n     |                                               ^\n  26 |   });\n  27 |\n  28 |   test('should display task titles from state', async ({ page }) => {\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:25:47"
-                            }
-                          ],
+                          "status": "passed",
+                          "duration": 222,
+                          "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-06T14:40:27.766Z",
+                          "startTime": "2026-08-06T19:47:54.630Z",
                           "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--aac2b-hould-show-5-Tasks-in-count-chromium\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--aac2b-hould-show-5-Tasks-in-count-chromium\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                            "column": 47,
-                            "line": 25
-                          }
-                        },
-                        {
-                          "workerIndex": 4,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 6034,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:25:47",
-                            "location": {
-                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                              "column": 47,
-                              "line": 25
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 23 |\u001b[39m\n \u001b[90m 24 |\u001b[39m   test(\u001b[32m'should show 5 Tasks in count'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'#task-count'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'5 Tasks'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m   test(\u001b[32m'should display task titles from state'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                                "column": 47,
-                                "line": 25
-                              },
-                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n\n  23 |\n  24 |   test('should show 5 Tasks in count', async ({ page }) => {\n> 25 |     await expect(page.locator('#task-count')).toContainText('5 Tasks');\n     |                                               ^\n  26 |   });\n  27 |\n  28 |   test('should display task titles from state', async ({ page }) => {\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:25:47"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 1,
-                          "startTime": "2026-08-06T14:40:39.425Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--aac2b-hould-show-5-Tasks-in-count-chromium-retry1\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--aac2b-hould-show-5-Tasks-in-count-chromium-retry1\\error-context.md"
-                            },
-                            {
-                              "name": "trace",
-                              "contentType": "application/zip",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--aac2b-hould-show-5-Tasks-in-count-chromium-retry1\\trace.zip"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                            "column": 47,
-                            "line": 25
-                          }
-                        },
-                        {
-                          "workerIndex": 5,
-                          "parallelIndex": 0,
-                          "status": "failed",
-                          "duration": 5770,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:25:47",
-                            "location": {
-                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                              "column": 47,
-                              "line": 25
-                            },
-                            "snippet": "\u001b[0m \u001b[90m 23 |\u001b[39m\n \u001b[90m 24 |\u001b[39m   test(\u001b[32m'should show 5 Tasks in count'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'#task-count'\u001b[39m))\u001b[33m.\u001b[39mtoContainText(\u001b[32m'5 Tasks'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m   test(\u001b[32m'should display task titles from state'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                          },
-                          "errors": [
-                            {
-                              "location": {
-                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                                "column": 47,
-                                "line": 25
-                              },
-                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-count')\nExpected substring: \u001b[32m\"5 Tasks\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-count')\u001b[22m\n\n\n  23 |\n  24 |   test('should show 5 Tasks in count', async ({ page }) => {\n> 25 |     await expect(page.locator('#task-count')).toContainText('5 Tasks');\n     |                                               ^\n  26 |   });\n  27 |\n  28 |   test('should display task titles from state', async ({ page }) => {\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts:25:47"
-                            }
-                          ],
-                          "stdout": [],
-                          "stderr": [],
-                          "retry": 2,
-                          "startTime": "2026-08-06T14:40:51.515Z",
-                          "annotations": [],
-                          "attachments": [
-                            {
-                              "name": "screenshot",
-                              "contentType": "image/png",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--aac2b-hould-show-5-Tasks-in-count-chromium-retry2\\test-failed-1.png"
-                            },
-                            {
-                              "name": "error-context",
-                              "contentType": "text/markdown",
-                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\test-results\\challenge-02-Challenge-02--aac2b-hould-show-5-Tasks-in-count-chromium-retry2\\error-context.md"
-                            }
-                          ],
-                          "errorLocation": {
-                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-02.spec.ts",
-                            "column": 47,
-                            "line": 25
-                          }
+                          "attachments": []
                         }
                       ],
-                      "status": "unexpected"
+                      "status": "expected"
                     }
                   ],
                   "id": "42dc79384a61c0717494-5d2f38aac75c3e9b8cb8",
@@ -974,15 +703,15 @@
                       "projectName": "chromium",
                       "results": [
                         {
-                          "workerIndex": 6,
+                          "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 1461,
+                          "duration": 197,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-06T14:41:03.257Z",
+                          "startTime": "2026-08-06T19:47:54.862Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -1000,46 +729,45 @@
           ]
         }
       ],
-      "error": "Command failed: npx playwright test \"tests/e2e/challenge-02.spec.ts\" --reporter=json",
-      "passed": false
+      "screenshots": []
     },
     "aiReviewResults": {
       "challengeId": "02-dynamic-task-rendering",
-      "timestamp": "2026-08-06T14:41:06.088Z",
-      "score": 83,
+      "timestamp": "2026-08-06T19:47:55.824Z",
+      "score": 88,
       "feedback": [],
       "strengths": [
-        "Well-organized code structure with clear separation of concerns between components.",
-        "Effective use of TypeScript to ensure type safety and improve code maintainability.",
-        "Good use of React hooks to manage state and side effects."
+        "The code is well-structured and follows a consistent naming convention.",
+        "The use of TypeScript and functional components demonstrates good adherence to modern React best practices.",
+        "The code is well-commented, making it easier to understand the functionality and intent behind each component."
       ],
       "improvements": [
-        "Consider adding more comments to explain complex logic and decision-making processes.",
-        "Some variable names could be more descriptive to improve code readability.",
-        "The `TaskList` component could be simplified by removing the `defaultTasks` array and using a more concise way to handle the `tasks` prop."
+        "Consider adding type annotations for the `TaskListProps` interface to make it more explicit and self-documenting.",
+        "In the `TaskList` component, the `defaultTasks` array could be replaced with a more robust solution, such as a separate data file or a fetch request to retrieve the tasks.",
+        "The `TaskCard` component could benefit from a more robust way of handling the `completed` prop, such as using a separate component for the task status or a more explicit way of rendering the completed status."
       ],
       "readability": 85,
-      "maintainability": 80,
-      "overall": "The code is well-structured and maintainable, with a good balance between readability and performance. However, there are some areas for improvement to further enhance code quality and readability."
+      "maintainability": 90,
+      "overall": "The code is well-structured, maintainable, and demonstrates good adherence to modern React best practices. However, there are some areas for improvement, such as adding more explicit type annotations and considering more robust solutions for data retrieval and rendering."
     },
     "aiResults": {
       "challengeId": "02-dynamic-task-rendering",
-      "timestamp": "2026-08-06T14:41:06.088Z",
-      "score": 83,
+      "timestamp": "2026-08-06T19:47:55.824Z",
+      "score": 88,
       "feedback": [],
       "strengths": [
-        "Well-organized code structure with clear separation of concerns between components.",
-        "Effective use of TypeScript to ensure type safety and improve code maintainability.",
-        "Good use of React hooks to manage state and side effects."
+        "The code is well-structured and follows a consistent naming convention.",
+        "The use of TypeScript and functional components demonstrates good adherence to modern React best practices.",
+        "The code is well-commented, making it easier to understand the functionality and intent behind each component."
       ],
       "improvements": [
-        "Consider adding more comments to explain complex logic and decision-making processes.",
-        "Some variable names could be more descriptive to improve code readability.",
-        "The `TaskList` component could be simplified by removing the `defaultTasks` array and using a more concise way to handle the `tasks` prop."
+        "Consider adding type annotations for the `TaskListProps` interface to make it more explicit and self-documenting.",
+        "In the `TaskList` component, the `defaultTasks` array could be replaced with a more robust solution, such as a separate data file or a fetch request to retrieve the tasks.",
+        "The `TaskCard` component could benefit from a more robust way of handling the `completed` prop, such as using a separate component for the task status or a more explicit way of rendering the completed status."
       ],
       "readability": 85,
-      "maintainability": 80,
-      "overall": "The code is well-structured and maintainable, with a good balance between readability and performance. However, there are some areas for improvement to further enhance code quality and readability."
+      "maintainability": 90,
+      "overall": "The code is well-structured, maintainable, and demonstrates good adherence to modern React best practices. However, there are some areas for improvement, such as adding more explicit type annotations and considering more robust solutions for data retrieval and rendering."
     }
   }
 ]
