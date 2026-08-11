@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 import TaskList, { type Task } from './TaskList'
 import TaskForm from './TaskForm'
@@ -6,8 +5,7 @@ import FilterBar from './FilterBar'
 
 interface TaskAppProps {
   tasks?: Task[]
-  setTasks?: Dispatch<SetStateAction<Task[]>>
-  dispatch?: (action: { type: string; payload?: unknown }) => void
+  setTasks?: React.Dispatch<React.SetStateAction<Task[]>>
   showForm?: boolean
   countFormat?: string
   showFilterBar?: boolean
@@ -16,22 +14,33 @@ interface TaskAppProps {
   linkToTaskDetail?: boolean
 }
 
-type Filter = 'all' | 'active' | 'completed'
+type FilterType = 'all' | 'active' | 'completed'
+type SortOrder =
+  | 'recent'
+  | 'priority-high'
+  | 'priority-low'
+  | 'alphabetical'
 
-export default function TaskApp(props: TaskAppProps) {
-  const tasks = props.tasks ?? []
-
-  const [filter, setFilter] = useState<Filter>('all')
+export default function TaskApp({
+  tasks = [],
+  setTasks,
+  showForm = false,
+  countFormat = 'tasks',
+  showFilterBar = false,
+  onDelete,
+}: TaskAppProps) {
+  const [filter, setFilter] = useState<FilterType>('all')
+  const [sortOrder, setSortOrder] = useState<SortOrder>('recent')
 
   const handleAddTask = (task: Task) => {
-    if (props.setTasks) {
-      props.setTasks((prev) => [...prev, task])
+    if (setTasks) {
+      setTasks((prev) => [...prev, task])
     }
   }
 
   const handleToggle = (id: string | number) => {
-    if (props.setTasks) {
-      props.setTasks((prev) =>
+    if (setTasks) {
+      setTasks((prev) =>
         prev.map((task) =>
           task.id === id
             ? { ...task, completed: !task.completed }
@@ -41,47 +50,81 @@ export default function TaskApp(props: TaskAppProps) {
     }
   }
 
-  const filteredTasks =
-    filter === 'active'
-      ? tasks.filter((task) => !task.completed)
-      : filter === 'completed'
-        ? tasks.filter((task) => task.completed)
-        : tasks
+  let filteredTasks = tasks
 
-  const completedCount = tasks.filter((task) => task.completed).length
+  if (filter === 'active') {
+    filteredTasks = tasks.filter((task) => !task.completed)
+  }
+
+  if (filter === 'completed') {
+    filteredTasks = tasks.filter((task) => task.completed)
+  }
+
+  const sortedTasks = [...filteredTasks].sort((a, b) => {
+    if (sortOrder === 'priority-high') {
+      const priority = {
+        High: 3,
+        Medium: 2,
+        Low: 1,
+      }
+
+      return priority[b.priority as keyof typeof priority] -
+        priority[a.priority as keyof typeof priority]
+    }
+
+    if (sortOrder === 'priority-low') {
+      const priority = {
+        High: 3,
+        Medium: 2,
+        Low: 1,
+      }
+
+      return priority[a.priority as keyof typeof priority] -
+        priority[b.priority as keyof typeof priority]
+    }
+
+    if (sortOrder === 'alphabetical') {
+      return a.title.localeCompare(b.title, undefined, {
+        sensitivity: 'base',
+      })
+    }
+
+    return 0
+  })
 
   const countText =
-    props.showFilterBar
-      ? `Showing ${filteredTasks.length} of ${tasks.length} tasks`
-      : props.countFormat === 'completed'
-        ? `${completedCount} of ${tasks.length} completed`
-        : `${tasks.length} Tasks`
+    countFormat === 'completed'
+      ? `${tasks.filter((task) => task.completed).length} of ${tasks.length} completed`
+      : showFilterBar
+        ? `Showing ${sortedTasks.length} of ${tasks.length} tasks`
+        : `${tasks.length} tasks`
 
   return (
     <div>
-      {props.showForm && (
+      {showForm && (
         <TaskForm onAddTask={handleAddTask} />
       )}
 
-      {props.showFilterBar && (
+      {showFilterBar && (
         <FilterBar
           filter={filter}
           onFilterChange={setFilter}
+          sortOrder={sortOrder}
+          onSortChange={setSortOrder}
         />
       )}
 
-      {props.showFilterBar && filteredTasks.length === 0 && (
+      {showFilterBar && sortedTasks.length === 0 && (
         <p id="filter-empty-message">
           No tasks match this filter
         </p>
       )}
 
       <TaskList
-        tasks={filteredTasks}
+        tasks={sortedTasks}
         countText={countText}
         onToggle={handleToggle}
-        onDelete={props.onDelete}
-        linkToTaskDetail={props.linkToTaskDetail}
+        onDelete={onDelete}
       />
     </div>
   )
