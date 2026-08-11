@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react'
-import TaskForm from './TaskForm'
 import TaskList, { type Task } from './TaskList'
+import TaskForm from './TaskForm'
 
 interface TaskAppProps {
   tasks?: Task[]
@@ -17,19 +17,51 @@ interface TaskAppProps {
 export default function TaskApp(props: TaskAppProps) {
   const tasks = props.tasks ?? []
 
-  const handleAddTask = (task: Task) => {
-    props.setTasks?.((previousTasks) => [...previousTasks, task])
+  const handleToggle = (id: string | number) => {
+    if (props.setTasks) {
+      props.setTasks((prev) =>
+        prev.map((task) =>
+          task.id === id
+            ? {
+                ...task,
+                completed: !task.completed,
+              }
+            : task,
+        ),
+      )
+    }
   }
+
+  const handleAddTask = (task: Record<string, unknown>) => {
+    if (props.setTasks) {
+      props.setTasks((prev) => [
+        ...prev,
+        task as Task,
+      ])
+    }
+  }
+
+  const completedCount = tasks.filter(
+    (task) => task.completed,
+  ).length
+
+  const countText =
+    props.countFormat === 'completed'
+      ? `${completedCount} of ${tasks.length} completed`
+      : `${tasks.length} Tasks`
 
   return (
     <div>
-      {props.showForm && <TaskForm onAddTask={handleAddTask} />}
-
-      <h2 id="task-count">{tasks.length} Tasks</h2>
+      {props.showForm && (
+        <TaskForm onAddTask={handleAddTask} />
+      )}
 
       <TaskList
         tasks={tasks}
-        countText={`${tasks.length} Tasks`}
+        countText={countText}
+        onToggle={handleToggle}
+        onDelete={props.onDelete}
+        linkToTaskDetail={props.linkToTaskDetail}
       />
     </div>
   )

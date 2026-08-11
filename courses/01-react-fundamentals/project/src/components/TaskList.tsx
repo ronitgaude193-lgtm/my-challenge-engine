@@ -19,7 +19,7 @@ interface TaskListProps {
   linkToTaskDetail?: boolean
 }
 
-const defaultTasks: Task[] = [
+const HARDCODED_TASKS: Task[] = [
   {
     id: 1,
     title: 'Task One',
@@ -43,11 +43,21 @@ const defaultTasks: Task[] = [
   },
 ]
 
-export default function TaskList(props: TaskListProps) {
-  const list = props.tasks ?? defaultTasks
+export default function TaskList({
+  tasks,
+  countText,
+  onToggle,
+}: TaskListProps) {
+  const list = tasks ?? HARDCODED_TASKS
 
   return (
     <section id="task-list">
+      {countText && (
+        <div id="task-count">
+          {countText}
+        </div>
+      )}
+
       {list.map((task) => (
         <TaskCard
           key={task.id}
@@ -56,7 +66,7 @@ export default function TaskList(props: TaskListProps) {
           priority={task.priority}
           completed={task.completed}
           taskId={task.id}
-          onToggle={props.onToggle}
+          onToggle={onToggle}
         />
       ))}
     </section>
