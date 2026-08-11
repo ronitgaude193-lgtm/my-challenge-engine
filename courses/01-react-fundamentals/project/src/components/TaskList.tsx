@@ -47,6 +47,7 @@ export default function TaskList({
   tasks,
   countText,
   onToggle,
+  onDelete,
 }: TaskListProps) {
   const list = tasks ?? HARDCODED_TASKS
 
@@ -65,8 +66,9 @@ export default function TaskList({
           description={task.description}
           priority={task.priority}
           completed={task.completed}
-          taskId={task.id}
+          id={task.id}
           onToggle={onToggle}
+          onDelete={onDelete}
         />
       ))}
     </section>
