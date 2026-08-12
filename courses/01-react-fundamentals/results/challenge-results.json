@@ -3463,16 +3463,16 @@
   {
     "challengeId": "12-categories-and-tags",
     "challengeName": "Categories and Tags",
-    "timestamp": "2026-08-12T14:28:42.452Z",
+    "timestamp": "2026-08-12T14:43:24.768Z",
     "scores": {
       "functionalTests": 100,
       "codeQuality": 50,
       "architecture": 100,
       "bestPractices": 100,
       "e2eTests": 50,
-      "aiReview": 83
+      "aiReview": 88
     },
-    "totalScore": 82.45,
+    "totalScore": 83.2,
     "passed": true,
     "errors": [],
     "warnings": [],
@@ -3493,7 +3493,7 @@
               "fullName": " Challenge 12: Categories and Tags TaskCard should render title and priority",
               "status": "passed",
               "title": "TaskCard should render title and priority",
-              "duration": 58,
+              "duration": 25,
               "failureMessages": []
             },
             {
@@ -3504,12 +3504,12 @@
               "fullName": " Challenge 12: Categories and Tags TaskList should render tasks with extended shape",
               "status": "passed",
               "title": "TaskList should render tasks with extended shape",
-              "duration": 12,
+              "duration": 6,
               "failureMessages": []
             }
           ],
-          "startTime": 1786544927342,
-          "endTime": 1786544927412,
+          "startTime": 1786545808731,
+          "endTime": 1786545808762,
           "status": "passed",
           "message": "",
           "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/01-react-fundamentals/project/tests/challenge-12.test.tsx"
@@ -3607,7 +3607,7 @@
                           "workerIndex": 0,
                           "parallelIndex": 0,
                           "status": "failed",
-                          "duration": 5656,
+                          "duration": 5676,
                           "error": {
                             "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-list')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-list')\u001b[22m\n",
                             "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-list')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-list')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-12.spec.ts:9:46",
@@ -3631,7 +3631,7 @@
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-12T14:28:56.275Z",
+                          "startTime": "2026-08-12T14:43:37.432Z",
                           "annotations": [],
                           "attachments": [
                             {
@@ -3655,7 +3655,7 @@
                           "workerIndex": 1,
                           "parallelIndex": 0,
                           "status": "failed",
-                          "duration": 6344,
+                          "duration": 6092,
                           "error": {
                             "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-list')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-list')\u001b[22m\n",
                             "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-list')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-list')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-12.spec.ts:9:46",
@@ -3679,7 +3679,7 @@
                           "stdout": [],
                           "stderr": [],
                           "retry": 1,
-                          "startTime": "2026-08-12T14:29:11.910Z",
+                          "startTime": "2026-08-12T14:43:49.142Z",
                           "annotations": [],
                           "attachments": [
                             {
@@ -3708,7 +3708,7 @@
                           "workerIndex": 2,
                           "parallelIndex": 0,
                           "status": "failed",
-                          "duration": 5980,
+                          "duration": 5796,
                           "error": {
                             "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-list')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-list')\u001b[22m\n",
                             "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#task-list')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#task-list')\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\01-react-fundamentals\\project\\tests\\e2e\\challenge-12.spec.ts:9:46",
@@ -3732,7 +3732,7 @@
                           "stdout": [],
                           "stderr": [],
                           "retry": 2,
-                          "startTime": "2026-08-12T14:29:25.845Z",
+                          "startTime": "2026-08-12T14:44:01.324Z",
                           "annotations": [],
                           "attachments": [
                             {
@@ -3777,12 +3777,12 @@
                           "workerIndex": 3,
                           "parallelIndex": 0,
                           "status": "passed",
-                          "duration": 1550,
+                          "duration": 1442,
                           "errors": [],
                           "stdout": [],
                           "stderr": [],
                           "retry": 0,
-                          "startTime": "2026-08-12T14:29:39.632Z",
+                          "startTime": "2026-08-12T14:44:13.097Z",
                           "annotations": [],
                           "attachments": []
                         }
@@ -3805,41 +3805,41 @@
     },
     "aiReviewResults": {
       "challengeId": "12-categories-and-tags",
-      "timestamp": "2026-08-12T14:29:42.734Z",
-      "score": 83,
+      "timestamp": "2026-08-12T14:44:16.066Z",
+      "score": 88,
       "feedback": [],
       "strengths": [
-        "The code is well-structured and follows a consistent naming convention.",
-        "The use of interfaces and type annotations is excellent and improves code readability.",
-        "The code is well-organized, and each component has a clear responsibility."
+        "The code is well-structured and organized, with clear and concise function and component names.",
+        "The use of TypeScript and functional components makes the code more maintainable and easier to understand.",
+        "The code includes clear and descriptive comments, which helps with understanding the logic and intent behind the code."
       ],
       "improvements": [
-        "Some of the functions in the TaskCard component are quite long and could be broken down into smaller, more manageable functions.",
-        "The use of the `useState` hook in the TaskForm component could be improved by using the `useCallback` hook to memoize the `handleSubmit` function.",
-        "The FilterBar component could benefit from a more robust implementation of the category filter, such as using a dropdown menu instead of a select element."
+        "Some of the functions and components are quite long and could be broken down into smaller, more manageable pieces. This would improve code readability and maintainability.",
+        "There are some repeated patterns and logic throughout the code, which could be extracted into reusable functions or components to reduce duplication and improve maintainability.",
+        "The use of magic strings and numbers (e.g. 'General', 'Work', 'Personal') could be replaced with named constants or enums to improve code readability and maintainability."
       ],
       "readability": 85,
-      "maintainability": 80,
-      "overall": "The code is well-structured and maintainable, but there are some areas for improvement. With some refactoring and optimization, the code could be even more efficient and easier to understand."
+      "maintainability": 90,
+      "overall": "The code is well-structured and maintainable, with a good balance of readability and functionality. However, there are some areas for improvement, such as breaking down long functions and components, reducing duplication, and improving code organization."
     },
     "aiResults": {
       "challengeId": "12-categories-and-tags",
-      "timestamp": "2026-08-12T14:29:42.734Z",
-      "score": 83,
+      "timestamp": "2026-08-12T14:44:16.066Z",
+      "score": 88,
       "feedback": [],
       "strengths": [
-        "The code is well-structured and follows a consistent naming convention.",
-        "The use of interfaces and type annotations is excellent and improves code readability.",
-        "The code is well-organized, and each component has a clear responsibility."
+        "The code is well-structured and organized, with clear and concise function and component names.",
+        "The use of TypeScript and functional components makes the code more maintainable and easier to understand.",
+        "The code includes clear and descriptive comments, which helps with understanding the logic and intent behind the code."
       ],
       "improvements": [
-        "Some of the functions in the TaskCard component are quite long and could be broken down into smaller, more manageable functions.",
-        "The use of the `useState` hook in the TaskForm component could be improved by using the `useCallback` hook to memoize the `handleSubmit` function.",
-        "The FilterBar component could benefit from a more robust implementation of the category filter, such as using a dropdown menu instead of a select element."
+        "Some of the functions and components are quite long and could be broken down into smaller, more manageable pieces. This would improve code readability and maintainability.",
+        "There are some repeated patterns and logic throughout the code, which could be extracted into reusable functions or components to reduce duplication and improve maintainability.",
+        "The use of magic strings and numbers (e.g. 'General', 'Work', 'Personal') could be replaced with named constants or enums to improve code readability and maintainability."
       ],
       "readability": 85,
-      "maintainability": 80,
-      "overall": "The code is well-structured and maintainable, but there are some areas for improvement. With some refactoring and optimization, the code could be even more efficient and easier to understand."
+      "maintainability": 90,
+      "overall": "The code is well-structured and maintainable, with a good balance of readability and functionality. However, there are some areas for improvement, such as breaking down long functions and components, reducing duplication, and improving code organization."
     }
   }
 ]

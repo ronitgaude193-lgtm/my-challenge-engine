@@ -10,17 +10,24 @@ interface TaskFormProps {
     category: string
     tags: string[]
   }) => void
+
+  categories?: string[]
 }
 
-export default function TaskForm({ onAddTask }: TaskFormProps) {
+export default function TaskForm({
+  onAddTask,
+  categories = [],
+}: TaskFormProps) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState('Medium')
   const [category, setCategory] = useState('General')
-  const [tags, setTags] = useState('')
+  const [tagsInput, setTagsInput] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (
+    event: FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault()
 
     if (!title.trim()) {
@@ -28,7 +35,7 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
       return
     }
 
-    const parsedTags = tags
+    const tags = tagsInput
       .split(',')
       .map((tag) => tag.trim())
       .filter((tag) => tag.length > 0)
@@ -39,8 +46,8 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
       description: description.trim(),
       priority,
       completed: false,
-      category,
-      tags: parsedTags,
+      category: category.trim() || 'General',
+      tags,
     }
 
     onAddTask?.(newTask)
@@ -49,13 +56,20 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
     setDescription('')
     setPriority('Medium')
     setCategory('General')
-    setTags('')
+    setTagsInput('')
     setError('')
   }
 
+  const formCategories = [
+    'General',
+    ...categories.filter(
+      (existingCategory) =>
+        existingCategory !== 'General'
+    ),
+  ]
+
   return (
     <form onSubmit={handleSubmit}>
-      {/* Title */}
       <div>
         <label htmlFor="task-title">
           Title
@@ -71,7 +85,6 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
         />
       </div>
 
-      {/* Description */}
       <div>
         <label htmlFor="task-description">
           Description
@@ -86,7 +99,6 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
         />
       </div>
 
-      {/* Priority */}
       <div>
         <label htmlFor="task-priority">
           Priority
@@ -105,7 +117,6 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
         </select>
       </div>
 
-      {/* Category */}
       <div>
         <label htmlFor="task-category">
           Category
@@ -118,25 +129,29 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
             setCategory(event.target.value)
           }
         >
-          <option value="General">General</option>
-          <option value="Work">Work</option>
-          <option value="Personal">Personal</option>
+          {formCategories.map((categoryOption) => (
+            <option
+              key={categoryOption}
+              value={categoryOption}
+            >
+              {categoryOption}
+            </option>
+          ))}
         </select>
       </div>
 
-      {/* Tags */}
       <div>
-        <label htmlFor="task-tags">
+        <label htmlFor="task-tags-input">
           Tags
         </label>
 
         <input
-          id="task-tags"
+          id="task-tags-input"
           type="text"
-          value={tags}
-          placeholder="e.g. react, coding, college"
+          value={tagsInput}
+          placeholder="e.g. react, college, project"
           onChange={(event) =>
-            setTags(event.target.value)
+            setTagsInput(event.target.value)
           }
         />
       </div>
