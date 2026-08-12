@@ -24,6 +24,8 @@ interface TaskListProps {
       title: string
       description: string
       priority: string
+      category?: string
+      tags?: string[]
     }
   ) => void
 
@@ -41,6 +43,8 @@ const HARDCODED_TASKS: Task[] = [
     description: 'First hardcoded task',
     priority: 'High',
     completed: false,
+    category: 'General',
+    tags: [],
   },
   {
     id: 2,
@@ -48,6 +52,8 @@ const HARDCODED_TASKS: Task[] = [
     description: 'Second hardcoded task',
     priority: 'Medium',
     completed: false,
+    category: 'Work',
+    tags: [],
   },
   {
     id: 3,
@@ -55,6 +61,8 @@ const HARDCODED_TASKS: Task[] = [
     description: 'Third hardcoded task',
     priority: 'Low',
     completed: false,
+    category: 'Personal',
+    tags: [],
   },
 ]
 
@@ -86,6 +94,8 @@ export default function TaskList({
           description={task.description}
           priority={task.priority}
           completed={task.completed}
+          category={task.category ?? 'General'}
+          tags={task.tags ?? []}
           onToggle={onToggle}
           onDelete={onDelete}
           onUpdateTask={onUpdateTask}

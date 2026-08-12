@@ -7,16 +7,22 @@ interface TaskCardProps {
   priority: string
   completed?: boolean
 
+  // Challenge 12
+  category?: string
+  tags?: string[]
+
   onToggle?: (id: string | number) => void
   onDelete?: (id: string | number) => void
 
-  // Challenge 08
+  // Challenge 08 + 12
   onUpdateTask?: (
     id: string | number,
     updates: {
       title: string
       description: string
       priority: string
+      category?: string
+      tags?: string[]
     }
   ) => void
 
@@ -31,6 +37,8 @@ export default function TaskCard({
   description,
   priority,
   completed = false,
+  category = 'General',
+  tags = [],
   onToggle,
   onDelete,
   onUpdateTask,
@@ -42,13 +50,26 @@ export default function TaskCard({
   const [editDescription, setEditDescription] = useState(description)
   const [editPriority, setEditPriority] = useState(priority)
 
+  // Challenge 12
+  const [editCategory, setEditCategory] = useState(category)
+  const [editTags, setEditTags] = useState(tags.join(', '))
+
   useEffect(() => {
     if (editing) {
       setEditTitle(title)
       setEditDescription(description)
       setEditPriority(priority)
+      setEditCategory(category)
+      setEditTags(tags.join(', '))
     }
-  }, [editing, title, description, priority])
+  }, [
+    editing,
+    title,
+    description,
+    priority,
+    category,
+    tags,
+  ])
 
   const handleToggle = () => {
     if (onToggle) {
@@ -70,11 +91,18 @@ export default function TaskCard({
       return
     }
 
+    const parsedTags = editTags
+      .split(',')
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0)
+
     if (onUpdateTask) {
       onUpdateTask(id, {
         title: trimmedTitle,
         description: editDescription,
         priority: editPriority,
+        category: editCategory,
+        tags: parsedTags,
       })
     }
 
@@ -87,6 +115,8 @@ export default function TaskCard({
     setEditTitle(title)
     setEditDescription(description)
     setEditPriority(priority)
+    setEditCategory(category)
+    setEditTags(tags.join(', '))
 
     if (onCancelEdit) {
       onCancelEdit()
@@ -108,6 +138,7 @@ export default function TaskCard({
 
       {editing ? (
         <>
+          {/* Title */}
           <div>
             <label htmlFor={`edit-title-${id}`}>
               Title
@@ -122,6 +153,7 @@ export default function TaskCard({
             />
           </div>
 
+          {/* Description */}
           <div>
             <label htmlFor={`edit-description-${id}`}>
               Description
@@ -136,6 +168,7 @@ export default function TaskCard({
             />
           </div>
 
+          {/* Priority */}
           <div>
             <label htmlFor={`edit-priority-${id}`}>
               Priority
@@ -154,16 +187,61 @@ export default function TaskCard({
             </select>
           </div>
 
-          <button type="button" onClick={handleSave}>
+          {/* Category */}
+          <div>
+            <label htmlFor={`edit-category-${id}`}>
+              Category
+            </label>
+
+            <select
+              id={`edit-category-${id}`}
+              value={editCategory}
+              onChange={(event) =>
+                setEditCategory(event.target.value)
+              }
+            >
+              <option value="General">General</option>
+              <option value="Work">Work</option>
+              <option value="Personal">Personal</option>
+            </select>
+          </div>
+
+          {/* Tags */}
+          <div>
+            <label htmlFor={`edit-tags-${id}`}>
+              Tags
+            </label>
+
+            <input
+              id={`edit-tags-${id}`}
+              type="text"
+              value={editTags}
+              placeholder="tag1, tag2, tag3"
+              onChange={(event) =>
+                setEditTags(event.target.value)
+              }
+            />
+          </div>
+
+          {/* Save */}
+          <button
+            type="button"
+            onClick={handleSave}
+          >
             Save
           </button>
 
-          <button type="button" onClick={handleCancel}>
+          {/* Cancel */}
+          <button
+            type="button"
+            onClick={handleCancel}
+          >
             Cancel
           </button>
         </>
       ) : (
         <>
+          {/* Title */}
           <h2
             style={{
               textDecoration: completed
@@ -174,6 +252,7 @@ export default function TaskCard({
             {title}
           </h2>
 
+          {/* Description */}
           <p
             style={{
               textDecoration: completed
@@ -184,8 +263,27 @@ export default function TaskCard({
             {description}
           </p>
 
+          {/* Priority */}
           <p>Priority: {priority}</p>
 
+          {/* Category */}
+          <p id="task-category">
+            Category: {category}
+          </p>
+
+          {/* Tags */}
+          <div id="task-tags">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                data-tag={tag}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Edit */}
           {onUpdateTask && (
             <button
               type="button"
@@ -195,6 +293,7 @@ export default function TaskCard({
             </button>
           )}
 
+          {/* Delete */}
           {onDelete && (
             <button
               type="button"
