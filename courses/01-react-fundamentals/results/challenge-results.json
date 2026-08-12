@@ -3037,5 +3037,221 @@
       "maintainability": 85,
       "overall": "The code is well-structured and maintainable, with clear separation of concerns between components. However, there are some minor improvements that could be made to increase readability and efficiency."
     }
+  },
+  {
+    "challengeId": "10-useeffect-local-storage",
+    "challengeName": "useEffect - Local Storage Persistence",
+    "timestamp": "2026-08-12T08:16:27.605Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 50,
+      "architecture": 50,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 50
+    },
+    "totalScore": 80,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: useEffect - Local Storage Persistence"
+              ],
+              "fullName": " Challenge 10: useEffect - Local Storage Persistence App should render without crashing",
+              "status": "passed",
+              "title": "App should render without crashing",
+              "duration": 87,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: useEffect - Local Storage Persistence"
+              ],
+              "fullName": " Challenge 10: useEffect - Local Storage Persistence App should have routes for challenge 10",
+              "status": "passed",
+              "title": "App should have routes for challenge 10",
+              "duration": 15,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1786522591534,
+          "endTime": 1786522591636,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/01-react-fundamentals/project/tests/challenge-10.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 50,
+      "passed": false,
+      "error": "Could not parse linting results",
+      "details": []
+    },
+    "architectureResults": {
+      "score": 50,
+      "passed": false,
+      "patternsFound": [
+        "functionalComponent"
+      ],
+      "patternsMissing": [
+        "useEffect"
+      ],
+      "details": [
+        {
+          "file": "src/App.tsx",
+          "patternsFound": [
+            "functionalComponent"
+          ],
+          "patternsMissing": [
+            "useEffect"
+          ]
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-10.spec.ts",
+          "file": "challenge-10.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 10: useEffect Local Storage - E2E",
+              "file": "challenge-10.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should display task list",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 359,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-12T08:16:38.571Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "2b6a150d93e258235d20-ba3b23b66771ff6c010c",
+                  "file": "challenge-10.spec.ts",
+                  "line": 8,
+                  "column": 3
+                },
+                {
+                  "title": "should display task count",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 248,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-12T08:16:39.071Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "2b6a150d93e258235d20-51aa29bd7f0387a1168b",
+                  "file": "challenge-10.spec.ts",
+                  "line": 12,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "10-useeffect-local-storage",
+      "timestamp": "2026-08-12T08:16:39.625Z",
+      "score": 50,
+      "feedback": [],
+      "strengths": [
+        "Code structure is reasonable"
+      ],
+      "improvements": [
+        "Code structure is reasonable"
+      ],
+      "readability": 50,
+      "maintainability": 50,
+      "overall": "Here's the review of the provided code:\n\n```json\n{\n  \"readability\": 80,\n  \"maintainability\": 85,\n  \"strengths\": [\n    \"The code is well-structured and follows a consistent naming convention.\",\n    \"The use of functional components and hooks (e.g., `useState`, `useEffect`) is correct and efficient.\",\n    \"The code is well-organized, with each challenge's functionality separated into its own component.\"\n  ],\n  \"improvements\": [\n    \"The `useEffect` hook for saving tasks to local storage is missing"
+    },
+    "aiResults": {
+      "challengeId": "10-useeffect-local-storage",
+      "timestamp": "2026-08-12T08:16:39.625Z",
+      "score": 50,
+      "feedback": [],
+      "strengths": [
+        "Code structure is reasonable"
+      ],
+      "improvements": [
+        "Code structure is reasonable"
+      ],
+      "readability": 50,
+      "maintainability": 50,
+      "overall": "Here's the review of the provided code:\n\n```json\n{\n  \"readability\": 80,\n  \"maintainability\": 85,\n  \"strengths\": [\n    \"The code is well-structured and follows a consistent naming convention.\",\n    \"The use of functional components and hooks (e.g., `useState`, `useEffect`) is correct and efficient.\",\n    \"The code is well-organized, with each challenge's functionality separated into its own component.\"\n  ],\n  \"improvements\": [\n    \"The `useEffect` hook for saving tasks to local storage is missing"
+    }
   }
 ]

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TaskList, { type Task } from './TaskList'
 import TaskForm from './TaskForm'
 import FilterBar from './FilterBar'
@@ -22,6 +22,8 @@ type SortOrder =
   | 'priority-low'
   | 'alphabetical'
 
+const STORAGE_KEY = 'task-app-tasks'
+
 export default function TaskApp({
   tasks = [],
   setTasks,
@@ -31,7 +33,8 @@ export default function TaskApp({
   onDelete,
 }: TaskAppProps) {
   // Challenge 06
-  const [filter, setFilter] = useState<FilterType>('all')
+  const [filter, setFilter] =
+    useState<FilterType>('all')
 
   // Challenge 07
   const [sortOrder, setSortOrder] =
@@ -43,6 +46,42 @@ export default function TaskApp({
 
   // Challenge 09
   const [searchText, setSearchText] = useState('')
+
+  // Challenge 10
+  // Load tasks from localStorage once when TaskApp mounts.
+  useEffect(() => {
+    if (!setTasks) {
+      return
+    }
+
+    const storedTasks =
+      localStorage.getItem(STORAGE_KEY)
+
+    if (!storedTasks) {
+      return
+    }
+
+    try {
+      const parsedTasks: unknown =
+        JSON.parse(storedTasks)
+
+      if (Array.isArray(parsedTasks)) {
+        setTasks(parsedTasks as Task[])
+      }
+    } catch {
+      // Keep existing tasks when localStorage
+      // contains invalid JSON.
+    }
+  }, [setTasks])
+
+  // Challenge 10
+  // Save tasks whenever the tasks array changes.
+  useEffect(() => {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(tasks)
+    )
+  }, [tasks])
 
   // -----------------------------
   // Challenge 03: Add Task
@@ -117,7 +156,6 @@ export default function TaskApp({
 
   // -----------------------------
   // Challenge 09: Search
-  // Filter AFTER status filter
   // -----------------------------
   const normalizedSearch = searchText
     .trim()
@@ -125,7 +163,9 @@ export default function TaskApp({
 
   const searchedTasks = normalizedSearch
     ? filteredTasks.filter((task) => {
-        const title = task.title.toLowerCase()
+        const title =
+          task.title.toLowerCase()
+
         const description =
           task.description.toLowerCase()
 
@@ -138,7 +178,6 @@ export default function TaskApp({
 
   // -----------------------------
   // Challenge 07: Sorting
-  // Search/filter happens BEFORE sort
   // -----------------------------
   const sortedTasks = [...searchedTasks].sort(
     (a, b) => {
@@ -179,7 +218,7 @@ export default function TaskApp({
       }
 
       // Recently Added
-      // Keep original order
+      // Preserve original order.
       return 0
     }
   )
@@ -189,7 +228,11 @@ export default function TaskApp({
   // -----------------------------
   const countText =
     countFormat === 'completed'
-      ? `${tasks.filter((task) => task.completed).length} of ${tasks.length} completed`
+      ? `${
+          tasks.filter(
+            (task) => task.completed
+          ).length
+        } of ${tasks.length} completed`
       : showFilterBar
         ? `Showing ${sortedTasks.length} of ${tasks.length} tasks`
         : `${tasks.length} tasks`
@@ -197,19 +240,20 @@ export default function TaskApp({
   // -----------------------------
   // Empty message
   // -----------------------------
-  const hasSearch = normalizedSearch.length > 0
+  const hasSearch =
+    normalizedSearch.length > 0
 
-  let emptyMessage = 'No tasks match this filter'
-
-  if (hasSearch) {
-    emptyMessage = 'No tasks found'
-  }
+  const emptyMessage = hasSearch
+    ? 'No tasks found'
+    : 'No tasks match this filter'
 
   return (
     <div>
       {/* Challenge 03 */}
       {showForm && (
-        <TaskForm onAddTask={handleAddTask} />
+        <TaskForm
+          onAddTask={handleAddTask}
+        />
       )}
 
       {/* Challenge 06 + 07 + 09 */}
@@ -224,14 +268,15 @@ export default function TaskApp({
         />
       )}
 
-      {/* Challenge 06 + 09 empty state */}
-      {showFilterBar && sortedTasks.length === 0 && (
-        <p id="filter-empty-message">
-          {emptyMessage}
-        </p>
-      )}
+      {/* Challenge 06 + 09 */}
+      {showFilterBar &&
+        sortedTasks.length === 0 && (
+          <p id="filter-empty-message">
+            {emptyMessage}
+          </p>
+        )}
 
-      {/* Challenge 06 + 09 count */}
+      {/* Challenge 06 + 09 */}
       <TaskList
         tasks={sortedTasks}
         countText={countText}
@@ -240,7 +285,9 @@ export default function TaskApp({
         onUpdateTask={handleUpdateTask}
         editingId={editingId}
         onEdit={setEditingId}
-        onCancelEdit={() => setEditingId(null)}
+        onCancelEdit={() =>
+          setEditingId(null)
+        }
       />
     </div>
   )

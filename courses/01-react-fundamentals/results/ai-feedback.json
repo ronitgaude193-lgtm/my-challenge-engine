@@ -201,5 +201,24 @@
       "maintainability": 85,
       "overall": "The code is well-structured and maintainable, with clear separation of concerns between components. However, there are some minor improvements that could be made to increase readability and efficiency."
     }
+  },
+  {
+    "challengeId": "10-useeffect-local-storage",
+    "challengeName": "useEffect - Local Storage Persistence",
+    "aiReview": {
+      "challengeId": "10-useeffect-local-storage",
+      "timestamp": "2026-08-12T08:16:39.625Z",
+      "score": 50,
+      "feedback": [],
+      "strengths": [
+        "Code structure is reasonable"
+      ],
+      "improvements": [
+        "Code structure is reasonable"
+      ],
+      "readability": 50,
+      "maintainability": 50,
+      "overall": "Here's the review of the provided code:\n\n```json\n{\n  \"readability\": 80,\n  \"maintainability\": 85,\n  \"strengths\": [\n    \"The code is well-structured and follows a consistent naming convention.\",\n    \"The use of functional components and hooks (e.g., `useState`, `useEffect`) is correct and efficient.\",\n    \"The code is well-organized, with each challenge's functionality separated into its own component.\"\n  ],\n  \"improvements\": [\n    \"The `useEffect` hook for saving tasks to local storage is missing"
+    }
   }
 ]
