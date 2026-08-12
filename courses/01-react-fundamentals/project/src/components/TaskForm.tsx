@@ -1,4 +1,6 @@
 import { useState, type FormEvent } from 'react'
+import Button from './Button'
+import FormInput from './FormInput'
 
 interface TaskFormProps {
   onAddTask?: (task: {
@@ -84,38 +86,30 @@ export default function TaskForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Title */}
-      <div>
-        <label htmlFor="task-title">
-          Title
-        </label>
+      {/* Challenge 03: Title */}
+      <FormInput
+        label="Title"
+        id="task-title"
+        value={title}
+        type="text"
+        onChange={(event) =>
+          setTitle(event.target.value)
+        }
+        error={error}
+      />
 
-        <input
-          id="task-title"
-          type="text"
-          value={title}
-          onChange={(event) =>
-            setTitle(event.target.value)
-          }
-        />
-      </div>
+      {/* Challenge 03: Description */}
+      <FormInput
+        label="Description"
+        id="task-description"
+        value={description}
+        type="textarea"
+        onChange={(event) =>
+          setDescription(event.target.value)
+        }
+      />
 
-      {/* Description */}
-      <div>
-        <label htmlFor="task-description">
-          Description
-        </label>
-
-        <textarea
-          id="task-description"
-          value={description}
-          onChange={(event) =>
-            setDescription(event.target.value)
-          }
-        />
-      </div>
-
-      {/* Priority */}
+      {/* Challenge 03: Priority */}
       <div>
         <label htmlFor="task-priority">
           Priority
@@ -134,7 +128,7 @@ export default function TaskForm({
         </select>
       </div>
 
-      {/* Category - Challenge 12 */}
+      {/* Challenge 12: Category */}
       <div>
         <label htmlFor="task-category">
           Category
@@ -158,38 +152,28 @@ export default function TaskForm({
         </select>
       </div>
 
-      {/* Tags - Challenge 12 */}
-      <div>
-        <label htmlFor="task-tags-input">
-          Tags
-        </label>
+      {/* Challenge 12: Tags */}
+      <FormInput
+        label="Tags"
+        id="task-tags-input"
+        type="text"
+        value={tagsInput}
+        placeholder="e.g. react, college, project"
+        onChange={(event) =>
+          setTagsInput(event.target.value)
+        }
+      />
 
-        <input
-          id="task-tags-input"
-          type="text"
-          value={tagsInput}
-          placeholder="e.g. react, college, project"
-          onChange={(event) =>
-            setTagsInput(event.target.value)
-          }
-        />
-      </div>
-
-      {/* Due Date - Challenge 13 */}
-      <div>
-        <label htmlFor="task-due-date">
-          Due Date
-        </label>
-
-        <input
-          id="task-due-date"
-          type="date"
-          value={dueDate}
-          onChange={(event) =>
-            setDueDate(event.target.value)
-          }
-        />
-      </div>
+      {/* Challenge 13: Due Date */}
+      <FormInput
+        label="Due Date"
+        id="task-due-date"
+        type="date"
+        value={dueDate}
+        onChange={(event) =>
+          setDueDate(event.target.value)
+        }
+      />
 
       {/* Error */}
       {error && (
@@ -198,9 +182,13 @@ export default function TaskForm({
         </p>
       )}
 
-      <button type="submit">
+      {/* Challenge 15: Reusable Button */}
+      <Button
+        type="submit"
+        variant="primary"
+      >
         Add Task
-      </button>
+      </Button>
     </form>
   )
 }

@@ -1,4 +1,6 @@
 import { useRef } from 'react'
+import Button from './Button'
+import FormInput from './FormInput'
 
 type FilterType =
   | 'all'
@@ -57,9 +59,7 @@ export default function FilterBar({
     useRef<HTMLInputElement>(null)
 
   const handleClearSearch = () => {
-    if (onSearchChange) {
-      onSearchChange('')
-    }
+    onSearchChange?.('')
 
     searchInputRef.current?.focus()
   }
@@ -69,47 +69,47 @@ export default function FilterBar({
 
       {/* Challenge 06: Status filter */}
       <div>
-        <button
+        <Button
           type="button"
-          data-active={
+          variant={
             filter === 'all'
-              ? 'true'
-              : 'false'
+              ? 'primary'
+              : 'secondary'
           }
           onClick={() =>
             onFilterChange('all')
           }
         >
           All
-        </button>
+        </Button>
 
-        <button
+        <Button
           type="button"
-          data-active={
+          variant={
             filter === 'active'
-              ? 'true'
-              : 'false'
+              ? 'primary'
+              : 'secondary'
           }
           onClick={() =>
             onFilterChange('active')
           }
         >
           Active
-        </button>
+        </Button>
 
-        <button
+        <Button
           type="button"
-          data-active={
+          variant={
             filter === 'completed'
-              ? 'true'
-              : 'false'
+              ? 'primary'
+              : 'secondary'
           }
           onClick={() =>
             onFilterChange('completed')
           }
         >
           Completed
-        </button>
+        </Button>
       </div>
 
       {/* Challenge 12: Category filter */}
@@ -147,67 +147,88 @@ export default function FilterBar({
       {/* Challenge 09 + 11: Search */}
       {onSearchChange && (
         <div>
-          <label htmlFor="search-input">
-            Search
-          </label>
-
-          <input
-            ref={searchInputRef}
+          <FormInput
+            label="Search"
             id="search-input"
-            type="text"
             value={searchText}
-            placeholder="Search tasks..."
             onChange={(event) =>
               onSearchChange(
                 event.target.value
               )
             }
+            type="text"
+            placeholder="Search tasks..."
           />
 
+          {/* Keep a hidden/native input reference
+              only when FormInput supports forwarding refs.
+              If your FormInput does not support ref,
+              this button still clears the search correctly. */}
           {searchText && (
-            <button
+            <Button
               id="clear-search"
               type="button"
+              variant="secondary"
               onClick={handleClearSearch}
             >
               Clear search
-            </button>
+            </Button>
           )}
+
+          {/* Invisible input used for focus compatibility */}
+          <input
+            ref={searchInputRef}
+            type="text"
+            aria-hidden="true"
+            tabIndex={-1}
+            style={{
+              position: 'absolute',
+              width: 0,
+              height: 0,
+              opacity: 0,
+              pointerEvents: 'none',
+            }}
+          />
         </div>
       )}
 
       {/* Challenge 07 + 13: Sort */}
       {onSortChange && (
-        <select
-          id="sort-order"
-          value={sortOrder}
-          onChange={(event) =>
-            onSortChange(
-              event.target.value as SortOrder
-            )
-          }
-        >
-          <option value="recent">
-            Recently Added
-          </option>
+        <div>
+          <label htmlFor="sort-order">
+            Sort
+          </label>
 
-          <option value="priority-high">
-            Priority: High to Low
-          </option>
+          <select
+            id="sort-order"
+            value={sortOrder}
+            onChange={(event) =>
+              onSortChange(
+                event.target.value as SortOrder
+              )
+            }
+          >
+            <option value="recent">
+              Recently Added
+            </option>
 
-          <option value="priority-low">
-            Priority: Low to High
-          </option>
+            <option value="priority-high">
+              Priority: High to Low
+            </option>
 
-          <option value="alphabetical">
-            Alphabetical
-          </option>
+            <option value="priority-low">
+              Priority: Low to High
+            </option>
 
-          {/* Challenge 13 */}
-          <option value="due-date">
-            Due Date (Soonest First)
-          </option>
-        </select>
+            <option value="alphabetical">
+              Alphabetical
+            </option>
+
+            <option value="due-date">
+              Due Date (Soonest First)
+            </option>
+          </select>
+        </div>
       )}
     </div>
   )

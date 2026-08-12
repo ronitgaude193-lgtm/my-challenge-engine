@@ -1,4 +1,8 @@
 import { useEffect, useState } from 'react'
+import Button from './Button'
+import Badge from './Badge'
+import StatusIndicator from './StatusIndicator'
+import FormInput from './FormInput'
 
 interface TaskCardProps {
   id: string | number
@@ -41,14 +45,9 @@ export default function TaskCard({
   description,
   priority,
   completed = false,
-
-  // Challenge 12
   category = 'General',
   tags = [],
-
-  // Challenge 13
   dueDate,
-
   onToggle,
   onDelete,
   onUpdateTask,
@@ -56,24 +55,27 @@ export default function TaskCard({
   onEdit,
   onCancelEdit,
 }: TaskCardProps) {
-  const [editTitle, setEditTitle] = useState(title)
+  const [editTitle, setEditTitle] =
+    useState(title)
+
   const [editDescription, setEditDescription] =
     useState(description)
+
   const [editPriority, setEditPriority] =
     useState(priority)
 
-  // Challenge 12
   const [editCategory, setEditCategory] =
     useState(category)
 
   const [editTags, setEditTags] =
     useState(tags.join(', '))
 
-  // Challenge 13
   const [editDueDate, setEditDueDate] =
     useState(
       dueDate
-        ? new Date(dueDate).toISOString().split('T')[0]
+        ? new Date(dueDate)
+            .toISOString()
+            .split('T')[0]
         : ''
     )
 
@@ -104,9 +106,7 @@ export default function TaskCard({
   ])
 
   const handleToggle = () => {
-    if (onToggle) {
-      onToggle(id)
-    }
+    onToggle?.(id)
   }
 
   const handleDelete = () => {
@@ -121,7 +121,6 @@ export default function TaskCard({
   const handleSave = () => {
     const trimmedTitle = editTitle.trim()
 
-    // Title cannot be empty
     if (!trimmedTitle) {
       return
     }
@@ -131,22 +130,18 @@ export default function TaskCard({
       .map((tag) => tag.trim())
       .filter((tag) => tag.length > 0)
 
-    if (onUpdateTask) {
-      onUpdateTask(id, {
-        title: trimmedTitle,
-        description: editDescription.trim(),
-        priority: editPriority,
-        category:
-          editCategory.trim() || 'General',
-        tags: parsedTags,
-        dueDate:
-          editDueDate || undefined,
-      })
-    }
+    onUpdateTask?.(id, {
+      title: trimmedTitle,
+      description: editDescription.trim(),
+      priority: editPriority,
+      category:
+        editCategory.trim() || 'General',
+      tags: parsedTags,
+      dueDate:
+        editDueDate || undefined,
+    })
 
-    if (onCancelEdit) {
-      onCancelEdit()
-    }
+    onCancelEdit?.()
   }
 
   const handleCancel = () => {
@@ -164,14 +159,10 @@ export default function TaskCard({
         : ''
     )
 
-    if (onCancelEdit) {
-      onCancelEdit()
-    }
+    onCancelEdit?.()
   }
 
-  // --------------------------------
   // Challenge 13: Due date status
-  // --------------------------------
   const getDueStatus = () => {
     if (!dueDate || completed) {
       return ''
@@ -186,11 +177,10 @@ export default function TaskCard({
     const difference =
       due.getTime() - today.getTime()
 
-    const daysUntilDue =
-      Math.ceil(
-        difference /
-          (1000 * 60 * 60 * 24)
-      )
+    const daysUntilDue = Math.ceil(
+      difference /
+        (1000 * 60 * 60 * 24)
+    )
 
     if (daysUntilDue < 0) {
       return 'Overdue'
@@ -231,42 +221,27 @@ export default function TaskCard({
       {editing ? (
         <>
           {/* Title */}
-          <div>
-            <label
-              htmlFor={`edit-title-${id}`}
-            >
-              Title
-            </label>
-
-            <input
-              id={`edit-title-${id}`}
-              value={editTitle}
-              onChange={(event) =>
-                setEditTitle(
-                  event.target.value
-                )
-              }
-            />
-          </div>
+          <FormInput
+            label="Title"
+            id={`edit-title-${id}`}
+            value={editTitle}
+            onChange={(event) =>
+              setEditTitle(event.target.value)
+            }
+          />
 
           {/* Description */}
-          <div>
-            <label
-              htmlFor={`edit-description-${id}`}
-            >
-              Description
-            </label>
-
-            <textarea
-              id={`edit-description-${id}`}
-              value={editDescription}
-              onChange={(event) =>
-                setEditDescription(
-                  event.target.value
-                )
-              }
-            />
-          </div>
+          <FormInput
+            label="Description"
+            id={`edit-description-${id}`}
+            type="textarea"
+            value={editDescription}
+            onChange={(event) =>
+              setEditDescription(
+                event.target.value
+              )
+            }
+          />
 
           {/* Priority */}
           <div>
@@ -331,61 +306,46 @@ export default function TaskCard({
           </div>
 
           {/* Tags */}
-          <div>
-            <label
-              htmlFor={`edit-tags-${id}`}
-            >
-              Tags
-            </label>
+          <FormInput
+            label="Tags"
+            id={`edit-tags-${id}`}
+            value={editTags}
+            placeholder="tag1, tag2, tag3"
+            onChange={(event) =>
+              setEditTags(event.target.value)
+            }
+          />
 
-            <input
-              id={`edit-tags-${id}`}
-              type="text"
-              value={editTags}
-              placeholder="tag1, tag2, tag3"
-              onChange={(event) =>
-                setEditTags(
-                  event.target.value
-                )
-              }
-            />
-          </div>
-
-          {/* Due Date - Challenge 13 */}
-          <div>
-            <label
-              htmlFor={`edit-due-date-${id}`}
-            >
-              Due Date
-            </label>
-
-            <input
-              id={`edit-due-date-${id}`}
-              type="date"
-              value={editDueDate}
-              onChange={(event) =>
-                setEditDueDate(
-                  event.target.value
-                )
-              }
-            />
-          </div>
+          {/* Due Date */}
+          <FormInput
+            label="Due Date"
+            id={`edit-due-date-${id}`}
+            type="date"
+            value={editDueDate}
+            onChange={(event) =>
+              setEditDueDate(
+                event.target.value
+              )
+            }
+          />
 
           {/* Save */}
-          <button
+          <Button
             type="button"
+            variant="primary"
             onClick={handleSave}
           >
             Save
-          </button>
+          </Button>
 
           {/* Cancel */}
-          <button
+          <Button
             type="button"
+            variant="secondary"
             onClick={handleCancel}
           >
             Cancel
-          </button>
+          </Button>
         </>
       ) : (
         <>
@@ -413,23 +373,29 @@ export default function TaskCard({
 
           {/* Priority */}
           <p>
-            Priority: {priority}
+            Priority:{' '}
+            <Badge variant="priority">
+              {priority}
+            </Badge>
           </p>
 
           {/* Category */}
           <p id="task-category">
-            Category: {category}
+            Category:{' '}
+            <Badge variant="category">
+              {category}
+            </Badge>
           </p>
 
           {/* Tags */}
           <div id="task-tags">
             {tags.map((tag) => (
-              <span
+              <Badge
                 key={tag}
-                data-tag={tag}
+                variant="tag"
               >
                 {tag}
-              </span>
+              </Badge>
             ))}
           </div>
 
@@ -442,7 +408,7 @@ export default function TaskCard({
                   dueStatus === 'Overdue'
                     ? 'true'
                     : 'false'
-                  }
+                }
               >
                 Due:{' '}
                 {new Date(
@@ -451,40 +417,49 @@ export default function TaskCard({
               </p>
 
               {dueStatus && (
-                <span
-                  data-overdue={
-                    dueStatus ===
-                    'Overdue'
-                      ? 'true'
-                      : 'false'
+                <StatusIndicator
+                  status={
+                    dueStatus === 'Overdue'
+                      ? 'overdue'
+                      : dueStatus ===
+                        'Due Today'
+                      ? 'due-today'
+                      : 'due-soon'
                   }
-                >
-                  {dueStatus}
-                </span>
+                />
               )}
             </div>
           )}
 
+          {/* Completed status */}
+          {completed && (
+            <StatusIndicator
+              status="completed"
+            />
+          )}
+
           {/* Edit */}
           {onUpdateTask && (
-            <button
+            <Button
               type="button"
+              variant="secondary"
               onClick={() =>
                 onEdit?.(id)
               }
             >
               Edit
-            </button>
+            </Button>
           )}
 
           {/* Delete */}
           {onDelete && (
-            <button
+            <Button
               type="button"
+              variant="danger"
               onClick={handleDelete}
             >
               Delete
-            </button>
+            </Button>
           )}
         </>
       )}
