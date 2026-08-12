@@ -6,8 +6,11 @@ interface TaskCardProps {
   description: string
   priority: string
   completed?: boolean
+
   onToggle?: (id: string | number) => void
   onDelete?: (id: string | number) => void
+
+  // Challenge 08
   onUpdateTask?: (
     id: string | number,
     updates: {
@@ -16,8 +19,9 @@ interface TaskCardProps {
       priority: string
     }
   ) => void
-  isEditing?: boolean
-  onStartEdit?: (id: string | number) => void
+
+  editing?: boolean
+  onEdit?: (id: string | number) => void
   onCancelEdit?: () => void
 }
 
@@ -30,23 +34,21 @@ export default function TaskCard({
   onToggle,
   onDelete,
   onUpdateTask,
-  isEditing = false,
-  onStartEdit,
+  editing = false,
+  onEdit,
   onCancelEdit,
 }: TaskCardProps) {
   const [editTitle, setEditTitle] = useState(title)
   const [editDescription, setEditDescription] = useState(description)
   const [editPriority, setEditPriority] = useState(priority)
-  const [error, setError] = useState('')
 
   useEffect(() => {
-    if (isEditing) {
+    if (editing) {
       setEditTitle(title)
       setEditDescription(description)
       setEditPriority(priority)
-      setError('')
     }
-  }, [isEditing, title, description, priority])
+  }, [editing, title, description, priority])
 
   const handleToggle = () => {
     if (onToggle) {
@@ -63,8 +65,8 @@ export default function TaskCard({
   const handleSave = () => {
     const trimmedTitle = editTitle.trim()
 
+    // Title cannot be empty
     if (!trimmedTitle) {
-      setError('Title is required')
       return
     }
 
@@ -76,14 +78,15 @@ export default function TaskCard({
       })
     }
 
-    setError('')
+    if (onCancelEdit) {
+      onCancelEdit()
+    }
   }
 
   const handleCancel = () => {
     setEditTitle(title)
     setEditDescription(description)
     setEditPriority(priority)
-    setError('')
 
     if (onCancelEdit) {
       onCancelEdit()
@@ -95,7 +98,7 @@ export default function TaskCard({
       id="task-card"
       data-completed={completed}
     >
-      {onToggle && !isEditing && (
+      {onToggle && (
         <input
           type="checkbox"
           checked={completed}
@@ -103,36 +106,53 @@ export default function TaskCard({
         />
       )}
 
-      {isEditing ? (
+      {editing ? (
         <>
-          <input
-            type="text"
-            value={editTitle}
-            onChange={(event) => setEditTitle(event.target.value)}
-            aria-label="Task title"
-          />
+          <div>
+            <label htmlFor={`edit-title-${id}`}>
+              Title
+            </label>
 
-          <textarea
-            value={editDescription}
-            onChange={(event) => setEditDescription(event.target.value)}
-            aria-label="Task description"
-          />
+            <input
+              id={`edit-title-${id}`}
+              value={editTitle}
+              onChange={(event) =>
+                setEditTitle(event.target.value)
+              }
+            />
+          </div>
 
-          <select
-            value={editPriority}
-            onChange={(event) => setEditPriority(event.target.value)}
-            aria-label="Task priority"
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
+          <div>
+            <label htmlFor={`edit-description-${id}`}>
+              Description
+            </label>
 
-          {error && (
-            <p id="task-edit-error">
-              {error}
-            </p>
-          )}
+            <textarea
+              id={`edit-description-${id}`}
+              value={editDescription}
+              onChange={(event) =>
+                setEditDescription(event.target.value)
+              }
+            />
+          </div>
+
+          <div>
+            <label htmlFor={`edit-priority-${id}`}>
+              Priority
+            </label>
+
+            <select
+              id={`edit-priority-${id}`}
+              value={editPriority}
+              onChange={(event) =>
+                setEditPriority(event.target.value)
+              }
+            >
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
 
           <button type="button" onClick={handleSave}>
             Save
@@ -146,7 +166,9 @@ export default function TaskCard({
         <>
           <h2
             style={{
-              textDecoration: completed ? 'line-through' : 'none',
+              textDecoration: completed
+                ? 'line-through'
+                : 'none',
             }}
           >
             {title}
@@ -154,7 +176,9 @@ export default function TaskCard({
 
           <p
             style={{
-              textDecoration: completed ? 'line-through' : 'none',
+              textDecoration: completed
+                ? 'line-through'
+                : 'none',
             }}
           >
             {description}
@@ -165,14 +189,17 @@ export default function TaskCard({
           {onUpdateTask && (
             <button
               type="button"
-              onClick={() => onStartEdit?.(id)}
+              onClick={() => onEdit?.(id)}
             >
               Edit
             </button>
           )}
 
           {onDelete && (
-            <button type="button" onClick={handleDelete}>
+            <button
+              type="button"
+              onClick={handleDelete}
+            >
               Delete
             </button>
           )}

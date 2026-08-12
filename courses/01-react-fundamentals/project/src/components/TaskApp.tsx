@@ -30,21 +30,53 @@ export default function TaskApp({
   showFilterBar = false,
   onDelete,
 }: TaskAppProps) {
+  // Challenge 06
   const [filter, setFilter] = useState<FilterType>('all')
+
+  // Challenge 07
   const [sortOrder, setSortOrder] = useState<SortOrder>('recent')
 
+  // Challenge 08
+  const [editingId, setEditingId] = useState<string | number | null>(null)
+
+  // Challenge 03
   const handleAddTask = (task: Task) => {
     if (setTasks) {
       setTasks((prev) => [...prev, task])
     }
   }
 
+  // Challenge 04
   const handleToggle = (id: string | number) => {
     if (setTasks) {
       setTasks((prev) =>
         prev.map((task) =>
           task.id === id
             ? { ...task, completed: !task.completed }
+            : task
+        )
+      )
+    }
+  }
+
+  // Challenge 08
+  const handleUpdateTask = (
+    id: string | number,
+    updates: {
+      title: string
+      description: string
+      priority: string
+    }
+  ) => {
+    if (!updates.title.trim()) {
+      return
+    }
+
+    if (setTasks) {
+      setTasks((prev) =>
+        prev.map((task) =>
+          task.id === id
+            ? { ...task, ...updates }
             : task
         )
       )
@@ -90,10 +122,11 @@ export default function TaskApp({
       })
     }
 
-    // Recently Added = original order
+    // Recently Added
     return 0
   })
 
+  // Task count
   const countText =
     countFormat === 'completed'
       ? `${tasks.filter((task) => task.completed).length} of ${tasks.length} completed`
@@ -103,8 +136,12 @@ export default function TaskApp({
 
   return (
     <div>
-      {showForm && <TaskForm onAddTask={handleAddTask} />}
+      {/* Challenge 03 */}
+      {showForm && (
+        <TaskForm onAddTask={handleAddTask} />
+      )}
 
+      {/* Challenge 06 + 07 */}
       {showFilterBar && (
         <FilterBar
           filter={filter}
@@ -114,17 +151,23 @@ export default function TaskApp({
         />
       )}
 
+      {/* Challenge 06: Empty filter state */}
       {showFilterBar && sortedTasks.length === 0 && (
         <p id="filter-empty-message">
           No tasks match this filter
         </p>
       )}
 
+      {/* Task list */}
       <TaskList
         tasks={sortedTasks}
         countText={countText}
         onToggle={handleToggle}
         onDelete={onDelete}
+        onUpdateTask={handleUpdateTask}
+        editingId={editingId}
+        onEdit={setEditingId}
+        onCancelEdit={() => setEditingId(null)}
       />
     </div>
   )

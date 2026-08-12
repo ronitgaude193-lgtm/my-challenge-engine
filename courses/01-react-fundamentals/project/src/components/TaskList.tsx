@@ -26,8 +26,9 @@ interface TaskListProps {
       priority: string
     }
   ) => void
+
   editingId?: string | number | null
-  onStartEdit?: (id: string | number) => void
+  onEdit?: (id: string | number) => void
   onCancelEdit?: () => void
 
   linkToTaskDetail?: boolean
@@ -64,7 +65,7 @@ export default function TaskList({
   onDelete,
   onUpdateTask,
   editingId,
-  onStartEdit,
+  onEdit,
   onCancelEdit,
 }: TaskListProps) {
   const list = tasks ?? HARDCODED_TASKS
@@ -87,11 +88,9 @@ export default function TaskList({
           completed={task.completed}
           onToggle={onToggle}
           onDelete={onDelete}
-
-          // Challenge 08
           onUpdateTask={onUpdateTask}
-          isEditing={editingId === task.id}
-          onStartEdit={onStartEdit}
+          editing={editingId === task.id}
+          onEdit={onEdit}
           onCancelEdit={onCancelEdit}
         />
       ))}
