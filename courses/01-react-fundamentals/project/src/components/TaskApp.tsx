@@ -15,6 +15,7 @@ interface TaskAppProps {
 }
 
 type FilterType = 'all' | 'active' | 'completed'
+
 type SortOrder =
   | 'recent'
   | 'priority-high'
@@ -50,6 +51,7 @@ export default function TaskApp({
     }
   }
 
+  // Challenge 06: Filtering
   let filteredTasks = tasks
 
   if (filter === 'active') {
@@ -60,27 +62,26 @@ export default function TaskApp({
     filteredTasks = tasks.filter((task) => task.completed)
   }
 
+  // Challenge 07: Sorting
   const sortedTasks = [...filteredTasks].sort((a, b) => {
     if (sortOrder === 'priority-high') {
-      const priority = {
+      const priority: Record<string, number> = {
         High: 3,
         Medium: 2,
         Low: 1,
       }
 
-      return priority[b.priority as keyof typeof priority] -
-        priority[a.priority as keyof typeof priority]
+      return priority[b.priority] - priority[a.priority]
     }
 
     if (sortOrder === 'priority-low') {
-      const priority = {
+      const priority: Record<string, number> = {
         High: 3,
         Medium: 2,
         Low: 1,
       }
 
-      return priority[a.priority as keyof typeof priority] -
-        priority[b.priority as keyof typeof priority]
+      return priority[a.priority] - priority[b.priority]
     }
 
     if (sortOrder === 'alphabetical') {
@@ -89,6 +90,7 @@ export default function TaskApp({
       })
     }
 
+    // Recently Added = original order
     return 0
   })
 
@@ -101,9 +103,7 @@ export default function TaskApp({
 
   return (
     <div>
-      {showForm && (
-        <TaskForm onAddTask={handleAddTask} />
-      )}
+      {showForm && <TaskForm onAddTask={handleAddTask} />}
 
       {showFilterBar && (
         <FilterBar
