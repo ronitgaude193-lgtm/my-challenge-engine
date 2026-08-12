@@ -4847,5 +4847,199 @@
       "maintainability": 90,
       "overall": "The code is well-structured and follows best practices for React and TypeScript development. However, there are some areas for improvement to make the code more maintainable and efficient. Overall, the code is well-written and demonstrates a good understanding of React and TypeScript concepts."
     }
+  },
+  {
+    "challengeId": "17-custom-hook-uselocalstorage",
+    "challengeName": "Custom Hook - useLocalStorage",
+    "timestamp": "2026-08-12T19:47:36.801Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 50,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 88
+    },
+    "totalScore": 90.7,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 17: Custom Hook - useLocalStorage"
+              ],
+              "fullName": " Challenge 17: Custom Hook - useLocalStorage App should render without crashing",
+              "status": "passed",
+              "title": "App should render without crashing",
+              "duration": 77,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1786564060248,
+          "endTime": 1786564060325,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/01-react-fundamentals/project/tests/challenge-17.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 50,
+      "passed": false,
+      "error": "Could not parse linting results",
+      "details": []
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "functionalComponent",
+        "customHook"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/hooks/useLocalStorage.ts",
+          "patternsFound": [],
+          "patternsMissing": [
+            "functionalComponent",
+            "customHook"
+          ]
+        },
+        {
+          "file": "src/App.tsx",
+          "patternsFound": [
+            "functionalComponent",
+            "customHook"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/contexts/ThemeContext.tsx",
+          "patternsFound": [
+            "functionalComponent"
+          ],
+          "patternsMissing": [
+            "customHook"
+          ]
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-17.spec.ts",
+          "file": "challenge-17.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 17: Custom Hook useLocalStorage - E2E",
+              "file": "challenge-17.spec.ts",
+              "line": 3,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should display task list",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 321,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-08-12T19:47:46.809Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "10801a4643fac957b65b-21592ac323f744497a60",
+                  "file": "challenge-17.spec.ts",
+                  "line": 8,
+                  "column": 3
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "17-custom-hook-uselocalstorage",
+      "timestamp": "2026-08-12T19:47:47.603Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The useLocalStorage hook is well-structured and easy to understand.",
+        "The code uses TypeScript, which helps with type safety and maintainability.",
+        "The use of functional components and hooks makes the code more modular and reusable."
+      ],
+      "improvements": [
+        "In the useLocalStorage hook, the error handling for parsing JSON from localStorage could be improved. Currently, it simply returns the initialValue if there's an error. Consider logging the error or providing a more informative error message.",
+        "In the ThemeContext, the toggleTheme function could be simplified. Instead of using the ternary operator, consider using a simple conditional statement.",
+        "In the AppContent component, the handleDelete function could be simplified. Instead of using the filter method, consider using the slice method to remove the deleted task."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-structured and maintainable, with good use of TypeScript and functional components. However, there are a few areas where the code could be improved for better error handling and code simplicity."
+    },
+    "aiResults": {
+      "challengeId": "17-custom-hook-uselocalstorage",
+      "timestamp": "2026-08-12T19:47:47.603Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The useLocalStorage hook is well-structured and easy to understand.",
+        "The code uses TypeScript, which helps with type safety and maintainability.",
+        "The use of functional components and hooks makes the code more modular and reusable."
+      ],
+      "improvements": [
+        "In the useLocalStorage hook, the error handling for parsing JSON from localStorage could be improved. Currently, it simply returns the initialValue if there's an error. Consider logging the error or providing a more informative error message.",
+        "In the ThemeContext, the toggleTheme function could be simplified. Instead of using the ternary operator, consider using a simple conditional statement.",
+        "In the AppContent component, the handleDelete function could be simplified. Instead of using the filter method, consider using the slice method to remove the deleted task."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-structured and maintainable, with good use of TypeScript and functional components. However, there are a few areas where the code could be improved for better error handling and code simplicity."
+    }
   }
 ]

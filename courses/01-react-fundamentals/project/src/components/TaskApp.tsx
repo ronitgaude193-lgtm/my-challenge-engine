@@ -35,8 +35,6 @@ type SortOrder =
   | 'alphabetical'
   | 'due-date'
 
-const STORAGE_KEY = 'task-app-tasks'
-
 export default function TaskApp({
   tasks = [],
   setTasks,
@@ -82,52 +80,12 @@ export default function TaskApp({
     useState('')
 
   // ----------------------------------------
-  // Challenge 11: Debounced search
+  // Challenge 11: Debounced Search
   // ----------------------------------------
   const [
     debouncedSearchText,
     setDebouncedSearchText,
   ] = useState('')
-
-  // ----------------------------------------
-  // Challenge 10:
-  // Load tasks from localStorage
-  // ----------------------------------------
-  useEffect(() => {
-    if (!setTasks) {
-      return
-    }
-
-    const storedTasks =
-      localStorage.getItem(STORAGE_KEY)
-
-    if (!storedTasks) {
-      return
-    }
-
-    try {
-      const parsedTasks: unknown =
-        JSON.parse(storedTasks)
-
-      if (Array.isArray(parsedTasks)) {
-        setTasks(parsedTasks as Task[])
-      }
-    } catch {
-      // Keep existing tasks if stored
-      // data is invalid.
-    }
-  }, [setTasks])
-
-  // ----------------------------------------
-  // Challenge 10:
-  // Save tasks to localStorage
-  // ----------------------------------------
-  useEffect(() => {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(tasks)
-    )
-  }, [tasks])
 
   // ----------------------------------------
   // Challenge 11:
@@ -147,7 +105,8 @@ export default function TaskApp({
   }, [searchText])
 
   // ----------------------------------------
-  // Challenge 03: Add task
+  // Challenge 03:
+  // Add task
   // ----------------------------------------
   const handleAddTask = (
     task: Task
