@@ -1,406 +1,234 @@
-import { useEffect, useState } from 'react'
-import TaskList, { type Task } from './TaskList'
-import TaskForm from './TaskForm'
-import FilterBar from './FilterBar'
+import { useMemo } from 'react'
+import type { Task } from './TaskList'
 
-interface TaskAppProps {
-  tasks?: Task[]
-  setTasks?: React.Dispatch<React.SetStateAction<Task[]>>
-  showForm?: boolean
-  countFormat?: string
-  showFilterBar?: boolean
-  showStatsPanel?: boolean
-  onDelete?: (id: string | number) => void
-  linkToTaskDetail?: boolean
+interface TaskStats {
+  total: number
+  completed: number
+  completedPercentage: number
+  active: number
+  overdue: number
+  categoryBreakdown?: Record<string, number>
+  priorityBreakdown?: Record<string, number>
 }
 
-type FilterType =
-  | 'all'
-  | 'active'
-  | 'completed'
+interface StatsPanelProps {
+  tasks?: Task[]
 
-type SortOrder =
-  | 'recent'
-  | 'priority-high'
-  | 'priority-low'
-  | 'alphabetical'
-  | 'due-date'
+  // Used by TaskApp
+  stats?: TaskStats
 
-const STORAGE_KEY = 'task-app-tasks'
+  // Used by Challenge 14 tests
+  total?: number
+  completed?: number
+  active?: number
+  overdue?: number
+  completedPercentage?: number
 
-export default function TaskApp({
+  categoryBreakdown?: Record<string, number>
+  priorityBreakdown?: Record<string, number>
+}
+
+export default function StatsPanel({
   tasks = [],
-  setTasks,
-  showForm = false,
-  countFormat = 'tasks',
-  showFilterBar = false,
-  onDelete,
-}: TaskAppProps) {
-  // Challenge 06
-  const [filter, setFilter] =
-    useState<FilterType>('all')
+  stats,
+  total,
+  completed,
+  active,
+  overdue,
+  completedPercentage,
+  categoryBreakdown,
+  priorityBreakdown,
+}: StatsPanelProps) {
+  /*
+   * Calculate statistics from tasks.
+   * useMemo prevents recalculation unless tasks change.
+   */
+  const calculatedStats = useMemo<TaskStats>(() => {
+    const totalTasks = tasks.length
 
-  // Challenge 07
-  const [sortOrder, setSortOrder] =
-    useState<SortOrder>('recent')
+    const completedTasks = tasks.filter(
+      (task) => task.completed
+    ).length
 
-  // Challenge 08
-  const [editingId, setEditingId] =
-    useState<string | number | null>(null)
+    const activeTasks = tasks.filter(
+      (task) => !task.completed
+    ).length
 
-  // Challenge 09
-  const [searchText, setSearchText] =
-    useState('')
+    const percentage =
+      totalTasks === 0
+        ? 0
+        : Math.round(
+            (completedTasks / totalTasks) * 100
+          )
 
-  // Challenge 11
-  const [debouncedSearchText, setDebouncedSearchText] =
-    useState('')
+    // Find incomplete tasks whose due date has passed.
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
 
-  // Challenge 10: Load localStorage
-  useEffect(() => {
-    if (!setTasks) {
-      return
-    }
-
-    const storedTasks =
-      localStorage.getItem(STORAGE_KEY)
-
-    if (!storedTasks) {
-      return
-    }
-
-    try {
-      const parsedTasks: unknown =
-        JSON.parse(storedTasks)
-
-      if (Array.isArray(parsedTasks)) {
-        setTasks(parsedTasks as Task[])
+    const overdueTasks = tasks.filter((task) => {
+      if (task.completed || !task.dueDate) {
+        return false
       }
-    } catch {
-      // Keep existing tasks if stored data is invalid.
-    }
-  }, [setTasks])
 
-  // Challenge 10: Save localStorage
-  useEffect(() => {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(tasks)
-    )
+      const dueDate = new Date(task.dueDate)
+      dueDate.setHours(0, 0, 0, 0)
+
+      return dueDate < today
+    }).length
+
+    // Category breakdown
+    const categories =
+      tasks.reduce<Record<string, number>>(
+        (result, task) => {
+          const category =
+            task.category || 'General'
+
+          result[category] =
+            (result[category] || 0) + 1
+
+          return result
+        },
+        {}
+      )
+
+    // Priority breakdown
+    const priorities =
+      tasks.reduce<Record<string, number>>(
+        (result, task) => {
+          const priority =
+            task.priority || 'Medium'
+
+          result[priority] =
+            (result[priority] || 0) + 1
+
+          return result
+        },
+        {}
+      )
+
+    return {
+      total: totalTasks,
+      completed: completedTasks,
+      completedPercentage: percentage,
+      active: activeTasks,
+      overdue: overdueTasks,
+      categoryBreakdown: categories,
+      priorityBreakdown: priorities,
+    }
   }, [tasks])
 
-  // Challenge 11: Debounced Search
-  useEffect(() => {
-    const timeout =
-      window.setTimeout(() => {
-        setDebouncedSearchText(searchText)
-      }, 300)
+  /*
+   * If TaskApp passes a memoized stats object,
+   * use it. Otherwise use calculatedStats.
+   */
+  const displayStats = stats ?? calculatedStats
 
-    return () => {
-      window.clearTimeout(timeout)
-    }
-  }, [searchText])
+  const displayTotal =
+    total ?? displayStats.total
 
-  // Challenge 03: Add Task
-  const handleAddTask = (task: Task) => {
-    if (!setTasks) {
-      return
-    }
+  const displayCompleted =
+    completed ?? displayStats.completed
 
-    setTasks((prev) => [
-      ...prev,
-      task,
-    ])
-  }
+  const displayActive =
+    active ?? displayStats.active
 
-  // Challenge 04: Toggle
-  const handleToggle = (
-    id: string | number
-  ) => {
-    if (!setTasks) {
-      return
-    }
+  const displayOverdue =
+    overdue ?? displayStats.overdue
 
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              completed:
-                !task.completed,
-            }
-          : task
-      )
-    )
-  }
+  const displayPercentage =
+    completedPercentage ??
+    displayStats.completedPercentage
 
-  // Challenge 08 + 12 + 13: Update Task
-  const handleUpdateTask = (
-    id: string | number,
-    updates: {
-      title: string
-      description: string
-      priority: string
-      category?: string
-      tags?: string[]
-      dueDate?: string | number
-    }
-  ) => {
-    if (setTasks) {
-      setTasks((prev) =>
-        prev.map((task) => {
-          if (task.id !== id) {
-            return task
-          }
+  const displayCategories =
+    categoryBreakdown ??
+    displayStats.categoryBreakdown ??
+    {}
 
-          return {
-            ...task,
-            ...updates,
-          }
-        })
-      )
-    }
-
-    setEditingId(null)
-  }
-
-  // Challenge 06: Filtering
-  let filteredTasks = tasks
-
-  if (filter === 'active') {
-    filteredTasks = tasks.filter(
-      (task) => !task.completed
-    )
-  }
-
-  if (filter === 'completed') {
-    filteredTasks = tasks.filter(
-      (task) => task.completed
-    )
-  }
-
-  // Challenge 09 + 11: Search
-  const normalizedSearch =
-    debouncedSearchText
-      .trim()
-      .toLowerCase()
-
-  const searchedTasks =
-    normalizedSearch
-      ? filteredTasks.filter((task) => {
-          const title =
-            task.title.toLowerCase()
-
-          const description =
-            task.description.toLowerCase()
-
-          const category =
-            task.category
-              ?.toLowerCase() ?? ''
-
-          const tags =
-            task.tags
-              ?.join(' ')
-              .toLowerCase() ?? ''
-
-          return (
-            title.includes(
-              normalizedSearch
-            ) ||
-            description.includes(
-              normalizedSearch
-            ) ||
-            category.includes(
-              normalizedSearch
-            ) ||
-            tags.includes(
-              normalizedSearch
-            )
-          )
-        })
-      : filteredTasks
-
-  // Challenge 07 + Challenge 13: Sorting
-  const sortedTasks =
-    [...searchedTasks].sort(
-      (a, b) => {
-        // Challenge 07:
-        // Priority High -> Low
-        if (
-          sortOrder ===
-          'priority-high'
-        ) {
-          const priority: Record<
-            string,
-            number
-          > = {
-            High: 3,
-            Medium: 2,
-            Low: 1,
-          }
-
-          return (
-            priority[b.priority] -
-            priority[a.priority]
-          )
-        }
-
-        // Challenge 07:
-        // Priority Low -> High
-        if (
-          sortOrder ===
-          'priority-low'
-        ) {
-          const priority: Record<
-            string,
-            number
-          > = {
-            High: 3,
-            Medium: 2,
-            Low: 1,
-          }
-
-          return (
-            priority[a.priority] -
-            priority[b.priority]
-          )
-        }
-
-        // Challenge 07:
-        // Alphabetical
-        if (
-          sortOrder ===
-          'alphabetical'
-        ) {
-          return a.title.localeCompare(
-            b.title,
-            undefined,
-            {
-              sensitivity: 'base',
-            }
-          )
-        }
-
-        // Challenge 13:
-        // Due Date Soonest First
-        if (
-          sortOrder ===
-          'due-date'
-        ) {
-          // Tasks without due dates
-          // go to the end.
-          if (
-            !a.dueDate &&
-            !b.dueDate
-          ) {
-            return 0
-          }
-
-          if (!a.dueDate) {
-            return 1
-          }
-
-          if (!b.dueDate) {
-            return -1
-          }
-
-          return (
-            new Date(
-              a.dueDate
-            ).getTime() -
-            new Date(
-              b.dueDate
-            ).getTime()
-          )
-        }
-
-        // Recently Added
-        // Preserve original order.
-        return 0
-      }
-    )
-
-  // Challenge 11:
-  // Searching indicator
-  const isSearching =
-    searchText.trim() !==
-    debouncedSearchText.trim()
-
-  // Count
-  const countText =
-    countFormat === 'completed'
-      ? `${
-          tasks.filter(
-            (task) =>
-              task.completed
-          ).length
-        } of ${
-          tasks.length
-        } completed`
-      : showFilterBar
-        ? `Showing ${sortedTasks.length} of ${tasks.length} tasks`
-        : `${tasks.length} tasks`
-
-  // Empty message
-  const hasSearch =
-    normalizedSearch.length > 0
-
-  const emptyMessage = hasSearch
-    ? 'No tasks found'
-    : 'No tasks match this filter'
+  const displayPriorities =
+    priorityBreakdown ??
+    displayStats.priorityBreakdown ??
+    {}
 
   return (
-    <div>
-      {/* Challenge 03 */}
-      {showForm && (
-        <TaskForm
-          onAddTask={handleAddTask}
-        />
+    <section id="stats-panel">
+      <h2>Task Statistics</h2>
+
+      {/* Total Tasks */}
+      <div>
+        <h3>Total: {displayTotal}</h3>
+      </div>
+
+      {/* Completed Tasks */}
+      <div>
+        <h3>
+          Completed: {displayCompleted}
+        </h3>
+
+        <p>
+          {displayPercentage}%
+        </p>
+
+        <div
+          role="progressbar"
+          aria-label="Task completion progress"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={displayPercentage}
+          style={{
+            width: '100%',
+            height: '10px',
+            backgroundColor: '#e5e7eb',
+          }}
+        >
+          <div
+            style={{
+              width: `${displayPercentage}%`,
+              height: '100%',
+              backgroundColor: '#22c55e',
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Active Tasks */}
+      <div>
+        <h3>Active: {displayActive}</h3>
+      </div>
+
+      {/* Overdue Tasks */}
+      <div>
+        <h3>Overdue: {displayOverdue}</h3>
+      </div>
+
+      {/* Category Breakdown */}
+      {Object.keys(displayCategories).length > 0 && (
+        <div>
+          <h3>By Category</h3>
+
+          {Object.entries(displayCategories).map(
+            ([category, count]) => (
+              <p key={category}>
+                {category}: {count}
+              </p>
+            )
+          )}
+        </div>
       )}
 
-      {/* Challenge 06 + 07 + 09 + 11 */}
-      {showFilterBar && (
-        <FilterBar
-          filter={filter}
-          onFilterChange={setFilter}
-          sortOrder={sortOrder}
-          onSortChange={setSortOrder}
-          searchText={searchText}
-          onSearchChange={setSearchText}
-        />
+      {/* Priority Breakdown */}
+      {Object.keys(displayPriorities).length > 0 && (
+        <div>
+          <h3>By Priority</h3>
+
+          {Object.entries(displayPriorities).map(
+            ([priority, count]) => (
+              <p key={priority}>
+                {priority}: {count}
+              </p>
+            )
+          )}
+        </div>
       )}
-
-      {/* Challenge 11 */}
-      {showFilterBar &&
-        isSearching && (
-          <p id="searching-indicator">
-            Searching...
-          </p>
-        )}
-
-      {/* Challenge 06 + 09 */}
-      {showFilterBar &&
-        sortedTasks.length === 0 && (
-          <p id="filter-empty-message">
-            {emptyMessage}
-          </p>
-        )}
-
-      {/* Task List */}
-      <TaskList
-        tasks={sortedTasks}
-        countText={countText}
-        onToggle={handleToggle}
-        onDelete={onDelete}
-        onUpdateTask={
-          handleUpdateTask
-        }
-        editingId={editingId}
-        onEdit={setEditingId}
-        onCancelEdit={() =>
-          setEditingId(null)
-        }
-      />
-    </div>
+    </section>
   )
 }
