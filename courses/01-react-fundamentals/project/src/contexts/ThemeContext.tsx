@@ -3,11 +3,14 @@ import {
   useContext,
   type ReactNode,
 } from 'react'
+
 import useLocalStorage from '../hooks/useLocalStorage'
 
-export type Theme = 'light' | 'dark'
+export type Theme =
+  | 'light'
+  | 'dark'
 
-interface ThemeContextValue {
+export interface ThemeContextValue {
   theme: Theme
   setTheme: (
     theme: Theme
@@ -31,7 +34,7 @@ export function ThemeProvider({
     theme,
     setTheme,
   ] = useLocalStorage<Theme>(
-    'task-app-theme',
+    'theme',
     'light'
   )
 

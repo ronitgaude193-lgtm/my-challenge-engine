@@ -10,16 +10,58 @@ import FilterBar from './FilterBar'
 import StatsPanel from './StatsPanel'
 import { useTheme } from '../contexts/ThemeContext'
 
+// ----------------------------------------
+// Challenge 18: Task action type
+// ----------------------------------------
+
+type TaskAction =
+  | {
+      type: 'ADD_TASK'
+      payload: Task
+    }
+  | {
+      type: 'UPDATE_TASK'
+      payload: {
+        id: string | number
+        title: string
+        description: string
+        priority: string
+        category?: string
+        tags?: string[]
+        dueDate?: string | number
+      }
+    }
+  | {
+      type: 'DELETE_TASK'
+      payload: string | number
+    }
+  | {
+      type: 'TOGGLE_TASK'
+      payload: string | number
+    }
+  | {
+      type: 'SET_TASKS'
+      payload: Task[]
+    }
+
+// ----------------------------------------
+// Challenge 18: Props
+// ----------------------------------------
+
 interface TaskAppProps {
   tasks?: Task[]
-  setTasks?: React.Dispatch<
-    React.SetStateAction<Task[]>
-  >
+
+  dispatch?: (
+    action: TaskAction
+  ) => void
+
   showForm?: boolean
   countFormat?: string
   showFilterBar?: boolean
   showStatsPanel?: boolean
-  onDelete?: (id: string | number) => void
+  onDelete?: (
+    id: string | number
+  ) => void
   linkToTaskDetail?: boolean
 }
 
@@ -37,7 +79,7 @@ type SortOrder =
 
 export default function TaskApp({
   tasks = [],
-  setTasks,
+  dispatch,
   showForm = false,
   countFormat = 'tasks',
   showFilterBar = false,
@@ -46,8 +88,9 @@ export default function TaskApp({
   linkToTaskDetail = false,
 }: TaskAppProps) {
   // ----------------------------------------
-  // Challenge 16: Context API Theme
+  // Challenge 16: Theme Context
   // ----------------------------------------
+
   const {
     theme,
     toggleTheme,
@@ -56,18 +99,21 @@ export default function TaskApp({
   // ----------------------------------------
   // Challenge 06: Filtering
   // ----------------------------------------
+
   const [filter, setFilter] =
     useState<FilterType>('all')
 
   // ----------------------------------------
   // Challenge 07: Sorting
   // ----------------------------------------
+
   const [sortOrder, setSortOrder] =
     useState<SortOrder>('recent')
 
   // ----------------------------------------
   // Challenge 08: Editing
   // ----------------------------------------
+
   const [editingId, setEditingId] =
     useState<
       string | number | null
@@ -76,21 +122,19 @@ export default function TaskApp({
   // ----------------------------------------
   // Challenge 09: Search
   // ----------------------------------------
+
   const [searchText, setSearchText] =
     useState('')
 
   // ----------------------------------------
   // Challenge 11: Debounced Search
   // ----------------------------------------
+
   const [
     debouncedSearchText,
     setDebouncedSearchText,
   ] = useState('')
 
-  // ----------------------------------------
-  // Challenge 11:
-  // Debounced search
-  // ----------------------------------------
   useEffect(() => {
     const timeout =
       window.setTimeout(() => {
@@ -105,68 +149,54 @@ export default function TaskApp({
   }, [searchText])
 
   // ----------------------------------------
-  // Challenge 03:
+  // Challenge 03 + 18:
   // Add task
   // ----------------------------------------
+
   const handleAddTask = (
     task: Task
   ) => {
-    if (!setTasks) {
-      return
-    }
-
-    setTasks((prev) => [
-      ...prev,
-      task,
-    ])
+    dispatch?.({
+      type: 'ADD_TASK',
+      payload: task,
+    })
   }
 
   // ----------------------------------------
-  // Challenge 04:
-  // Toggle completion
+  // Challenge 04 + 18:
+  // Toggle task
   // ----------------------------------------
+
   const handleToggle = (
     id: string | number
   ) => {
-    if (!setTasks) {
-      return
-    }
-
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              completed:
-                !task.completed,
-            }
-          : task
-      )
-    )
+    dispatch?.({
+      type: 'TOGGLE_TASK',
+      payload: id,
+    })
   }
 
   // ----------------------------------------
-  // Challenge 05 + 14:
+  // Challenge 05 + 18:
   // Delete task
   // ----------------------------------------
+
   const handleDeleteTask = (
     id: string | number
   ) => {
-    if (setTasks) {
-      setTasks((prev) =>
-        prev.filter(
-          (task) => task.id !== id
-        )
-      )
-    }
+    dispatch?.({
+      type: 'DELETE_TASK',
+      payload: id,
+    })
 
     onDelete?.(id)
   }
 
   // ----------------------------------------
-  // Challenge 08 + 12 + 13:
+  // Challenge 08 + 12 + 13 + 18:
   // Update task
   // ----------------------------------------
+
   const handleUpdateTask = (
     id: string | number,
     updates: {
@@ -178,20 +208,13 @@ export default function TaskApp({
       dueDate?: string | number
     }
   ) => {
-    if (setTasks) {
-      setTasks((prev) =>
-        prev.map((task) => {
-          if (task.id !== id) {
-            return task
-          }
-
-          return {
-            ...task,
-            ...updates,
-          }
-        })
-      )
-    }
+    dispatch?.({
+      type: 'UPDATE_TASK',
+      payload: {
+        id,
+        ...updates,
+      },
+    })
 
     setEditingId(null)
   }
@@ -200,6 +223,7 @@ export default function TaskApp({
   // Challenge 14:
   // Statistics
   // ----------------------------------------
+
   const taskStats = useMemo(() => {
     const total = tasks.length
 
@@ -294,6 +318,7 @@ export default function TaskApp({
   // Challenge 06:
   // Filtering
   // ----------------------------------------
+
   let filteredTasks = tasks
 
   if (filter === 'active') {
@@ -314,6 +339,7 @@ export default function TaskApp({
   // Challenge 09 + 11:
   // Search
   // ----------------------------------------
+
   const normalizedSearch =
     debouncedSearchText
       .trim()
@@ -360,6 +386,7 @@ export default function TaskApp({
   // Challenge 07 + 13:
   // Sorting
   // ----------------------------------------
+
   const sortedTasks =
     [...searchedTasks].sort(
       (a, b) => {
@@ -372,7 +399,6 @@ export default function TaskApp({
           Low: 1,
         }
 
-        // Priority High -> Low
         if (
           sortOrder ===
           'priority-high'
@@ -383,7 +409,6 @@ export default function TaskApp({
           )
         }
 
-        // Priority Low -> High
         if (
           sortOrder ===
           'priority-low'
@@ -394,7 +419,6 @@ export default function TaskApp({
           )
         }
 
-        // Alphabetical
         if (
           sortOrder ===
           'alphabetical'
@@ -408,7 +432,6 @@ export default function TaskApp({
           )
         }
 
-        // Due date
         if (
           sortOrder === 'due-date'
         ) {
@@ -437,7 +460,6 @@ export default function TaskApp({
           )
         }
 
-        // Recently added
         return 0
       }
     )
@@ -446,6 +468,7 @@ export default function TaskApp({
   // Challenge 11:
   // Searching indicator
   // ----------------------------------------
+
   const isSearching =
     searchText.trim() !==
     debouncedSearchText.trim()
@@ -453,6 +476,7 @@ export default function TaskApp({
   // ----------------------------------------
   // Count text
   // ----------------------------------------
+
   const countText =
     countFormat === 'completed'
       ? `${
@@ -470,6 +494,7 @@ export default function TaskApp({
   // ----------------------------------------
   // Empty message
   // ----------------------------------------
+
   const hasSearch =
     normalizedSearch.length > 0
 
@@ -480,15 +505,13 @@ export default function TaskApp({
   // ----------------------------------------
   // Render
   // ----------------------------------------
+
   return (
     <div
       id="task-app"
       data-theme={theme}
     >
-      {/* --------------------------------
-          Challenge 16:
-          Theme toggle
-      --------------------------------- */}
+      {/* Challenge 16 */}
       <header id="app-header">
         <button
           id="theme-toggle"
@@ -506,52 +529,33 @@ export default function TaskApp({
         </button>
       </header>
 
-      {/* --------------------------------
-          Challenge 14:
-          Statistics Dashboard
-      --------------------------------- */}
+      {/* Challenge 14 */}
       {showStatsPanel && (
         <StatsPanel
           stats={taskStats}
         />
       )}
 
-      {/* --------------------------------
-          Challenge 03:
-          Task Form
-      --------------------------------- */}
+      {/* Challenge 03 */}
       {showForm && (
         <TaskForm
-          onAddTask={
-            handleAddTask
-          }
+          onAddTask={handleAddTask}
         />
       )}
 
-      {/* --------------------------------
-          Challenge 06 + 07 + 09
-          + 11 + 13:
-          Filter Bar
-      --------------------------------- */}
+      {/* Challenge 06 + 07 + 09 + 11 + 13 */}
       {showFilterBar && (
         <FilterBar
           filter={filter}
           onFilterChange={setFilter}
           sortOrder={sortOrder}
-          onSortChange={
-            setSortOrder
-          }
+          onSortChange={setSortOrder}
           searchText={searchText}
-          onSearchChange={
-            setSearchText
-          }
+          onSearchChange={setSearchText}
         />
       )}
 
-      {/* --------------------------------
-          Challenge 11:
-          Searching indicator
-      --------------------------------- */}
+      {/* Challenge 11 */}
       {showFilterBar &&
         isSearching && (
           <p id="searching-indicator">
@@ -559,10 +563,7 @@ export default function TaskApp({
           </p>
         )}
 
-      {/* --------------------------------
-          Challenge 06 + 09:
-          Empty message
-      --------------------------------- */}
+      {/* Challenge 06 + 09 */}
       {showFilterBar &&
         sortedTasks.length === 0 && (
           <p id="filter-empty-message">
@@ -570,9 +571,7 @@ export default function TaskApp({
           </p>
         )}
 
-      {/* --------------------------------
-          Task List
-      --------------------------------- */}
+      {/* Task List */}
       <TaskList
         tasks={sortedTasks}
         countText={countText}

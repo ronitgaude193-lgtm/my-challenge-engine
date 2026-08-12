@@ -381,5 +381,28 @@
       "maintainability": 90,
       "overall": "The code is well-structured and maintainable, with good use of TypeScript and functional components. However, there are a few areas where the code could be improved for better error handling and code simplicity."
     }
+  },
+  {
+    "challengeId": "18-usereducer-complex-state",
+    "challengeName": "useReducer - Complex State Management",
+    "aiReview": {
+      "challengeId": "18-usereducer-complex-state",
+      "timestamp": "2026-08-12T20:26:04.068Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "Effective use of TypeScript and functional programming principles.",
+        "Well-structured code with clear separation of concerns.",
+        "Use of React hooks and context API for state management."
+      ],
+      "improvements": [
+        "Consider using more descriptive variable names, especially in complex functions like `handleUpdateTask`.",
+        "Some functions, like `handleDeleteTask`, could be simplified by removing the `onDelete` prop and instead using the `dispatch` function directly.",
+        "The `taskReducer` could benefit from more comments and explanations to help understand the logic behind each action."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-structured, maintainable, and effectively uses React hooks and context API for state management. However, there are some areas for improvement, such as variable naming and function simplification."
+    }
   }
 ]

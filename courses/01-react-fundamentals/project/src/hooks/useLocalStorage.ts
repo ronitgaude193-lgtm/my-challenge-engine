@@ -1,16 +1,14 @@
-import { useCallback, useState } from 'react'
+import {
+  useEffect,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from 'react'
 
-type SetValue<T> =
-  | T
-  | ((previousValue: T) => T)
-
-export function useLocalStorage<T>(
+export default function useLocalStorage<T>(
   key: string,
   initialValue: T
-): [
-  T,
-  (value: SetValue<T>) => void
-] {
+): [T, Dispatch<SetStateAction<T>>] {
   const [value, setValue] = useState<T>(() => {
     try {
       const storedValue =
@@ -26,34 +24,16 @@ export function useLocalStorage<T>(
     }
   })
 
-  const setStoredValue = useCallback(
-    (newValue: SetValue<T>) => {
-      setValue((previousValue) => {
-        const nextValue =
-          typeof newValue === 'function'
-            ? (
-                newValue as (
-                  previousValue: T
-                ) => T
-              )(previousValue)
-            : newValue
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        key,
+        JSON.stringify(value)
+      )
+    } catch {
+      // Ignore localStorage write errors.
+    }
+  }, [key, value])
 
-        try {
-          localStorage.setItem(
-            key,
-            JSON.stringify(nextValue)
-          )
-        } catch {
-          // Keep the state update even if localStorage fails.
-        }
-
-        return nextValue
-      })
-    },
-    [key]
-  )
-
-  return [value, setStoredValue]
+  return [value, setValue]
 }
-
-export default useLocalStorage
