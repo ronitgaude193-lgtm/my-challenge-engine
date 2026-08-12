@@ -10,6 +10,7 @@ type SortOrder =
   | 'priority-high'
   | 'priority-low'
   | 'alphabetical'
+  | 'due-date'
 
 interface FilterBarProps {
   filter: FilterType
@@ -17,7 +18,7 @@ interface FilterBarProps {
     filter: FilterType
   ) => void
 
-  // Challenge 07
+  // Challenge 07 + 13
   sortOrder?: SortOrder
   onSortChange?: (
     sortOrder: SortOrder
@@ -65,6 +66,7 @@ export default function FilterBar({
 
   return (
     <div id="filter-bar">
+
       {/* Challenge 06: Status filter */}
       <div>
         <button
@@ -174,7 +176,7 @@ export default function FilterBar({
         </div>
       )}
 
-      {/* Challenge 07: Sort */}
+      {/* Challenge 07 + 13: Sort */}
       {onSortChange && (
         <select
           id="sort-order"
@@ -199,6 +201,11 @@ export default function FilterBar({
 
           <option value="alphabetical">
             Alphabetical
+          </option>
+
+          {/* Challenge 13 */}
+          <option value="due-date">
+            Due Date (Soonest First)
           </option>
         </select>
       )}

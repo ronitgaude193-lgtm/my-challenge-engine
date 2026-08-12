@@ -9,6 +9,7 @@ interface TaskFormProps {
     completed: boolean
     category: string
     tags: string[]
+    dueDate?: string
   }) => void
 
   categories?: string[]
@@ -21,8 +22,14 @@ export default function TaskForm({
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState('Medium')
+
+  // Challenge 12
   const [category, setCategory] = useState('General')
   const [tagsInput, setTagsInput] = useState('')
+
+  // Challenge 13
+  const [dueDate, setDueDate] = useState('')
+
   const [error, setError] = useState('')
 
   const handleSubmit = (
@@ -46,17 +53,24 @@ export default function TaskForm({
       description: description.trim(),
       priority,
       completed: false,
+
+      // Challenge 12
       category: category.trim() || 'General',
       tags,
+
+      // Challenge 13
+      ...(dueDate ? { dueDate } : {}),
     }
 
     onAddTask?.(newTask)
 
+    // Reset form
     setTitle('')
     setDescription('')
     setPriority('Medium')
     setCategory('General')
     setTagsInput('')
+    setDueDate('')
     setError('')
   }
 
@@ -70,6 +84,7 @@ export default function TaskForm({
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* Title */}
       <div>
         <label htmlFor="task-title">
           Title
@@ -85,6 +100,7 @@ export default function TaskForm({
         />
       </div>
 
+      {/* Description */}
       <div>
         <label htmlFor="task-description">
           Description
@@ -99,6 +115,7 @@ export default function TaskForm({
         />
       </div>
 
+      {/* Priority */}
       <div>
         <label htmlFor="task-priority">
           Priority
@@ -117,6 +134,7 @@ export default function TaskForm({
         </select>
       </div>
 
+      {/* Category - Challenge 12 */}
       <div>
         <label htmlFor="task-category">
           Category
@@ -140,6 +158,7 @@ export default function TaskForm({
         </select>
       </div>
 
+      {/* Tags - Challenge 12 */}
       <div>
         <label htmlFor="task-tags-input">
           Tags
@@ -156,6 +175,23 @@ export default function TaskForm({
         />
       </div>
 
+      {/* Due Date - Challenge 13 */}
+      <div>
+        <label htmlFor="task-due-date">
+          Due Date
+        </label>
+
+        <input
+          id="task-due-date"
+          type="date"
+          value={dueDate}
+          onChange={(event) =>
+            setDueDate(event.target.value)
+          }
+        />
+      </div>
+
+      {/* Error */}
       {error && (
         <p id="task-form-error">
           {error}

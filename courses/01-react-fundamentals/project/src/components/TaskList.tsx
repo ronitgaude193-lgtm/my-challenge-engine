@@ -14,10 +14,11 @@ export interface Task {
 interface TaskListProps {
   tasks?: Task[]
   countText?: string
+
   onToggle?: (id: string | number) => void
   onDelete?: (id: string | number) => void
 
-  // Challenge 08
+  // Challenge 08 + Challenge 12 + Challenge 13
   onUpdateTask?: (
     id: string | number,
     updates: {
@@ -26,6 +27,7 @@ interface TaskListProps {
       priority: string
       category?: string
       tags?: string[]
+      dueDate?: string | number
     }
   ) => void
 
@@ -96,6 +98,7 @@ export default function TaskList({
           completed={task.completed}
           category={task.category ?? 'General'}
           tags={task.tags ?? []}
+          dueDate={task.dueDate}
           onToggle={onToggle}
           onDelete={onDelete}
           onUpdateTask={onUpdateTask}

@@ -11,10 +11,13 @@ interface TaskCardProps {
   category?: string
   tags?: string[]
 
+  // Challenge 13
+  dueDate?: string | number
+
   onToggle?: (id: string | number) => void
   onDelete?: (id: string | number) => void
 
-  // Challenge 08 + 12
+  // Challenge 08 + 12 + 13
   onUpdateTask?: (
     id: string | number,
     updates: {
@@ -23,6 +26,7 @@ interface TaskCardProps {
       priority: string
       category?: string
       tags?: string[]
+      dueDate?: string | number
     }
   ) => void
 
@@ -37,8 +41,14 @@ export default function TaskCard({
   description,
   priority,
   completed = false,
+
+  // Challenge 12
   category = 'General',
   tags = [],
+
+  // Challenge 13
+  dueDate,
+
   onToggle,
   onDelete,
   onUpdateTask,
@@ -47,12 +57,25 @@ export default function TaskCard({
   onCancelEdit,
 }: TaskCardProps) {
   const [editTitle, setEditTitle] = useState(title)
-  const [editDescription, setEditDescription] = useState(description)
-  const [editPriority, setEditPriority] = useState(priority)
+  const [editDescription, setEditDescription] =
+    useState(description)
+  const [editPriority, setEditPriority] =
+    useState(priority)
 
   // Challenge 12
-  const [editCategory, setEditCategory] = useState(category)
-  const [editTags, setEditTags] = useState(tags.join(', '))
+  const [editCategory, setEditCategory] =
+    useState(category)
+
+  const [editTags, setEditTags] =
+    useState(tags.join(', '))
+
+  // Challenge 13
+  const [editDueDate, setEditDueDate] =
+    useState(
+      dueDate
+        ? new Date(dueDate).toISOString().split('T')[0]
+        : ''
+    )
 
   useEffect(() => {
     if (editing) {
@@ -61,6 +84,14 @@ export default function TaskCard({
       setEditPriority(priority)
       setEditCategory(category)
       setEditTags(tags.join(', '))
+
+      setEditDueDate(
+        dueDate
+          ? new Date(dueDate)
+              .toISOString()
+              .split('T')[0]
+          : ''
+      )
     }
   }, [
     editing,
@@ -69,6 +100,7 @@ export default function TaskCard({
     priority,
     category,
     tags,
+    dueDate,
   ])
 
   const handleToggle = () => {
@@ -78,7 +110,10 @@ export default function TaskCard({
   }
 
   const handleDelete = () => {
-    if (onDelete && window.confirm('Are you sure?')) {
+    if (
+      onDelete &&
+      window.confirm('Are you sure?')
+    ) {
       onDelete(id)
     }
   }
@@ -99,10 +134,13 @@ export default function TaskCard({
     if (onUpdateTask) {
       onUpdateTask(id, {
         title: trimmedTitle,
-        description: editDescription,
+        description: editDescription.trim(),
         priority: editPriority,
-        category: editCategory,
+        category:
+          editCategory.trim() || 'General',
         tags: parsedTags,
+        dueDate:
+          editDueDate || undefined,
       })
     }
 
@@ -118,16 +156,70 @@ export default function TaskCard({
     setEditCategory(category)
     setEditTags(tags.join(', '))
 
+    setEditDueDate(
+      dueDate
+        ? new Date(dueDate)
+            .toISOString()
+            .split('T')[0]
+        : ''
+    )
+
     if (onCancelEdit) {
       onCancelEdit()
     }
   }
 
+  // --------------------------------
+  // Challenge 13: Due date status
+  // --------------------------------
+  const getDueStatus = () => {
+    if (!dueDate || completed) {
+      return ''
+    }
+
+    const today = new Date()
+    const due = new Date(dueDate)
+
+    today.setHours(0, 0, 0, 0)
+    due.setHours(0, 0, 0, 0)
+
+    const difference =
+      due.getTime() - today.getTime()
+
+    const daysUntilDue =
+      Math.ceil(
+        difference /
+          (1000 * 60 * 60 * 24)
+      )
+
+    if (daysUntilDue < 0) {
+      return 'Overdue'
+    }
+
+    if (daysUntilDue === 0) {
+      return 'Due Today'
+    }
+
+    if (daysUntilDue <= 3) {
+      return 'Due Soon'
+    }
+
+    return ''
+  }
+
+  const dueStatus = getDueStatus()
+
   return (
     <article
       id="task-card"
       data-completed={completed}
+      data-overdue={
+        dueStatus === 'Overdue'
+          ? 'true'
+          : 'false'
+      }
     >
+      {/* Complete checkbox */}
       {onToggle && (
         <input
           type="checkbox"
@@ -140,7 +232,9 @@ export default function TaskCard({
         <>
           {/* Title */}
           <div>
-            <label htmlFor={`edit-title-${id}`}>
+            <label
+              htmlFor={`edit-title-${id}`}
+            >
               Title
             </label>
 
@@ -148,14 +242,18 @@ export default function TaskCard({
               id={`edit-title-${id}`}
               value={editTitle}
               onChange={(event) =>
-                setEditTitle(event.target.value)
+                setEditTitle(
+                  event.target.value
+                )
               }
             />
           </div>
 
           {/* Description */}
           <div>
-            <label htmlFor={`edit-description-${id}`}>
+            <label
+              htmlFor={`edit-description-${id}`}
+            >
               Description
             </label>
 
@@ -163,14 +261,18 @@ export default function TaskCard({
               id={`edit-description-${id}`}
               value={editDescription}
               onChange={(event) =>
-                setEditDescription(event.target.value)
+                setEditDescription(
+                  event.target.value
+                )
               }
             />
           </div>
 
           {/* Priority */}
           <div>
-            <label htmlFor={`edit-priority-${id}`}>
+            <label
+              htmlFor={`edit-priority-${id}`}
+            >
               Priority
             </label>
 
@@ -178,18 +280,30 @@ export default function TaskCard({
               id={`edit-priority-${id}`}
               value={editPriority}
               onChange={(event) =>
-                setEditPriority(event.target.value)
+                setEditPriority(
+                  event.target.value
+                )
               }
             >
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
+              <option value="High">
+                High
+              </option>
+
+              <option value="Medium">
+                Medium
+              </option>
+
+              <option value="Low">
+                Low
+              </option>
             </select>
           </div>
 
           {/* Category */}
           <div>
-            <label htmlFor={`edit-category-${id}`}>
+            <label
+              htmlFor={`edit-category-${id}`}
+            >
               Category
             </label>
 
@@ -197,18 +311,30 @@ export default function TaskCard({
               id={`edit-category-${id}`}
               value={editCategory}
               onChange={(event) =>
-                setEditCategory(event.target.value)
+                setEditCategory(
+                  event.target.value
+                )
               }
             >
-              <option value="General">General</option>
-              <option value="Work">Work</option>
-              <option value="Personal">Personal</option>
+              <option value="General">
+                General
+              </option>
+
+              <option value="Work">
+                Work
+              </option>
+
+              <option value="Personal">
+                Personal
+              </option>
             </select>
           </div>
 
           {/* Tags */}
           <div>
-            <label htmlFor={`edit-tags-${id}`}>
+            <label
+              htmlFor={`edit-tags-${id}`}
+            >
               Tags
             </label>
 
@@ -218,7 +344,29 @@ export default function TaskCard({
               value={editTags}
               placeholder="tag1, tag2, tag3"
               onChange={(event) =>
-                setEditTags(event.target.value)
+                setEditTags(
+                  event.target.value
+                )
+              }
+            />
+          </div>
+
+          {/* Due Date - Challenge 13 */}
+          <div>
+            <label
+              htmlFor={`edit-due-date-${id}`}
+            >
+              Due Date
+            </label>
+
+            <input
+              id={`edit-due-date-${id}`}
+              type="date"
+              value={editDueDate}
+              onChange={(event) =>
+                setEditDueDate(
+                  event.target.value
+                )
               }
             />
           </div>
@@ -264,7 +412,9 @@ export default function TaskCard({
           </p>
 
           {/* Priority */}
-          <p>Priority: {priority}</p>
+          <p>
+            Priority: {priority}
+          </p>
 
           {/* Category */}
           <p id="task-category">
@@ -283,11 +433,45 @@ export default function TaskCard({
             ))}
           </div>
 
+          {/* Due Date */}
+          {dueDate && (
+            <div>
+              <p
+                id="task-due-date"
+                data-overdue={
+                  dueStatus === 'Overdue'
+                    ? 'true'
+                    : 'false'
+                  }
+              >
+                Due:{' '}
+                {new Date(
+                  dueDate
+                ).toLocaleDateString()}
+              </p>
+
+              {dueStatus && (
+                <span
+                  data-overdue={
+                    dueStatus ===
+                    'Overdue'
+                      ? 'true'
+                      : 'false'
+                  }
+                >
+                  {dueStatus}
+                </span>
+              )}
+            </div>
+          )}
+
           {/* Edit */}
           {onUpdateTask && (
             <button
               type="button"
-              onClick={() => onEdit?.(id)}
+              onClick={() =>
+                onEdit?.(id)
+              }
             >
               Edit
             </button>
