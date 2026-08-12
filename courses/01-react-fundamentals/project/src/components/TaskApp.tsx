@@ -45,10 +45,17 @@ export default function TaskApp({
     useState<string | number | null>(null)
 
   // Challenge 09
-  const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] =
+    useState('')
 
-  // Challenge 10
-  // Load tasks from localStorage once when TaskApp mounts.
+  // Challenge 11
+  // Debounced search value
+  const [debouncedSearchText, setDebouncedSearchText] =
+    useState('')
+
+  // -----------------------------
+  // Challenge 10: Load localStorage
+  // -----------------------------
   useEffect(() => {
     if (!setTasks) {
       return
@@ -69,19 +76,32 @@ export default function TaskApp({
         setTasks(parsedTasks as Task[])
       }
     } catch {
-      // Keep existing tasks when localStorage
-      // contains invalid JSON.
+      // Keep existing tasks if stored data is invalid.
     }
   }, [setTasks])
 
-  // Challenge 10
-  // Save tasks whenever the tasks array changes.
+  // -----------------------------
+  // Challenge 10: Save localStorage
+  // -----------------------------
   useEffect(() => {
     localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify(tasks)
     )
   }, [tasks])
+
+  // -----------------------------
+  // Challenge 11: Debounced Search
+  // -----------------------------
+  useEffect(() => {
+    const timeout = window.setTimeout(() => {
+      setDebouncedSearchText(searchText)
+    }, 300)
+
+    return () => {
+      window.clearTimeout(timeout)
+    }
+  }, [searchText])
 
   // -----------------------------
   // Challenge 03: Add Task
@@ -155,11 +175,14 @@ export default function TaskApp({
   }
 
   // -----------------------------
-  // Challenge 09: Search
+  // Challenge 09 + 11: Search
+  // Use debouncedSearchText,
+  // NOT searchText.
   // -----------------------------
-  const normalizedSearch = searchText
-    .trim()
-    .toLowerCase()
+  const normalizedSearch =
+    debouncedSearchText
+      .trim()
+      .toLowerCase()
 
   const searchedTasks = normalizedSearch
     ? filteredTasks.filter((task) => {
@@ -224,6 +247,13 @@ export default function TaskApp({
   )
 
   // -----------------------------
+  // Challenge 11: Searching state
+  // -----------------------------
+  const isSearching =
+    searchText.trim() !==
+    debouncedSearchText.trim()
+
+  // -----------------------------
   // Count
   // -----------------------------
   const countText =
@@ -268,6 +298,13 @@ export default function TaskApp({
         />
       )}
 
+      {/* Challenge 11: Searching indicator */}
+      {showFilterBar && isSearching && (
+        <p id="searching-indicator">
+          Searching...
+        </p>
+      )}
+
       {/* Challenge 06 + 09 */}
       {showFilterBar &&
         sortedTasks.length === 0 && (
@@ -276,7 +313,7 @@ export default function TaskApp({
           </p>
         )}
 
-      {/* Challenge 06 + 09 */}
+      {/* Task List */}
       <TaskList
         tasks={sortedTasks}
         countText={countText}

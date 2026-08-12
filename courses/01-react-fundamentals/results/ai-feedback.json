@@ -220,5 +220,28 @@
       "maintainability": 50,
       "overall": "Here's the review of the provided code:\n\n```json\n{\n  \"readability\": 80,\n  \"maintainability\": 85,\n  \"strengths\": [\n    \"The code is well-structured and follows a consistent naming convention.\",\n    \"The use of functional components and hooks (e.g., `useState`, `useEffect`) is correct and efficient.\",\n    \"The code is well-organized, with each challenge's functionality separated into its own component.\"\n  ],\n  \"improvements\": [\n    \"The `useEffect` hook for saving tasks to local storage is missing"
     }
+  },
+  {
+    "challengeId": "11-useeffect-debounced-search",
+    "challengeName": "useEffect - Debounced Search",
+    "aiReview": {
+      "challengeId": "11-useeffect-debounced-search",
+      "timestamp": "2026-08-12T11:43:03.394Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "The code is well-structured and easy to follow, with clear separation of concerns between components and effects.",
+        "The use of TypeScript and functional components promotes type safety and reusability.",
+        "The code includes a good balance of comments and whitespace, making it easy to read and understand."
+      ],
+      "improvements": [
+        "Some of the effect cleanup functions could be more robust, handling potential errors and edge cases.",
+        "The use of `window.setTimeout` and `window.clearTimeout` could be replaced with a more modern approach using `useCallback` and `useEffect`.",
+        "Some of the state updates could be optimized using `useReducer` or other state management techniques."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The code is well-written and demonstrates a good understanding of React and TypeScript principles. However, there are some areas for improvement to make the code more robust, efficient, and maintainable."
+    }
   }
 ]
