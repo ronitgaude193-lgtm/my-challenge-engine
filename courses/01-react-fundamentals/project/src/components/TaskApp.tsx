@@ -1,12 +1,20 @@
-import { useEffect, useMemo, useState } from 'react'
+import {
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
+
 import TaskList, { type Task } from './TaskList'
 import TaskForm from './TaskForm'
 import FilterBar from './FilterBar'
 import StatsPanel from './StatsPanel'
+import { useTheme } from '../contexts/ThemeContext'
 
 interface TaskAppProps {
   tasks?: Task[]
-  setTasks?: React.Dispatch<React.SetStateAction<Task[]>>
+  setTasks?: React.Dispatch<
+    React.SetStateAction<Task[]>
+  >
   showForm?: boolean
   countFormat?: string
   showFilterBar?: boolean
@@ -39,30 +47,51 @@ export default function TaskApp({
   onDelete,
   linkToTaskDetail = false,
 }: TaskAppProps) {
-  // Challenge 06
+  // ----------------------------------------
+  // Challenge 16: Context API Theme
+  // ----------------------------------------
+  const {
+    theme,
+    toggleTheme,
+  } = useTheme()
+
+  // ----------------------------------------
+  // Challenge 06: Filtering
+  // ----------------------------------------
   const [filter, setFilter] =
     useState<FilterType>('all')
 
-  // Challenge 07
+  // ----------------------------------------
+  // Challenge 07: Sorting
+  // ----------------------------------------
   const [sortOrder, setSortOrder] =
     useState<SortOrder>('recent')
 
-  // Challenge 08
+  // ----------------------------------------
+  // Challenge 08: Editing
+  // ----------------------------------------
   const [editingId, setEditingId] =
-    useState<string | number | null>(null)
+    useState<
+      string | number | null
+    >(null)
 
-  // Challenge 09
+  // ----------------------------------------
+  // Challenge 09: Search
+  // ----------------------------------------
   const [searchText, setSearchText] =
     useState('')
 
-  // Challenge 11
+  // ----------------------------------------
+  // Challenge 11: Debounced search
+  // ----------------------------------------
   const [
     debouncedSearchText,
     setDebouncedSearchText,
   ] = useState('')
 
   // ----------------------------------------
-  // Challenge 10: Load tasks from localStorage
+  // Challenge 10:
+  // Load tasks from localStorage
   // ----------------------------------------
   useEffect(() => {
     if (!setTasks) {
@@ -84,12 +113,14 @@ export default function TaskApp({
         setTasks(parsedTasks as Task[])
       }
     } catch {
-      // Keep existing tasks if stored data is invalid.
+      // Keep existing tasks if stored
+      // data is invalid.
     }
   }, [setTasks])
 
   // ----------------------------------------
-  // Challenge 10: Save tasks to localStorage
+  // Challenge 10:
+  // Save tasks to localStorage
   // ----------------------------------------
   useEffect(() => {
     localStorage.setItem(
@@ -99,12 +130,16 @@ export default function TaskApp({
   }, [tasks])
 
   // ----------------------------------------
-  // Challenge 11: Debounced search
+  // Challenge 11:
+  // Debounced search
   // ----------------------------------------
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setDebouncedSearchText(searchText)
-    }, 300)
+    const timeout =
+      window.setTimeout(() => {
+        setDebouncedSearchText(
+          searchText
+        )
+      }, 300)
 
     return () => {
       window.clearTimeout(timeout)
@@ -114,7 +149,9 @@ export default function TaskApp({
   // ----------------------------------------
   // Challenge 03: Add task
   // ----------------------------------------
-  const handleAddTask = (task: Task) => {
+  const handleAddTask = (
+    task: Task
+  ) => {
     if (!setTasks) {
       return
     }
@@ -126,7 +163,8 @@ export default function TaskApp({
   }
 
   // ----------------------------------------
-  // Challenge 04: Toggle completion
+  // Challenge 04:
+  // Toggle completion
   // ----------------------------------------
   const handleToggle = (
     id: string | number
@@ -149,7 +187,8 @@ export default function TaskApp({
   }
 
   // ----------------------------------------
-  // Challenge 05 + 14: Delete task
+  // Challenge 05 + 14:
+  // Delete task
   // ----------------------------------------
   const handleDeleteTask = (
     id: string | number
@@ -166,7 +205,8 @@ export default function TaskApp({
   }
 
   // ----------------------------------------
-  // Challenge 08 + 12 + 13: Update task
+  // Challenge 08 + 12 + 13:
+  // Update task
   // ----------------------------------------
   const handleUpdateTask = (
     id: string | number,
@@ -198,18 +238,21 @@ export default function TaskApp({
   }
 
   // ----------------------------------------
-  // Challenge 14: Statistics
+  // Challenge 14:
+  // Statistics
   // ----------------------------------------
   const taskStats = useMemo(() => {
     const total = tasks.length
 
-    const completed = tasks.filter(
-      (task) => task.completed
-    ).length
+    const completed =
+      tasks.filter(
+        (task) => task.completed
+      ).length
 
-    const active = tasks.filter(
-      (task) => !task.completed
-    ).length
+    const active =
+      tasks.filter(
+        (task) => !task.completed
+      ).length
 
     const now = new Date()
 
@@ -219,26 +262,26 @@ export default function TaskApp({
       now.getDate()
     )
 
-    const overdue = tasks.filter((task) => {
-      if (
-        task.completed ||
-        !task.dueDate
-      ) {
-        return false
-      }
+    const overdue =
+      tasks.filter((task) => {
+        if (
+          task.completed ||
+          !task.dueDate
+        ) {
+          return false
+        }
 
-      const dueDate = new Date(
-        task.dueDate
-      )
+        const dueDate =
+          new Date(task.dueDate)
 
-      const dueDay = new Date(
-        dueDate.getFullYear(),
-        dueDate.getMonth(),
-        dueDate.getDate()
-      )
+        const dueDay = new Date(
+          dueDate.getFullYear(),
+          dueDate.getMonth(),
+          dueDate.getDate()
+        )
 
-      return dueDay < today
-    }).length
+        return dueDay < today
+      }).length
 
     const completedPercentage =
       total > 0
@@ -250,25 +293,32 @@ export default function TaskApp({
     const categoryBreakdown =
       tasks.reduce<
         Record<string, number>
-      >((result, task) => {
-        const category =
-          task.category || 'General'
+      >(
+        (result, task) => {
+          const category =
+            task.category ||
+            'General'
 
-        result[category] =
-          (result[category] || 0) + 1
+          result[category] =
+            (result[category] || 0) + 1
 
-        return result
-      }, {})
+          return result
+        },
+        {}
+      )
 
     const priorityBreakdown =
       tasks.reduce<
         Record<string, number>
-      >((result, task) => {
-        result[task.priority] =
-          (result[task.priority] || 0) + 1
+      >(
+        (result, task) => {
+          result[task.priority] =
+            (result[task.priority] || 0) + 1
 
-        return result
-      }, {})
+          return result
+        },
+        {}
+      )
 
     return {
       total,
@@ -282,24 +332,28 @@ export default function TaskApp({
   }, [tasks])
 
   // ----------------------------------------
-  // Challenge 06: Filtering
+  // Challenge 06:
+  // Filtering
   // ----------------------------------------
   let filteredTasks = tasks
 
   if (filter === 'active') {
-    filteredTasks = tasks.filter(
-      (task) => !task.completed
-    )
+    filteredTasks =
+      tasks.filter(
+        (task) => !task.completed
+      )
   }
 
   if (filter === 'completed') {
-    filteredTasks = tasks.filter(
-      (task) => task.completed
-    )
+    filteredTasks =
+      tasks.filter(
+        (task) => task.completed
+      )
   }
 
   // ----------------------------------------
-  // Challenge 09 + 11: Search
+  // Challenge 09 + 11:
+  // Search
   // ----------------------------------------
   const normalizedSearch =
     debouncedSearchText
@@ -308,41 +362,44 @@ export default function TaskApp({
 
   const searchedTasks =
     normalizedSearch
-      ? filteredTasks.filter((task) => {
-          const title =
-            task.title.toLowerCase()
+      ? filteredTasks.filter(
+          (task) => {
+            const title =
+              task.title.toLowerCase()
 
-          const description =
-            task.description.toLowerCase()
+            const description =
+              task.description.toLowerCase()
 
-          const category =
-            task.category
-              ?.toLowerCase() ?? ''
+            const category =
+              task.category
+                ?.toLowerCase() ?? ''
 
-          const tags =
-            task.tags
-              ?.join(' ')
-              .toLowerCase() ?? ''
+            const tags =
+              task.tags
+                ?.join(' ')
+                .toLowerCase() ?? ''
 
-          return (
-            title.includes(
-              normalizedSearch
-            ) ||
-            description.includes(
-              normalizedSearch
-            ) ||
-            category.includes(
-              normalizedSearch
-            ) ||
-            tags.includes(
-              normalizedSearch
+            return (
+              title.includes(
+                normalizedSearch
+              ) ||
+              description.includes(
+                normalizedSearch
+              ) ||
+              category.includes(
+                normalizedSearch
+              ) ||
+              tags.includes(
+                normalizedSearch
+              )
             )
-          )
-        })
+          }
+        )
       : filteredTasks
 
   // ----------------------------------------
-  // Challenge 07 + 13: Sorting
+  // Challenge 07 + 13:
+  // Sorting
   // ----------------------------------------
   const sortedTasks =
     [...searchedTasks].sort(
@@ -356,7 +413,7 @@ export default function TaskApp({
           Low: 1,
         }
 
-        // High -> Low
+        // Priority High -> Low
         if (
           sortOrder ===
           'priority-high'
@@ -367,7 +424,7 @@ export default function TaskApp({
           )
         }
 
-        // Low -> High
+        // Priority Low -> High
         if (
           sortOrder ===
           'priority-low'
@@ -394,8 +451,7 @@ export default function TaskApp({
 
         // Due date
         if (
-          sortOrder ===
-          'due-date'
+          sortOrder === 'due-date'
         ) {
           if (
             !a.dueDate &&
@@ -428,7 +484,8 @@ export default function TaskApp({
     )
 
   // ----------------------------------------
-  // Challenge 11: Searching indicator
+  // Challenge 11:
+  // Searching indicator
   // ----------------------------------------
   const isSearching =
     searchText.trim() !==
@@ -461,35 +518,81 @@ export default function TaskApp({
     ? 'No tasks found'
     : 'No tasks match this filter'
 
+  // ----------------------------------------
+  // Render
+  // ----------------------------------------
   return (
-    <div>
-      {/* Challenge 14: Statistics Dashboard */}
+    <div
+      id="task-app"
+      data-theme={theme}
+    >
+      {/* --------------------------------
+          Challenge 16:
+          Theme toggle
+      --------------------------------- */}
+      <header id="app-header">
+        <button
+          id="theme-toggle"
+          type="button"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${
+            theme === 'light'
+              ? 'dark'
+              : 'light'
+          } theme`}
+        >
+          {theme === 'light'
+            ? 'Dark Mode'
+            : 'Light Mode'}
+        </button>
+      </header>
+
+      {/* --------------------------------
+          Challenge 14:
+          Statistics Dashboard
+      --------------------------------- */}
       {showStatsPanel && (
         <StatsPanel
           stats={taskStats}
         />
       )}
 
-      {/* Challenge 03: Task Form */}
+      {/* --------------------------------
+          Challenge 03:
+          Task Form
+      --------------------------------- */}
       {showForm && (
         <TaskForm
-          onAddTask={handleAddTask}
+          onAddTask={
+            handleAddTask
+          }
         />
       )}
 
-      {/* Challenge 06 + 07 + 09 + 11 + 13 */}
+      {/* --------------------------------
+          Challenge 06 + 07 + 09
+          + 11 + 13:
+          Filter Bar
+      --------------------------------- */}
       {showFilterBar && (
         <FilterBar
           filter={filter}
           onFilterChange={setFilter}
           sortOrder={sortOrder}
-          onSortChange={setSortOrder}
+          onSortChange={
+            setSortOrder
+          }
           searchText={searchText}
-          onSearchChange={setSearchText}
+          onSearchChange={
+            setSearchText
+          }
         />
       )}
 
-      {/* Challenge 11 */}
+      {/* --------------------------------
+          Challenge 11:
+          Searching indicator
+      --------------------------------- */}
       {showFilterBar &&
         isSearching && (
           <p id="searching-indicator">
@@ -497,7 +600,10 @@ export default function TaskApp({
           </p>
         )}
 
-      {/* Challenge 06 + 09 */}
+      {/* --------------------------------
+          Challenge 06 + 09:
+          Empty message
+      --------------------------------- */}
       {showFilterBar &&
         sortedTasks.length === 0 && (
           <p id="filter-empty-message">
@@ -505,7 +611,9 @@ export default function TaskApp({
           </p>
         )}
 
-      {/* Task List */}
+      {/* --------------------------------
+          Task List
+      --------------------------------- */}
       <TaskList
         tasks={sortedTasks}
         countText={countText}
