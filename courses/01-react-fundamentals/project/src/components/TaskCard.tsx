@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import Badge from './Badge'
 import StatusIndicator from './StatusIndicator'
@@ -39,7 +39,7 @@ interface TaskCardProps {
   onCancelEdit?: () => void
 }
 
-export default function TaskCard({
+function TaskCard({
   id,
   title,
   description,
@@ -55,8 +55,7 @@ export default function TaskCard({
   onEdit,
   onCancelEdit,
 }: TaskCardProps) {
-  const [editTitle, setEditTitle] =
-    useState(title)
+  const [editTitle, setEditTitle] = useState(title)
 
   const [editDescription, setEditDescription] =
     useState(description)
@@ -70,14 +69,11 @@ export default function TaskCard({
   const [editTags, setEditTags] =
     useState(tags.join(', '))
 
-  const [editDueDate, setEditDueDate] =
-    useState(
-      dueDate
-        ? new Date(dueDate)
-            .toISOString()
-            .split('T')[0]
-        : ''
-    )
+  const [editDueDate, setEditDueDate] = useState(
+    dueDate
+      ? new Date(dueDate).toISOString().split('T')[0]
+      : ''
+  )
 
   useEffect(() => {
     if (editing) {
@@ -134,11 +130,9 @@ export default function TaskCard({
       title: trimmedTitle,
       description: editDescription.trim(),
       priority: editPriority,
-      category:
-        editCategory.trim() || 'General',
+      category: editCategory.trim() || 'General',
       tags: parsedTags,
-      dueDate:
-        editDueDate || undefined,
+      dueDate: editDueDate || undefined,
     })
 
     onCancelEdit?.()
@@ -162,7 +156,6 @@ export default function TaskCard({
     onCancelEdit?.()
   }
 
-  // Challenge 13: Due date status
   const getDueStatus = () => {
     if (!dueDate || completed) {
       return ''
@@ -178,8 +171,7 @@ export default function TaskCard({
       due.getTime() - today.getTime()
 
     const daysUntilDue = Math.ceil(
-      difference /
-        (1000 * 60 * 60 * 24)
+      difference / (1000 * 60 * 60 * 24)
     )
 
     if (daysUntilDue < 0) {
@@ -209,7 +201,6 @@ export default function TaskCard({
           : 'false'
       }
     >
-      {/* Complete checkbox */}
       {onToggle && (
         <input
           type="checkbox"
@@ -220,7 +211,6 @@ export default function TaskCard({
 
       {editing ? (
         <>
-          {/* Title */}
           <FormInput
             label="Title"
             id={`edit-title-${id}`}
@@ -230,7 +220,6 @@ export default function TaskCard({
             }
           />
 
-          {/* Description */}
           <FormInput
             label="Description"
             id={`edit-description-${id}`}
@@ -243,11 +232,8 @@ export default function TaskCard({
             }
           />
 
-          {/* Priority */}
           <div>
-            <label
-              htmlFor={`edit-priority-${id}`}
-            >
+            <label htmlFor={`edit-priority-${id}`}>
               Priority
             </label>
 
@@ -260,25 +246,14 @@ export default function TaskCard({
                 )
               }
             >
-              <option value="High">
-                High
-              </option>
-
-              <option value="Medium">
-                Medium
-              </option>
-
-              <option value="Low">
-                Low
-              </option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
             </select>
           </div>
 
-          {/* Category */}
           <div>
-            <label
-              htmlFor={`edit-category-${id}`}
-            >
+            <label htmlFor={`edit-category-${id}`}>
               Category
             </label>
 
@@ -294,18 +269,13 @@ export default function TaskCard({
               <option value="General">
                 General
               </option>
-
-              <option value="Work">
-                Work
-              </option>
-
+              <option value="Work">Work</option>
               <option value="Personal">
                 Personal
               </option>
             </select>
           </div>
 
-          {/* Tags */}
           <FormInput
             label="Tags"
             id={`edit-tags-${id}`}
@@ -316,7 +286,6 @@ export default function TaskCard({
             }
           />
 
-          {/* Due Date */}
           <FormInput
             label="Due Date"
             id={`edit-due-date-${id}`}
@@ -329,7 +298,6 @@ export default function TaskCard({
             }
           />
 
-          {/* Save */}
           <Button
             type="button"
             variant="primary"
@@ -338,7 +306,6 @@ export default function TaskCard({
             Save
           </Button>
 
-          {/* Cancel */}
           <Button
             type="button"
             variant="secondary"
@@ -349,7 +316,6 @@ export default function TaskCard({
         </>
       ) : (
         <>
-          {/* Title */}
           <h2
             style={{
               textDecoration: completed
@@ -360,7 +326,6 @@ export default function TaskCard({
             {title}
           </h2>
 
-          {/* Description */}
           <p
             style={{
               textDecoration: completed
@@ -371,7 +336,6 @@ export default function TaskCard({
             {description}
           </p>
 
-          {/* Priority */}
           <p>
             Priority:{' '}
             <Badge variant="priority">
@@ -379,7 +343,6 @@ export default function TaskCard({
             </Badge>
           </p>
 
-          {/* Category */}
           <p id="task-category">
             Category:{' '}
             <Badge variant="category">
@@ -387,7 +350,6 @@ export default function TaskCard({
             </Badge>
           </p>
 
-          {/* Tags */}
           <div id="task-tags">
             {tags.map((tag) => (
               <Badge
@@ -399,7 +361,6 @@ export default function TaskCard({
             ))}
           </div>
 
-          {/* Due Date */}
           {dueDate && (
             <div>
               <p
@@ -421,8 +382,7 @@ export default function TaskCard({
                   status={
                     dueStatus === 'Overdue'
                       ? 'overdue'
-                      : dueStatus ===
-                        'Due Today'
+                      : dueStatus === 'Due Today'
                       ? 'due-today'
                       : 'due-soon'
                   }
@@ -431,27 +391,22 @@ export default function TaskCard({
             </div>
           )}
 
-          {/* Completed status */}
           {completed && (
             <StatusIndicator
               status="completed"
             />
           )}
 
-          {/* Edit */}
           {onUpdateTask && (
             <Button
               type="button"
               variant="secondary"
-              onClick={() =>
-                onEdit?.(id)
-              }
+              onClick={() => onEdit?.(id)}
             >
               Edit
             </Button>
           )}
 
-          {/* Delete */}
           {onDelete && (
             <Button
               type="button"
@@ -466,3 +421,10 @@ export default function TaskCard({
     </article>
   )
 }
+
+/*
+ * Challenge 19:
+ * React.memo prevents TaskCard from re-rendering when
+ * its props have not changed.
+ */
+export default React.memo(TaskCard)

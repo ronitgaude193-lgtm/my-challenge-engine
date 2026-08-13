@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useMemo,
   useState,
@@ -59,9 +60,11 @@ interface TaskAppProps {
   countFormat?: string
   showFilterBar?: boolean
   showStatsPanel?: boolean
+
   onDelete?: (
     id: string | number
   ) => void
+
   linkToTaskDetail?: boolean
 }
 
@@ -149,75 +152,105 @@ export default function TaskApp({
   }, [searchText])
 
   // ----------------------------------------
-  // Challenge 03 + 18:
-  // Add task
+  // Challenge 19:
+  // useCallback - Add task
   // ----------------------------------------
 
-  const handleAddTask = (
-    task: Task
-  ) => {
-    dispatch?.({
-      type: 'ADD_TASK',
-      payload: task,
-    })
-  }
+  const handleAddTask = useCallback(
+    (task: Task) => {
+      dispatch?.({
+        type: 'ADD_TASK',
+        payload: task,
+      })
+    },
+    [dispatch]
+  )
 
   // ----------------------------------------
-  // Challenge 04 + 18:
-  // Toggle task
+  // Challenge 19:
+  // useCallback - Toggle task
   // ----------------------------------------
 
-  const handleToggle = (
-    id: string | number
-  ) => {
-    dispatch?.({
-      type: 'TOGGLE_TASK',
-      payload: id,
-    })
-  }
+  const handleToggle = useCallback(
+    (id: string | number) => {
+      dispatch?.({
+        type: 'TOGGLE_TASK',
+        payload: id,
+      })
+    },
+    [dispatch]
+  )
 
   // ----------------------------------------
-  // Challenge 05 + 18:
-  // Delete task
+  // Challenge 19:
+  // useCallback - Delete task
   // ----------------------------------------
 
-  const handleDeleteTask = (
-    id: string | number
-  ) => {
-    dispatch?.({
-      type: 'DELETE_TASK',
-      payload: id,
-    })
+  const handleDeleteTask = useCallback(
+    (id: string | number) => {
+      dispatch?.({
+        type: 'DELETE_TASK',
+        payload: id,
+      })
 
-    onDelete?.(id)
-  }
+      onDelete?.(id)
+    },
+    [dispatch, onDelete]
+  )
 
   // ----------------------------------------
-  // Challenge 08 + 12 + 13 + 18:
-  // Update task
+  // Challenge 19:
+  // useCallback - Update task
   // ----------------------------------------
 
-  const handleUpdateTask = (
-    id: string | number,
-    updates: {
-      title: string
-      description: string
-      priority: string
-      category?: string
-      tags?: string[]
-      dueDate?: string | number
-    }
-  ) => {
-    dispatch?.({
-      type: 'UPDATE_TASK',
-      payload: {
-        id,
-        ...updates,
-      },
-    })
+  const handleUpdateTask = useCallback(
+    (
+      id: string | number,
+      updates: {
+        title: string
+        description: string
+        priority: string
+        category?: string
+        tags?: string[]
+        dueDate?: string | number
+      }
+    ) => {
+      dispatch?.({
+        type: 'UPDATE_TASK',
+        payload: {
+          id,
+          ...updates,
+        },
+      })
 
-    setEditingId(null)
-  }
+      setEditingId(null)
+    },
+    [dispatch]
+  )
+
+  // ----------------------------------------
+  // Challenge 19:
+  // useCallback - Edit task
+  // ----------------------------------------
+
+  const handleEdit = useCallback(
+    (id: string | number) => {
+      setEditingId(id)
+    },
+    []
+  )
+
+  // ----------------------------------------
+  // Challenge 19:
+  // useCallback - Cancel editing
+  // ----------------------------------------
+
+  const handleCancelEdit = useCallback(
+    () => {
+      setEditingId(null)
+    },
+    []
+  )
 
   // ----------------------------------------
   // Challenge 14:
@@ -315,90 +348,87 @@ export default function TaskApp({
   }, [tasks])
 
   // ----------------------------------------
-  // Challenge 06:
-  // Filtering
+  // Challenge 19:
+  // useMemo - Filter, search and sort
   // ----------------------------------------
 
-  let filteredTasks = tasks
+  const sortedTasks = useMemo(() => {
+    // -------------------------------
+    // Challenge 06: Filtering
+    // -------------------------------
 
-  if (filter === 'active') {
-    filteredTasks =
-      tasks.filter(
+    let result = tasks
+
+    if (filter === 'active') {
+      result = tasks.filter(
         (task) => !task.completed
       )
-  }
+    }
 
-  if (filter === 'completed') {
-    filteredTasks =
-      tasks.filter(
+    if (filter === 'completed') {
+      result = tasks.filter(
         (task) => task.completed
       )
-  }
+    }
 
-  // ----------------------------------------
-  // Challenge 09 + 11:
-  // Search
-  // ----------------------------------------
+    // -------------------------------
+    // Challenge 09 + 11: Search
+    // -------------------------------
 
-  const normalizedSearch =
-    debouncedSearchText
-      .trim()
-      .toLowerCase()
+    const normalizedSearch =
+      debouncedSearchText
+        .trim()
+        .toLowerCase()
 
-  const searchedTasks =
-    normalizedSearch
-      ? filteredTasks.filter(
-          (task) => {
-            const title =
-              task.title.toLowerCase()
+    if (normalizedSearch) {
+      result = result.filter((task) => {
+        const title =
+          task.title.toLowerCase()
 
-            const description =
-              task.description.toLowerCase()
+        const description =
+          task.description.toLowerCase()
 
-            const category =
-              task.category
-                ?.toLowerCase() ?? ''
+        const category =
+          task.category
+            ?.toLowerCase() ?? ''
 
-            const tags =
-              task.tags
-                ?.join(' ')
-                .toLowerCase() ?? ''
+        const tags =
+          task.tags
+            ?.join(' ')
+            .toLowerCase() ?? ''
 
-            return (
-              title.includes(
-                normalizedSearch
-              ) ||
-              description.includes(
-                normalizedSearch
-              ) ||
-              category.includes(
-                normalizedSearch
-              ) ||
-              tags.includes(
-                normalizedSearch
-              )
-            )
-          }
+        return (
+          title.includes(
+            normalizedSearch
+          ) ||
+          description.includes(
+            normalizedSearch
+          ) ||
+          category.includes(
+            normalizedSearch
+          ) ||
+          tags.includes(
+            normalizedSearch
+          )
         )
-      : filteredTasks
+      })
+    }
 
-  // ----------------------------------------
-  // Challenge 07 + 13:
-  // Sorting
-  // ----------------------------------------
+    // -------------------------------
+    // Challenge 07 + 13: Sorting
+    // -------------------------------
 
-  const sortedTasks =
-    [...searchedTasks].sort(
+    const priority: Record<
+      string,
+      number
+    > = {
+      High: 3,
+      Medium: 2,
+      Low: 1,
+    }
+
+    return [...result].sort(
       (a, b) => {
-        const priority: Record<
-          string,
-          number
-        > = {
-          High: 3,
-          Medium: 2,
-          Low: 1,
-        }
-
         if (
           sortOrder ===
           'priority-high'
@@ -433,7 +463,8 @@ export default function TaskApp({
         }
 
         if (
-          sortOrder === 'due-date'
+          sortOrder ===
+          'due-date'
         ) {
           if (
             !a.dueDate &&
@@ -460,43 +491,70 @@ export default function TaskApp({
           )
         }
 
+        // "recent" keeps the original
+        // task order.
         return 0
       }
     )
+  }, [
+    tasks,
+    filter,
+    sortOrder,
+    debouncedSearchText,
+  ])
 
   // ----------------------------------------
   // Challenge 11:
   // Searching indicator
   // ----------------------------------------
 
-  const isSearching =
-    searchText.trim() !==
-    debouncedSearchText.trim()
+  const isSearching = useMemo(
+    () =>
+      searchText.trim() !==
+      debouncedSearchText.trim(),
+    [
+      searchText,
+      debouncedSearchText,
+    ]
+  )
 
   // ----------------------------------------
   // Count text
   // ----------------------------------------
 
-  const countText =
-    countFormat === 'completed'
-      ? `${
-          tasks.filter(
-            (task) =>
-              task.completed
-          ).length
-        } of ${
-          tasks.length
-        } completed`
-      : showFilterBar
-        ? `Showing ${sortedTasks.length} of ${tasks.length} tasks`
-        : `${tasks.length} tasks`
+  const countText = useMemo(() => {
+    if (
+      countFormat === 'completed'
+    ) {
+      const completedCount =
+        tasks.filter(
+          (task) =>
+            task.completed
+        ).length
+
+      return `${completedCount} of ${tasks.length} completed`
+    }
+
+    if (showFilterBar) {
+      return `Showing ${sortedTasks.length} of ${tasks.length} tasks`
+    }
+
+    return `${tasks.length} tasks`
+  }, [
+    countFormat,
+    tasks,
+    showFilterBar,
+    sortedTasks.length,
+  ])
 
   // ----------------------------------------
   // Empty message
   // ----------------------------------------
 
   const hasSearch =
-    normalizedSearch.length > 0
+    debouncedSearchText
+      .trim()
+      .length > 0
 
   const emptyMessage = hasSearch
     ? 'No tasks found'
@@ -581,9 +639,9 @@ export default function TaskApp({
           handleUpdateTask
         }
         editingId={editingId}
-        onEdit={setEditingId}
-        onCancelEdit={() =>
-          setEditingId(null)
+        onEdit={handleEdit}
+        onCancelEdit={
+          handleCancelEdit
         }
         linkToTaskDetail={
           linkToTaskDetail
