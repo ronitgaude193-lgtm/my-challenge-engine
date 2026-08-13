@@ -1,9 +1,8 @@
 import {
-  useEffect,
   useState,
   type Dispatch,
   type SetStateAction,
-} from 'react'
+} from "react"
 
 export default function useLocalStorage<T>(
   key: string,
@@ -11,29 +10,45 @@ export default function useLocalStorage<T>(
 ): [T, Dispatch<SetStateAction<T>>] {
   const [value, setValue] = useState<T>(() => {
     try {
-      const storedValue =
-        localStorage.getItem(key)
+      const item = localStorage.getItem(key)
 
-      if (storedValue === null) {
-        return initialValue
+      if (item !== null) {
+        return JSON.parse(item) as T
       }
 
-      return JSON.parse(storedValue) as T
+      return initialValue
     } catch {
       return initialValue
     }
   })
 
-  useEffect(() => {
-    try {
-      localStorage.setItem(
-        key,
-        JSON.stringify(value)
-      )
-    } catch {
-      // Ignore localStorage write errors.
-    }
-  }, [key, value])
+  const setStoredValue: Dispatch<
+    SetStateAction<T>
+  > = (newValue) => {
+    setValue((prev) => {
+      const valueToStore =
+        typeof newValue === "function"
+          ? (
+              newValue as (
+                prev: T
+              ) => T
+            )(prev)
+          : newValue
 
-  return [value, setValue]
+      try {
+        localStorage.setItem(
+          key,
+          JSON.stringify(
+            valueToStore
+          )
+        )
+      } catch {
+        // Ignore storage errors
+      }
+
+      return valueToStore
+    })
+  }
+
+  return [value, setStoredValue]
 }

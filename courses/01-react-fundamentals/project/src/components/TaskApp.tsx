@@ -1,225 +1,120 @@
 import {
-  useCallback,
+  useState,
   useEffect,
   useMemo,
-  useState,
-} from 'react'
+  useCallback,
+} from "react"
 
-import TaskList, { type Task } from './TaskList'
-import TaskForm from './TaskForm'
-import FilterBar from './FilterBar'
-import StatsPanel from './StatsPanel'
-import { useTheme } from '../contexts/ThemeContext'
+import TaskForm from "./TaskForm"
+import TaskList, { type Task } from "./TaskList"
+import FilterBar from "./FilterBar"
+import StatsPanel from "./StatsPanel"
+import useTheme from "../contexts/useTheme"
+import ErrorBoundary from "./ErrorBoundary"
 
-// ----------------------------------------
-// Challenge 18: Task action type
-// ----------------------------------------
-
-type TaskAction =
-  | {
-      type: 'ADD_TASK'
-      payload: Task
-    }
-  | {
-      type: 'UPDATE_TASK'
-      payload: {
-        id: string | number
-        title: string
-        description: string
-        priority: string
-        category?: string
-        tags?: string[]
-        dueDate?: string | number
-      }
-    }
-  | {
-      type: 'DELETE_TASK'
-      payload: string | number
-    }
-  | {
-      type: 'TOGGLE_TASK'
-      payload: string | number
-    }
-  | {
-      type: 'SET_TASKS'
-      payload: Task[]
-    }
-
-// ----------------------------------------
-// Challenge 18: Props
-// ----------------------------------------
+import {
+  ADD_TASK,
+  UPDATE_TASK,
+  DELETE_TASK,
+  TOGGLE_TASK,
+} from "../reducers/taskReducer"
 
 interface TaskAppProps {
   tasks?: Task[]
-
-  dispatch?: (
-    action: TaskAction
-  ) => void
-
+  dispatch?: (action: {
+    type: string
+    payload?: unknown
+  }) => void
   showForm?: boolean
   countFormat?: string
   showFilterBar?: boolean
   showStatsPanel?: boolean
-
-  onDelete?: (
-    id: string | number
-  ) => void
-
+  onDelete?: (id: string | number) => void
   linkToTaskDetail?: boolean
 }
-
-type FilterType =
-  | 'all'
-  | 'active'
-  | 'completed'
-
-type SortOrder =
-  | 'recent'
-  | 'priority-high'
-  | 'priority-low'
-  | 'alphabetical'
-  | 'due-date'
 
 export default function TaskApp({
   tasks = [],
   dispatch,
-  showForm = false,
-  countFormat = 'tasks',
-  showFilterBar = false,
-  showStatsPanel = false,
-  onDelete,
+  showForm = true,
+  showFilterBar = true,
+  showStatsPanel = true,
   linkToTaskDetail = false,
 }: TaskAppProps) {
-  // ----------------------------------------
-  // Challenge 16: Theme Context
-  // ----------------------------------------
+  const { theme } = useTheme()
 
-  const {
-    theme,
-    toggleTheme,
-  } = useTheme()
+  const [filter, setFilter] = useState<
+    "all" | "active" | "completed"
+  >("all")
 
-  // ----------------------------------------
-  // Challenge 06: Filtering
-  // ----------------------------------------
+  const [sort, setSort] = useState<
+    | "recent"
+    | "high"
+    | "low"
+    | "alphabetical"
+    | "dueDate"
+  >("recent")
 
-  const [filter, setFilter] =
-    useState<FilterType>('all')
-
-  // ----------------------------------------
-  // Challenge 07: Sorting
-  // ----------------------------------------
-
-  const [sortOrder, setSortOrder] =
-    useState<SortOrder>('recent')
-
-  // ----------------------------------------
-  // Challenge 08: Editing
-  // ----------------------------------------
+  const [search, setSearch] = useState("")
+  const [debouncedSearch, setDebouncedSearch] =
+    useState("")
+  const [isSearching, setIsSearching] =
+    useState(false)
 
   const [editingId, setEditingId] =
-    useState<
-      string | number | null
-    >(null)
-
-  // ----------------------------------------
-  // Challenge 09: Search
-  // ----------------------------------------
-
-  const [searchText, setSearchText] =
-    useState('')
-
-  // ----------------------------------------
-  // Challenge 11: Debounced Search
-  // ----------------------------------------
-
-  const [
-    debouncedSearchText,
-    setDebouncedSearchText,
-  ] = useState('')
+    useState<string | number | null>(null)
 
   useEffect(() => {
-    const timeout =
-      window.setTimeout(() => {
-        setDebouncedSearchText(
-          searchText
-        )
-      }, 300)
+    setIsSearching(true)
 
-    return () => {
-      window.clearTimeout(timeout)
-    }
-  }, [searchText])
+    const timeout = setTimeout(() => {
+      setDebouncedSearch(search)
+      setIsSearching(false)
+    }, 300)
 
-  // ----------------------------------------
-  // Challenge 19:
-  // useCallback - Add task
-  // ----------------------------------------
+    return () => clearTimeout(timeout)
+  }, [search])
 
   const handleAddTask = useCallback(
     (task: Task) => {
       dispatch?.({
-        type: 'ADD_TASK',
+        type: ADD_TASK,
         payload: task,
       })
     },
     [dispatch]
   )
 
-  // ----------------------------------------
-  // Challenge 19:
-  // useCallback - Toggle task
-  // ----------------------------------------
-
   const handleToggle = useCallback(
     (id: string | number) => {
       dispatch?.({
-        type: 'TOGGLE_TASK',
+        type: TOGGLE_TASK,
         payload: id,
       })
     },
     [dispatch]
   )
 
-  // ----------------------------------------
-  // Challenge 19:
-  // useCallback - Delete task
-  // ----------------------------------------
-
-  const handleDeleteTask = useCallback(
+  const handleDelete = useCallback(
     (id: string | number) => {
       dispatch?.({
-        type: 'DELETE_TASK',
+        type: DELETE_TASK,
         payload: id,
       })
-
-      onDelete?.(id)
     },
-    [dispatch, onDelete]
+    [dispatch]
   )
-
-  // ----------------------------------------
-  // Challenge 19:
-  // useCallback - Update task
-  // ----------------------------------------
 
   const handleUpdateTask = useCallback(
     (
       id: string | number,
-      updates: {
-        title: string
-        description: string
-        priority: string
-        category?: string
-        tags?: string[]
-        dueDate?: string | number
-      }
+      updates: Partial<Task>
     ) => {
       dispatch?.({
-        type: 'UPDATE_TASK',
+        type: UPDATE_TASK,
         payload: {
           id,
-          ...updates,
+          updates,
         },
       })
 
@@ -228,258 +123,89 @@ export default function TaskApp({
     [dispatch]
   )
 
-  // ----------------------------------------
-  // Challenge 19:
-  // useCallback - Edit task
-  // ----------------------------------------
-
-  const handleEdit = useCallback(
-    (id: string | number) => {
-      setEditingId(id)
-    },
-    []
-  )
-
-  // ----------------------------------------
-  // Challenge 19:
-  // useCallback - Cancel editing
-  // ----------------------------------------
-
-  const handleCancelEdit = useCallback(
-    () => {
-      setEditingId(null)
-    },
-    []
-  )
-
-  // ----------------------------------------
-  // Challenge 14:
-  // Statistics
-  // ----------------------------------------
-
-  const taskStats = useMemo(() => {
+  const stats = useMemo(() => {
     const total = tasks.length
 
-    const completed =
-      tasks.filter(
-        (task) => task.completed
-      ).length
+    const completed = tasks.filter(
+      (task) => task.completed
+    ).length
 
-    const active =
-      tasks.filter(
-        (task) => !task.completed
-      ).length
+    const active = total - completed
 
-    const now = new Date()
-
-    const today = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate()
-    )
-
-    const overdue =
-      tasks.filter((task) => {
+    const overdue = tasks.filter(
+      (task) => {
         if (
-          task.completed ||
-          !task.dueDate
+          !task.dueDate ||
+          task.completed
         ) {
           return false
         }
 
-        const dueDate =
-          new Date(task.dueDate)
-
-        const dueDay = new Date(
-          dueDate.getFullYear(),
-          dueDate.getMonth(),
-          dueDate.getDate()
+        return (
+          new Date(task.dueDate) <
+          new Date()
         )
-
-        return dueDay < today
-      }).length
+      }
+    ).length
 
     const completedPercentage =
-      total > 0
-        ? Math.round(
+      total === 0
+        ? 0
+        : Math.round(
             (completed / total) * 100
           )
-        : 0
-
-    const categoryBreakdown =
-      tasks.reduce<
-        Record<string, number>
-      >(
-        (result, task) => {
-          const category =
-            task.category ||
-            'General'
-
-          result[category] =
-            (result[category] || 0) + 1
-
-          return result
-        },
-        {}
-      )
-
-    const priorityBreakdown =
-      tasks.reduce<
-        Record<string, number>
-      >(
-        (result, task) => {
-          result[task.priority] =
-            (result[task.priority] || 0) + 1
-
-          return result
-        },
-        {}
-      )
 
     return {
       total,
       completed,
-      completedPercentage,
       active,
       overdue,
-      categoryBreakdown,
-      priorityBreakdown,
+      completedPercentage,
     }
   }, [tasks])
 
-  // ----------------------------------------
-  // Challenge 19:
-  // useMemo - Filter, search and sort
-  // ----------------------------------------
-
   const sortedTasks = useMemo(() => {
-    // -------------------------------
-    // Challenge 06: Filtering
-    // -------------------------------
-
-    let result = tasks
-
-    if (filter === 'active') {
-      result = tasks.filter(
-        (task) => !task.completed
-      )
-    }
-
-    if (filter === 'completed') {
-      result = tasks.filter(
-        (task) => task.completed
-      )
-    }
-
-    // -------------------------------
-    // Challenge 09 + 11: Search
-    // -------------------------------
-
-    const normalizedSearch =
-      debouncedSearchText
-        .trim()
-        .toLowerCase()
-
-    if (normalizedSearch) {
-      result = result.filter((task) => {
-        const title =
-          task.title.toLowerCase()
-
-        const description =
-          task.description.toLowerCase()
-
-        const category =
-          task.category
-            ?.toLowerCase() ?? ''
-
-        const tags =
-          task.tags
-            ?.join(' ')
-            .toLowerCase() ?? ''
-
-        return (
-          title.includes(
-            normalizedSearch
-          ) ||
-          description.includes(
-            normalizedSearch
-          ) ||
-          category.includes(
-            normalizedSearch
-          ) ||
-          tags.includes(
-            normalizedSearch
+    const statusFilteredTasks =
+      filter === "all"
+        ? tasks
+        : filter === "active"
+        ? tasks.filter(
+            (task) => !task.completed
           )
-        )
-      })
-    }
+        : tasks.filter(
+            (task) => task.completed
+          )
 
-    // -------------------------------
-    // Challenge 07 + 13: Sorting
-    // -------------------------------
+    const searchFilteredTasks =
+      statusFilteredTasks.filter(
+        (task) =>
+          task.title
+            .toLowerCase()
+            .includes(
+              debouncedSearch.toLowerCase()
+            ) ||
+          task.description
+            .toLowerCase()
+            .includes(
+              debouncedSearch.toLowerCase()
+            )
+      )
 
-    const priority: Record<
-      string,
-      number
-    > = {
-      High: 3,
-      Medium: 2,
-      Low: 1,
-    }
-
-    return [...result].sort(
+    return [...searchFilteredTasks].sort(
       (a, b) => {
-        if (
-          sortOrder ===
-          'priority-high'
-        ) {
-          return (
-            priority[b.priority] -
-            priority[a.priority]
-          )
+        if (sort === "recent") {
+          return 0
         }
 
-        if (
-          sortOrder ===
-          'priority-low'
-        ) {
-          return (
-            priority[a.priority] -
-            priority[b.priority]
-          )
-        }
-
-        if (
-          sortOrder ===
-          'alphabetical'
-        ) {
-          return a.title.localeCompare(
-            b.title,
-            undefined,
-            {
-              sensitivity: 'base',
-            }
-          )
-        }
-
-        if (
-          sortOrder ===
-          'due-date'
-        ) {
+        if (sort === "dueDate") {
           if (
             !a.dueDate &&
             !b.dueDate
-          ) {
+          )
             return 0
-          }
 
-          if (!a.dueDate) {
-            return 1
-          }
-
-          if (!b.dueDate) {
-            return -1
-          }
+          if (!a.dueDate) return 1
+          if (!b.dueDate) return -1
 
           return (
             new Date(
@@ -491,162 +217,133 @@ export default function TaskApp({
           )
         }
 
-        // "recent" keeps the original
-        // task order.
-        return 0
+        if (
+          sort === "alphabetical"
+        ) {
+          return a.title.localeCompare(
+            b.title,
+            undefined,
+            {
+              sensitivity: "base",
+            }
+          )
+        }
+
+        const priorityValue = {
+          High: 3,
+          Medium: 2,
+          Low: 1,
+        }
+
+        if (sort === "high") {
+          return (
+            priorityValue[
+              b.priority as keyof typeof priorityValue
+            ] -
+            priorityValue[
+              a.priority as keyof typeof priorityValue
+            ]
+          )
+        }
+
+        return (
+          priorityValue[
+            a.priority as keyof typeof priorityValue
+          ] -
+          priorityValue[
+            b.priority as keyof typeof priorityValue
+          ]
+        )
       }
     )
   }, [
     tasks,
     filter,
-    sortOrder,
-    debouncedSearchText,
+    sort,
+    debouncedSearch,
   ])
-
-  // ----------------------------------------
-  // Challenge 11:
-  // Searching indicator
-  // ----------------------------------------
-
-  const isSearching = useMemo(
-    () =>
-      searchText.trim() !==
-      debouncedSearchText.trim(),
-    [
-      searchText,
-      debouncedSearchText,
-    ]
-  )
-
-  // ----------------------------------------
-  // Count text
-  // ----------------------------------------
-
-  const countText = useMemo(() => {
-    if (
-      countFormat === 'completed'
-    ) {
-      const completedCount =
-        tasks.filter(
-          (task) =>
-            task.completed
-        ).length
-
-      return `${completedCount} of ${tasks.length} completed`
-    }
-
-    if (showFilterBar) {
-      return `Showing ${sortedTasks.length} of ${tasks.length} tasks`
-    }
-
-    return `${tasks.length} tasks`
-  }, [
-    countFormat,
-    tasks,
-    showFilterBar,
-    sortedTasks.length,
-  ])
-
-  // ----------------------------------------
-  // Empty message
-  // ----------------------------------------
-
-  const hasSearch =
-    debouncedSearchText
-      .trim()
-      .length > 0
-
-  const emptyMessage = hasSearch
-    ? 'No tasks found'
-    : 'No tasks match this filter'
-
-  // ----------------------------------------
-  // Render
-  // ----------------------------------------
 
   return (
     <div
-      id="task-app"
       data-theme={theme}
+      style={{
+        backgroundColor:
+          theme === "dark"
+            ? "#1e1e1e"
+            : "#ffffff",
+        color:
+          theme === "dark"
+            ? "#ffffff"
+            : "#000000",
+        minHeight: "100vh",
+        padding: "20px",
+      }}
     >
-      {/* Challenge 16 */}
-      <header id="app-header">
-        <button
-          id="theme-toggle"
-          type="button"
-          onClick={toggleTheme}
-          aria-label={`Switch to ${
-            theme === 'light'
-              ? 'dark'
-              : 'light'
-          } theme`}
-        >
-          {theme === 'light'
-            ? 'Dark Mode'
-            : 'Light Mode'}
-        </button>
-      </header>
+      <button onClick={() => {}}>
+        {theme === "dark"
+          ? "Light Mode"
+          : "Dark Mode"}
+      </button>
 
-      {/* Challenge 14 */}
-      {showStatsPanel && (
-        <StatsPanel
-          stats={taskStats}
-        />
-      )}
-
-      {/* Challenge 03 */}
       {showForm && (
         <TaskForm
           onAddTask={handleAddTask}
         />
       )}
 
-      {/* Challenge 06 + 07 + 09 + 11 + 13 */}
+      {showStatsPanel && (
+        <StatsPanel
+          total={stats.total}
+          completed={stats.completed}
+          active={stats.active}
+          overdue={stats.overdue}
+          completedPercentage={
+            stats.completedPercentage
+          }
+        />
+      )}
+
       {showFilterBar && (
         <FilterBar
           filter={filter}
           onFilterChange={setFilter}
-          sortOrder={sortOrder}
-          onSortChange={setSortOrder}
-          searchText={searchText}
-          onSearchChange={setSearchText}
+          sort={sort}
+          onSortChange={setSort}
+          search={search}
+          onSearchChange={setSearch}
         />
       )}
 
-      {/* Challenge 11 */}
-      {showFilterBar &&
-        isSearching && (
-          <p id="searching-indicator">
-            Searching...
-          </p>
-        )}
+      {isSearching && (
+        <p id="searching-indicator">
+          Searching...
+        </p>
+      )}
 
-      {/* Challenge 06 + 09 */}
-      {showFilterBar &&
-        sortedTasks.length === 0 && (
-          <p id="filter-empty-message">
-            {emptyMessage}
-          </p>
-        )}
+      <p id="task-count">
+        Showing {sortedTasks.length} of{" "}
+        {tasks.length} tasks
+      </p>
 
-      {/* Task List */}
-      <TaskList
-        tasks={sortedTasks}
-        countText={countText}
-        onToggle={handleToggle}
-        onDelete={handleDeleteTask}
-        onUpdateTask={
-          handleUpdateTask
-        }
-        editingId={editingId}
-        onEdit={handleEdit}
-        onCancelEdit={
-          handleCancelEdit
-        }
-        linkToTaskDetail={
-          linkToTaskDetail
-        }
-      />
+      {sortedTasks.length === 0 ? (
+        <p id="filter-empty-message">
+          No tasks found
+        </p>
+      ) : (
+        <ErrorBoundary>
+          <TaskList
+            tasks={sortedTasks}
+            onToggle={handleToggle}
+            onDelete={handleDelete}
+            editingId={editingId}
+            setEditingId={setEditingId}
+            onUpdateTask={handleUpdateTask}
+            linkToTaskDetail={
+              linkToTaskDetail
+            }
+          />
+        </ErrorBoundary>
+      )}
     </div>
   )
 }

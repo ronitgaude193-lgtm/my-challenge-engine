@@ -1,21 +1,15 @@
-import type { ChangeEvent } from 'react'
-
-/**
- * Reusable form field component.
- */
 interface FormInputProps {
-  label: string
+  label?: string
   id: string
   value: string
   onChange: (
-    event: ChangeEvent<
+    e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement
     >
   ) => void
   type?: string
   placeholder?: string
   error?: string
-  multiline?: boolean
 }
 
 export default function FormInput({
@@ -23,39 +17,23 @@ export default function FormInput({
   id,
   value,
   onChange,
-  type = 'text',
+  type = "text",
   placeholder,
   error,
-  multiline = false,
 }: FormInputProps) {
   return (
     <div>
-      <label htmlFor={id}>
-        {label}
-      </label>
+      {label && <label htmlFor={id}>{label}</label>}
 
-      {multiline ? (
-        <textarea
-          id={id}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-        />
-      ) : (
-        <input
-          id={id}
-          type={type}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-        />
-      )}
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+      />
 
-      {error && (
-        <p id={`${id}-error`}>
-          {error}
-        </p>
-      )}
+      {error && <p>{error}</p>}
     </div>
   )
 }
