@@ -2,16 +2,16 @@
   {
     "challengeId": "01-store-setup",
     "challengeName": "Store Setup with configureStore",
-    "timestamp": "2026-08-20T20:27:53.970Z",
+    "timestamp": "2026-08-20T20:36:39.772Z",
     "scores": {
       "functionalTests": 100,
       "codeQuality": 100,
       "architecture": 100,
       "bestPractices": 100,
       "e2eTests": 0,
-      "aiReview": 75
+      "aiReview": 89
     },
-    "totalScore": 81.25,
+    "totalScore": 83.35,
     "passed": true,
     "errors": [],
     "warnings": [],
@@ -32,7 +32,7 @@
               "fullName": " Challenge 01: Store Setup with configureStore store uses configureStore",
               "status": "passed",
               "title": "store uses configureStore",
-              "duration": 2,
+              "duration": 1,
               "failureMessages": []
             },
             {
@@ -54,12 +54,12 @@
               "fullName": " Challenge 01: Store Setup with configureStore main.tsx wraps App with Provider and passes store",
               "status": "passed",
               "title": "main.tsx wraps App with Provider and passes store",
-              "duration": 1,
+              "duration": 0,
               "failureMessages": []
             }
           ],
-          "startTime": 1787257676640,
-          "endTime": 1787257676643,
+          "startTime": 1787258202204,
+          "endTime": 1787258202205,
           "status": "passed",
           "message": "",
           "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-01.test.tsx"
@@ -160,49 +160,43 @@
     },
     "aiReviewResults": {
       "challengeId": "01-store-setup",
-      "timestamp": "2026-08-20T20:28:00.264Z",
-      "score": 75,
+      "timestamp": "2026-08-20T20:36:45.450Z",
+      "score": 89,
       "feedback": [],
       "strengths": [
-        "Uses Redux Toolkit’s `configureStore` to create the store and exports `RootState` and `AppDispatch` for type safety.",
-        "Wraps the entire app with `<Provider store={store}>` in `src/main.tsx`, ensuring Redux state is globally available.",
-        "Keeps store logic in a dedicated `src/store/store.ts` file, keeping the rest of the app decoupled from Redux internals."
+        "Correct use of `configureStore` and `Provider` to set up the Redux store.",
+        "Typed hooks (`useAppDispatch` and `useAppSelector`) implemented with `withTypes` for type safety across the app.",
+        "Clear separation of concerns: store logic in `store.ts`, provider setup in `main.tsx`, and typed hooks in `hooks.ts`."
       ],
       "improvements": [
-        "Fix the typed hooks in `src/store/hooks.ts`. The current `useDispatch.withTypes` and `useSelector.withTypes` are not valid. Use the recommended pattern:\n```ts\nimport { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';\nimport type { RootState, AppDispatch } from './store';\nexport const useAppDispatch = () => useDispatch<AppDispatch>();\nexport const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;\n```",
-        "Remove the unused `taskReducer` import and reducer entry if you are not using a slice yet. An empty reducer (`{}`) satisfies the challenge and avoids potential import errors.",
-        "The `middleware` configuration in `store.ts` is redundant because you’re simply returning the default middleware. Either remove the `middleware` key or add custom middleware if needed.",
-        "Add a comment in `store.ts` explaining that the reducer object is intentionally empty for the first challenge, and that slices will be added later.",
-        "Ensure that no `console.*` statements exist in any file. If you need debugging, use `debugger` or a dedicated logger that can be disabled in production.",
-        "Add a small test or comment in `src/main.tsx` to confirm that the Provider is correctly wrapping the app, e.g., by rendering a simple component that uses `useAppSelector`."
+        "In `src/store/store.ts`, the middleware configuration is redundant: `middleware: (getDefaultMiddleware) => getDefaultMiddleware()` can be omitted or simplified to just `middleware: getDefaultMiddleware`. This reduces noise and makes intent clearer.",
+        "Add a `devTools: true` option to `configureStore` (or remove the explicit `middleware` line) to enable Redux DevTools during development, which aids debugging and is a common best practice.",
+        "Add a brief comment in `store.ts` explaining that the reducer object is intentionally empty for now and will be populated as slices are added. This improves future maintainability and onboarding for new developers."
       ],
-      "readability": 80,
-      "maintainability": 75,
-      "overall": "The implementation correctly sets up the Redux store with `configureStore` and wraps the app with `Provider`, satisfying the core functional requirements. However, the typed hooks file contains syntactic errors that will prevent the project from compiling. Once those hooks are corrected and the unused reducer entry removed, the code will be clean, type‑safe, and ready for the subsequent challenges.",
-      "requirementCompliance": 70
+      "readability": 88,
+      "maintainability": 82,
+      "overall": "The implementation satisfies all functional requirements: the store is created with `configureStore`, exported types are provided, and the app is wrapped in a `Provider`. The code follows good TypeScript practices and keeps concerns separated, though a few minor clean‑ups (redundant middleware, devTools, and documentation) would polish it further.",
+      "requirementCompliance": 95
     },
     "aiResults": {
       "challengeId": "01-store-setup",
-      "timestamp": "2026-08-20T20:28:00.264Z",
-      "score": 75,
+      "timestamp": "2026-08-20T20:36:45.450Z",
+      "score": 89,
       "feedback": [],
       "strengths": [
-        "Uses Redux Toolkit’s `configureStore` to create the store and exports `RootState` and `AppDispatch` for type safety.",
-        "Wraps the entire app with `<Provider store={store}>` in `src/main.tsx`, ensuring Redux state is globally available.",
-        "Keeps store logic in a dedicated `src/store/store.ts` file, keeping the rest of the app decoupled from Redux internals."
+        "Correct use of `configureStore` and `Provider` to set up the Redux store.",
+        "Typed hooks (`useAppDispatch` and `useAppSelector`) implemented with `withTypes` for type safety across the app.",
+        "Clear separation of concerns: store logic in `store.ts`, provider setup in `main.tsx`, and typed hooks in `hooks.ts`."
       ],
       "improvements": [
-        "Fix the typed hooks in `src/store/hooks.ts`. The current `useDispatch.withTypes` and `useSelector.withTypes` are not valid. Use the recommended pattern:\n```ts\nimport { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';\nimport type { RootState, AppDispatch } from './store';\nexport const useAppDispatch = () => useDispatch<AppDispatch>();\nexport const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;\n```",
-        "Remove the unused `taskReducer` import and reducer entry if you are not using a slice yet. An empty reducer (`{}`) satisfies the challenge and avoids potential import errors.",
-        "The `middleware` configuration in `store.ts` is redundant because you’re simply returning the default middleware. Either remove the `middleware` key or add custom middleware if needed.",
-        "Add a comment in `store.ts` explaining that the reducer object is intentionally empty for the first challenge, and that slices will be added later.",
-        "Ensure that no `console.*` statements exist in any file. If you need debugging, use `debugger` or a dedicated logger that can be disabled in production.",
-        "Add a small test or comment in `src/main.tsx` to confirm that the Provider is correctly wrapping the app, e.g., by rendering a simple component that uses `useAppSelector`."
+        "In `src/store/store.ts`, the middleware configuration is redundant: `middleware: (getDefaultMiddleware) => getDefaultMiddleware()` can be omitted or simplified to just `middleware: getDefaultMiddleware`. This reduces noise and makes intent clearer.",
+        "Add a `devTools: true` option to `configureStore` (or remove the explicit `middleware` line) to enable Redux DevTools during development, which aids debugging and is a common best practice.",
+        "Add a brief comment in `store.ts` explaining that the reducer object is intentionally empty for now and will be populated as slices are added. This improves future maintainability and onboarding for new developers."
       ],
-      "readability": 80,
-      "maintainability": 75,
-      "overall": "The implementation correctly sets up the Redux store with `configureStore` and wraps the app with `Provider`, satisfying the core functional requirements. However, the typed hooks file contains syntactic errors that will prevent the project from compiling. Once those hooks are corrected and the unused reducer entry removed, the code will be clean, type‑safe, and ready for the subsequent challenges.",
-      "requirementCompliance": 70
+      "readability": 88,
+      "maintainability": 82,
+      "overall": "The implementation satisfies all functional requirements: the store is created with `configureStore`, exported types are provided, and the app is wrapped in a `Provider`. The code follows good TypeScript practices and keeps concerns separated, though a few minor clean‑ups (redundant middleware, devTools, and documentation) would polish it further.",
+      "requirementCompliance": 95
     }
   }
 ]
