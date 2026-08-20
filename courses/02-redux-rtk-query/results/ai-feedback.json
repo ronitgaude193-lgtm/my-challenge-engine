@@ -4,15 +4,26 @@
     "challengeName": "Store Setup with configureStore",
     "aiReview": {
       "challengeId": "01-store-setup",
-      "timestamp": "2026-08-20T19:47:27.418Z",
-      "score": 0,
+      "timestamp": "2026-08-20T20:28:00.264Z",
+      "score": 75,
       "feedback": [],
-      "strengths": [],
-      "improvements": [],
-      "readability": 0,
-      "maintainability": 0,
-      "overall": "",
-      "error": "Groq API error (404): The model `llama-3.1-8b-instant` does not exist or you do not have access to it."
+      "strengths": [
+        "Uses Redux Toolkit’s `configureStore` to create the store and exports `RootState` and `AppDispatch` for type safety.",
+        "Wraps the entire app with `<Provider store={store}>` in `src/main.tsx`, ensuring Redux state is globally available.",
+        "Keeps store logic in a dedicated `src/store/store.ts` file, keeping the rest of the app decoupled from Redux internals."
+      ],
+      "improvements": [
+        "Fix the typed hooks in `src/store/hooks.ts`. The current `useDispatch.withTypes` and `useSelector.withTypes` are not valid. Use the recommended pattern:\n```ts\nimport { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';\nimport type { RootState, AppDispatch } from './store';\nexport const useAppDispatch = () => useDispatch<AppDispatch>();\nexport const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;\n```",
+        "Remove the unused `taskReducer` import and reducer entry if you are not using a slice yet. An empty reducer (`{}`) satisfies the challenge and avoids potential import errors.",
+        "The `middleware` configuration in `store.ts` is redundant because you’re simply returning the default middleware. Either remove the `middleware` key or add custom middleware if needed.",
+        "Add a comment in `store.ts` explaining that the reducer object is intentionally empty for the first challenge, and that slices will be added later.",
+        "Ensure that no `console.*` statements exist in any file. If you need debugging, use `debugger` or a dedicated logger that can be disabled in production.",
+        "Add a small test or comment in `src/main.tsx` to confirm that the Provider is correctly wrapping the app, e.g., by rendering a simple component that uses `useAppSelector`."
+      ],
+      "readability": 80,
+      "maintainability": 75,
+      "overall": "The implementation correctly sets up the Redux store with `configureStore` and wraps the app with `Provider`, satisfying the core functional requirements. However, the typed hooks file contains syntactic errors that will prevent the project from compiling. Once those hooks are corrected and the unused reducer entry removed, the code will be clean, type‑safe, and ready for the subsequent challenges.",
+      "requirementCompliance": 70
     }
   }
 ]

@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
+import taskReducer from './taskSlice'
 
 export const store = configureStore({
-  reducer: {},
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  reducer: {
+    tasks: taskReducer,
+  },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware(),
 })
 
 export type RootState = ReturnType<typeof store.getState>
