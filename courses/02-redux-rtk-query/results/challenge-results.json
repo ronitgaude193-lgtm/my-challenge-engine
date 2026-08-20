@@ -406,5 +406,212 @@
       "overall": "The implementation demonstrates a solid grasp of Redux Toolkit basics, but it diverges slightly from the challenge specification by using an object for the counter state and by leaving console logs in the middleware. Removing those discrepancies will bring the solution fully in line with the requirements and improve code quality.",
       "requirementCompliance": 70
     }
+  },
+  {
+    "challengeId": "03-reading-dispatching",
+    "challengeName": "Reading and Dispatching in Components",
+    "timestamp": "2026-08-20T20:56:27.686Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 86
+    },
+    "totalScore": 82.9,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 03: Reading and Dispatching"
+              ],
+              "fullName": " Challenge 03: Reading and Dispatching hooks.ts exports useAppSelector and useAppDispatch",
+              "status": "passed",
+              "title": "hooks.ts exports useAppSelector and useAppDispatch",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 03: Reading and Dispatching"
+              ],
+              "fullName": " Challenge 03: Reading and Dispatching CounterView uses useSelector or useAppSelector",
+              "status": "passed",
+              "title": "CounterView uses useSelector or useAppSelector",
+              "duration": 0,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 03: Reading and Dispatching"
+              ],
+              "fullName": " Challenge 03: Reading and Dispatching CounterView has required data-testids",
+              "status": "passed",
+              "title": "CounterView has required data-testids",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787259390124,
+          "endTime": 1787259390126,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-03.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\CounterView.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\hooks.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "reducer",
+        "middleware"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/hooks.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/CounterView.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-03.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "03-reading-dispatching",
+      "timestamp": "2026-08-20T20:56:33.385Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Typed hooks (`useAppDispatch` and `useAppSelector`) are correctly exported and used throughout the component.",
+        "`CounterView` cleanly reads state with `useAppSelector` and dispatches actions with `useAppDispatch`.",
+        "All required `data-testid` attributes are present, enabling straightforward testing.",
+        "No console statements or linting issues are introduced."
+      ],
+      "improvements": [
+        "Add the route `/challenge/03-reading-dispatching` to the main router (e.g., in `App.tsx`). The current implementation does not show this integration.",
+        "Remove the unused `reduxArchitecture` object from `src/store/hooks.ts` – it adds noise without any functional benefit.",
+        "Consider using the `useSelector.withTypes<RootState>()` pattern for consistency with the challenge spec, or at least document why the generic approach was chosen.",
+        "The `loggerMiddleware` in `src/store/store.ts` currently does nothing; either implement logging or remove it to avoid unnecessary middleware.",
+        "Add explicit return type to `useAppSelector` (e.g., `useSelector<RootState, T>(selector)`) to make the intent clearer and avoid potential type inference pitfalls.",
+        "If the project uses React.FC for components, type `CounterView` accordingly for consistency.",
+        "Add a small comment in `CounterView` explaining the purpose of each data-testid for future maintainers."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies the core functional requirements: typed hooks, proper selector and dispatch usage, and the required test IDs. Minor architectural and documentation improvements will bring the code in line with best practices and ensure the route integration is complete.",
+      "requirementCompliance": 90
+    },
+    "aiResults": {
+      "challengeId": "03-reading-dispatching",
+      "timestamp": "2026-08-20T20:56:33.385Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Typed hooks (`useAppDispatch` and `useAppSelector`) are correctly exported and used throughout the component.",
+        "`CounterView` cleanly reads state with `useAppSelector` and dispatches actions with `useAppDispatch`.",
+        "All required `data-testid` attributes are present, enabling straightforward testing.",
+        "No console statements or linting issues are introduced."
+      ],
+      "improvements": [
+        "Add the route `/challenge/03-reading-dispatching` to the main router (e.g., in `App.tsx`). The current implementation does not show this integration.",
+        "Remove the unused `reduxArchitecture` object from `src/store/hooks.ts` – it adds noise without any functional benefit.",
+        "Consider using the `useSelector.withTypes<RootState>()` pattern for consistency with the challenge spec, or at least document why the generic approach was chosen.",
+        "The `loggerMiddleware` in `src/store/store.ts` currently does nothing; either implement logging or remove it to avoid unnecessary middleware.",
+        "Add explicit return type to `useAppSelector` (e.g., `useSelector<RootState, T>(selector)`) to make the intent clearer and avoid potential type inference pitfalls.",
+        "If the project uses React.FC for components, type `CounterView` accordingly for consistency.",
+        "Add a small comment in `CounterView` explaining the purpose of each data-testid for future maintainers."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies the core functional requirements: typed hooks, proper selector and dispatch usage, and the required test IDs. Minor architectural and documentation improvements will bring the code in line with best practices and ensure the route integration is complete.",
+      "requirementCompliance": 90
+    }
   }
 ]

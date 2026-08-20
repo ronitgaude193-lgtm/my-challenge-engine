@@ -3,10 +3,8 @@ import counterReducer from './slices/counterSlice'
 
 const loggerMiddleware: Middleware =
   (store) => (next) => (action) => {
-    console.log('Dispatching:', action)
-    const result = next(action)
-    console.log('State after dispatch:', store.getState())
-    return result
+    void store
+    return next(action)
   }
 
 export const store = configureStore({
@@ -19,4 +17,5 @@ export const store = configureStore({
 })
 
 export type RootState = ReturnType<typeof store.getState>
+
 export type AppDispatch = typeof store.dispatch
