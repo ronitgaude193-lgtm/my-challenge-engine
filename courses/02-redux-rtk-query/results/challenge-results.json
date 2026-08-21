@@ -1623,5 +1623,204 @@
       "overall": "The implementation correctly sets up RTK Query with tag types, provides tags for the user list, and invalidates the cache after creating a user. It meets the core functional requirements, but adding the missing post endpoints and extending invalidation to other mutations would make the solution more complete and robust.",
       "requirementCompliance": 90
     }
+  },
+  {
+    "challengeId": "09-mutations",
+    "challengeName": "Mutations with useMutation",
+    "timestamp": "2026-08-21T19:54:31.565Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 88
+    },
+    "totalScore": 83.2,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Mutations with useMutation"
+              ],
+              "fullName": " Challenge 09: Mutations with useMutation API slice has builder.mutation endpoint",
+              "status": "passed",
+              "title": "API slice has builder.mutation endpoint",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Mutations with useMutation"
+              ],
+              "fullName": " Challenge 09: Mutations with useMutation AddPostForm uses useMutation hook",
+              "status": "passed",
+              "title": "AddPostForm uses useMutation hook",
+              "duration": 0,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Mutations with useMutation"
+              ],
+              "fullName": " Challenge 09: Mutations with useMutation AddPostForm has add-post-form and add-post-submit data-testids",
+              "status": "passed",
+              "title": "AddPostForm has add-post-form and add-post-submit data-testids",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787342074004,
+          "endTime": 1787342074006,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-09.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\api\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\AddPostForm.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/api/apiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/AddPostForm.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-09.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "09-mutations",
+      "timestamp": "2026-08-21T19:54:37.373Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of API logic and UI components – `apiSlice.ts` contains all endpoints while `AddPostForm.tsx` focuses solely on form rendering and mutation handling.",
+        "Consistent use of TypeScript interfaces (`NewPost`, `User`, `Post`) and proper typing of mutation payloads and responses.",
+        "Proper cache invalidation with `invalidatesTags: [{ type: 'Post', id: 'LIST' }]` ensuring the posts list refetches automatically after a new post is added."
+      ],
+      "improvements": [
+        "Add a route for `/challenge/09-mutations` that renders `AddPostForm`. Currently the component exists but is never mounted in the app, so the challenge UI is incomplete. (See `src/App.tsx` or the router configuration.)",
+        "Replace the `userId` state type from `string` to `number` to avoid the need for `Number(userId)` on every submit. This also allows the input to be typed as `number` directly. (File: `src/components/AddPostForm.tsx`)",
+        "Move the repetitive error handling logic from each endpoint into a shared helper or use `transformError` in `createApi` to keep the endpoint definitions concise. (File: `src/api/apiSlice.ts`)",
+        "Consider using the `query` property instead of `queryFn` for the mutation endpoints. While `queryFn` works, `query` is the idiomatic pattern and allows RTK Query to automatically handle caching and refetching logic. (File: `src/api/apiSlice.ts`)",
+        "Add `data-testid` attributes for the success and error messages in `AddPostForm` to make them testable, e.g., `data-testid=\"add-post-success\"` and `data-testid=\"add-post-error\"`. (File: `src/components/AddPostForm.tsx`)",
+        "Remove the unused `baseQuery` configuration in `apiSlice.ts` or replace it with a real HTTP client if you plan to switch from the mock server later. This reduces confusion for future developers. (File: `src/api/apiSlice.ts`)",
+        "Add a small comment explaining why `queryFn` is used for the mock API calls – this will help future maintainers understand the design choice. (File: `src/api/apiSlice.ts`)"
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation correctly adds a mutation endpoint and a form that uses `useMutation`, satisfying the core functional requirements. The code is clean, well‑typed, and follows RTK Query best practices, but a missing route and a few small type/UX improvements prevent it from achieving a perfect score.",
+      "requirementCompliance": 90
+    },
+    "aiResults": {
+      "challengeId": "09-mutations",
+      "timestamp": "2026-08-21T19:54:37.373Z",
+      "score": 88,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of API logic and UI components – `apiSlice.ts` contains all endpoints while `AddPostForm.tsx` focuses solely on form rendering and mutation handling.",
+        "Consistent use of TypeScript interfaces (`NewPost`, `User`, `Post`) and proper typing of mutation payloads and responses.",
+        "Proper cache invalidation with `invalidatesTags: [{ type: 'Post', id: 'LIST' }]` ensuring the posts list refetches automatically after a new post is added."
+      ],
+      "improvements": [
+        "Add a route for `/challenge/09-mutations` that renders `AddPostForm`. Currently the component exists but is never mounted in the app, so the challenge UI is incomplete. (See `src/App.tsx` or the router configuration.)",
+        "Replace the `userId` state type from `string` to `number` to avoid the need for `Number(userId)` on every submit. This also allows the input to be typed as `number` directly. (File: `src/components/AddPostForm.tsx`)",
+        "Move the repetitive error handling logic from each endpoint into a shared helper or use `transformError` in `createApi` to keep the endpoint definitions concise. (File: `src/api/apiSlice.ts`)",
+        "Consider using the `query` property instead of `queryFn` for the mutation endpoints. While `queryFn` works, `query` is the idiomatic pattern and allows RTK Query to automatically handle caching and refetching logic. (File: `src/api/apiSlice.ts`)",
+        "Add `data-testid` attributes for the success and error messages in `AddPostForm` to make them testable, e.g., `data-testid=\"add-post-success\"` and `data-testid=\"add-post-error\"`. (File: `src/components/AddPostForm.tsx`)",
+        "Remove the unused `baseQuery` configuration in `apiSlice.ts` or replace it with a real HTTP client if you plan to switch from the mock server later. This reduces confusion for future developers. (File: `src/api/apiSlice.ts`)",
+        "Add a small comment explaining why `queryFn` is used for the mock API calls – this will help future maintainers understand the design choice. (File: `src/api/apiSlice.ts`)"
+      ],
+      "readability": 88,
+      "maintainability": 85,
+      "overall": "The implementation correctly adds a mutation endpoint and a form that uses `useMutation`, satisfying the core functional requirements. The code is clean, well‑typed, and follows RTK Query best practices, but a missing route and a few small type/UX improvements prevent it from achieving a perfect score.",
+      "requirementCompliance": 90
+    }
   }
 ]
