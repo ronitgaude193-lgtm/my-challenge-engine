@@ -6,9 +6,13 @@ import { mockApi, type User } from './mockServer'
 
 export const apiSlice = createApi({
   reducerPath: 'api',
+
   baseQuery: fetchBaseQuery({
     baseUrl: '/',
   }),
+
+  tagTypes: ['User', 'Post'],
+
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
       queryFn: async () => {
@@ -30,8 +34,59 @@ export const apiSlice = createApi({
           }
         }
       },
+
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({
+                type: 'User' as const,
+                id,
+              })),
+              {
+                type: 'User' as const,
+                id: 'LIST',
+              },
+            ]
+          : [
+              {
+                type: 'User' as const,
+                id: 'LIST',
+              },
+            ],
+    }),
+
+    createUser: builder.mutation<User, Omit<User, 'id'>>({
+      queryFn: async (user) => {
+        try {
+          const newUser = await mockApi.createUser(user)
+
+          return {
+            data: newUser,
+          }
+        } catch (error) {
+          return {
+            error: {
+              status: 'CUSTOM_ERROR',
+              error:
+                error instanceof Error
+                  ? error.message
+                  : 'Failed to create user',
+            },
+          }
+        }
+      },
+
+      invalidatesTags: [
+        {
+          type: 'User',
+          id: 'LIST',
+        },
+      ],
     }),
   }),
 })
 
-export const { useGetUsersQuery } = apiSlice
+export const {
+  useGetUsersQuery,
+  useCreateUserMutation,
+} = apiSlice

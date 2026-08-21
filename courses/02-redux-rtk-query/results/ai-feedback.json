@@ -189,5 +189,33 @@
       "overall": "The implementation satisfies the core functional requirements: a query endpoint is defined, the generated hook is used, and loading/error states are rendered. However, the code can be tightened by simplifying hook usage, improving error messaging, and aligning the API slice with standard RTK Query conventions. Once those adjustments are made, the solution will be both cleaner and more maintainable.",
       "requirementCompliance": 85
     }
+  },
+  {
+    "challengeId": "08-caching-refetch",
+    "challengeName": "Caching and Cache Tags",
+    "aiReview": {
+      "challengeId": "08-caching-refetch",
+      "timestamp": "2026-08-21T19:46:17.340Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Tag types are correctly defined in `createApi` (`tagTypes: ['User', 'Post']`).",
+        "The `providesTags` implementation for `getUsers` follows the recommended pattern and correctly tags each user and the list.",
+        "The `invalidatesTags` on `createUser` ensures the user list is refetched after a mutation, demonstrating a clear understanding of cache invalidation."
+      ],
+      "improvements": [
+        "Add missing endpoints for posts (`getPosts`, `createPost`, etc.) to fully exercise the `Post` tag type. Refer to `src/api/apiSlice.ts`.",
+        "Use the simpler `query: () => 'users'` syntax instead of `queryFn` for read‑only endpoints. This keeps the code concise and leverages the built‑in `fetchBaseQuery` handling.",
+        "Extend cache invalidation to other user mutations (`updateUser`, `deleteUser`) and post mutations (`createPost`, `updatePost`, `deletePost`) to keep the UI in sync across all data changes.",
+        "Consider adding `providesTags` for `getUserById` and `getPostById` so that individual entity queries can be invalidated when their specific record changes.",
+        "Add a generic error type to the `queryFn` return shape (e.g., `error: { status: string; error: string }`) to keep the error structure consistent across endpoints.",
+        "Document the tag strategy in a comment at the top of `apiSlice.ts` so future contributors understand why each tag is used.",
+        "If the store configuration is not yet present, ensure the API reducer is added to the store (`store.reducerPath` and `apiSlice.reducer`)."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation correctly sets up RTK Query with tag types, provides tags for the user list, and invalidates the cache after creating a user. It meets the core functional requirements, but adding the missing post endpoints and extending invalidation to other mutations would make the solution more complete and robust.",
+      "requirementCompliance": 90
+    }
   }
 ]
