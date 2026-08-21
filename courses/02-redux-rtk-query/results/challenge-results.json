@@ -1992,5 +1992,240 @@
       "overall": "The implementation satisfies the core challenge requirements by providing an optimistic update for the `addPost` mutation and correctly rolling back on failure. The code follows RTK Query best practices for tags and cache updates, though it could be streamlined by using the `query` option and adding store integration for full application context.",
       "requirementCompliance": 90
     }
+  },
+  {
+    "challengeId": "11-api-local-state",
+    "challengeName": "API and Local State Together",
+    "timestamp": "2026-08-21T20:30:24.974Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 89
+    },
+    "totalScore": 83.35,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: API and Local State Together"
+              ],
+              "fullName": " Challenge 11: API and Local State Together filtersSlice exists and is in store",
+              "status": "passed",
+              "title": "filtersSlice exists and is in store",
+              "duration": 5,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: API and Local State Together"
+              ],
+              "fullName": " Challenge 11: API and Local State Together PostsWithFilters uses useSelector and useGetPostsQuery or query hook",
+              "status": "passed",
+              "title": "PostsWithFilters uses useSelector and useGetPostsQuery or query hook",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: API and Local State Together"
+              ],
+              "fullName": " Challenge 11: API and Local State Together PostsWithFilters has posts-with-filters and filter-controls data-testids",
+              "status": "passed",
+              "title": "PostsWithFilters has posts-with-filters and filter-controls data-testids",
+              "duration": 2,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787344236696,
+          "endTime": 1787344236705,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-11.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\PostsWithFilters.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\slices\\filtersSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\store.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "reducer",
+        "middleware",
+        "reducer",
+        "middleware"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/store.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/store/slices/filtersSlice.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/PostsWithFilters.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-11.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "11-api-local-state",
+      "timestamp": "2026-08-21T20:30:51.974Z",
+      "score": 89,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: the filter slice lives in its own file and is added to the store, while the UI component focuses on rendering and local logic.",
+        "Consistent use of TypeScript – all state, actions, and component props are typed, reducing runtime errors.",
+        "The component uses `useMemo` to efficiently compute the filtered/sorted list, avoiding unnecessary re‑renders."
+      ],
+      "improvements": [
+        "Add the route for `/challenge/11-api-local-state` in the main router (e.g., `App.tsx`). Without this, the component is never rendered.",
+        "Remove the unused `filtersArchitecture` export from `filtersSlice.ts`. It adds noise and could confuse future maintainers.",
+        "Add a graceful UI for an empty post list (e.g., “No posts to display”). This improves UX when filters exclude all items.",
+        "Consider adding a `data-testid` to the individual filter controls (e.g., `sort-select`, `user-select`) to make unit‑testing easier.",
+        "Document the purpose of the `clearFilters` reducer in the slice comment – it’s currently unused but could be handy for a “Reset” button.",
+        "Ensure that the API slice (`apiSlice.ts`) actually exports a `getPosts` query; otherwise `useGetPostsQuery` will be undefined.",
+        "Add a small comment in `PostsWithFilters.tsx` explaining why `useMemo` dependencies are limited to `posts`, `filterUserId`, and `sortBy`."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The implementation satisfies the core requirements: a filter slice, a component that combines RTK Query data with local UI state, and proper TypeScript usage. The main missing piece is the router entry for the challenge, which can be added in `App.tsx`. The code follows RTK Query best practices and is well‑structured, making it easy to extend or refactor in the future.",
+      "requirementCompliance": 90
+    },
+    "aiResults": {
+      "challengeId": "11-api-local-state",
+      "timestamp": "2026-08-21T20:30:51.974Z",
+      "score": 89,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: the filter slice lives in its own file and is added to the store, while the UI component focuses on rendering and local logic.",
+        "Consistent use of TypeScript – all state, actions, and component props are typed, reducing runtime errors.",
+        "The component uses `useMemo` to efficiently compute the filtered/sorted list, avoiding unnecessary re‑renders."
+      ],
+      "improvements": [
+        "Add the route for `/challenge/11-api-local-state` in the main router (e.g., `App.tsx`). Without this, the component is never rendered.",
+        "Remove the unused `filtersArchitecture` export from `filtersSlice.ts`. It adds noise and could confuse future maintainers.",
+        "Add a graceful UI for an empty post list (e.g., “No posts to display”). This improves UX when filters exclude all items.",
+        "Consider adding a `data-testid` to the individual filter controls (e.g., `sort-select`, `user-select`) to make unit‑testing easier.",
+        "Document the purpose of the `clearFilters` reducer in the slice comment – it’s currently unused but could be handy for a “Reset” button.",
+        "Ensure that the API slice (`apiSlice.ts`) actually exports a `getPosts` query; otherwise `useGetPostsQuery` will be undefined.",
+        "Add a small comment in `PostsWithFilters.tsx` explaining why `useMemo` dependencies are limited to `posts`, `filterUserId`, and `sortBy`."
+      ],
+      "readability": 85,
+      "maintainability": 90,
+      "overall": "The implementation satisfies the core requirements: a filter slice, a component that combines RTK Query data with local UI state, and proper TypeScript usage. The main missing piece is the router entry for the challenge, which can be added in `App.tsx`. The code follows RTK Query best practices and is well‑structured, making it easy to extend or refactor in the future.",
+      "requirementCompliance": 90
+    }
   }
 ]
