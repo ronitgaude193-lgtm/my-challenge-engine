@@ -1,5 +1,6 @@
 import { configureStore, Middleware } from '@reduxjs/toolkit'
 import counterReducer from './slices/counterSlice'
+import uiReducer from './slices/uiSlice'
 
 const loggerMiddleware: Middleware =
   (store) => (next) => (action) => {
@@ -10,6 +11,7 @@ const loggerMiddleware: Middleware =
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    ui: uiReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
