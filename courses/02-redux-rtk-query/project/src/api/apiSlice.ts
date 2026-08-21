@@ -25,6 +25,7 @@ export const apiSlice = createApi({
   tagTypes: ['User', 'Post'],
 
   endpoints: (builder) => ({
+    // Challenge 07: Get Users
     getUsers: builder.query<User[], void>({
       queryFn: async () => {
         try {
@@ -66,6 +67,7 @@ export const apiSlice = createApi({
             ],
     }),
 
+    // Challenge 08: Get Posts
     getPosts: builder.query<Post[], void>({
       queryFn: async () => {
         try {
@@ -107,6 +109,37 @@ export const apiSlice = createApi({
             ],
     }),
 
+    // Challenge 13: Query with Parameters
+    getPostById: builder.query<Post, number>({
+      queryFn: async (id) => {
+        try {
+          const post = await mockApi.getPostById(id)
+
+          return {
+            data: post,
+          }
+        } catch (error) {
+          return {
+            error: {
+              status: 'CUSTOM_ERROR',
+              error:
+                error instanceof Error
+                  ? error.message
+                  : 'Failed to fetch post',
+            },
+          }
+        }
+      },
+
+      providesTags: (_result, _error, id) => [
+        {
+          type: 'Post',
+          id,
+        },
+      ],
+    }),
+
+    // Challenge 09: Add Post
     addPost: builder.mutation<Post, NewPost>({
       queryFn: async (newPost) => {
         try {
@@ -135,6 +168,7 @@ export const apiSlice = createApi({
         },
       ],
 
+      // Challenge 10: Optimistic Update
       async onQueryStarted(
         newPost,
         { dispatch, queryFulfilled },
@@ -160,6 +194,7 @@ export const apiSlice = createApi({
       },
     }),
 
+    // Create User
     createUser: builder.mutation<User, Omit<User, 'id'>>({
       queryFn: async (user) => {
         try {
@@ -194,6 +229,7 @@ export const apiSlice = createApi({
 export const {
   useGetUsersQuery,
   useGetPostsQuery,
+  useGetPostByIdQuery,
   useAddPostMutation,
   useCreateUserMutation,
 } = apiSlice

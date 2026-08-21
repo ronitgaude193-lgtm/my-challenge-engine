@@ -57,12 +57,12 @@ npm run review -- --challenge=01-store-setup
 
 ## 📊 Progress Evidence
 
-*Auto-updated when you run review. Last run: 8/22/2026, 2:19:04 AM*
+*Auto-updated when you run review. Last run: 8/22/2026, 2:41:58 AM*
 
 | Metric | Value |
 |--------|-------|
 | Challenges completed | 12 / 13 (92.3%) |
-| Average score | 82.7% |
+| Average score | 81.7% |
 
 | Challenge | Skills covered | Status |
 |-----------|----------------|--------|
@@ -78,7 +78,7 @@ npm run review -- --challenge=01-store-setup
 | Optimistic Updates | RTK Query, optimistic updates, onQueryStarted, rollback | Passed |
 | API and Local State Together | Redux, RTK Query, slice + API in one store, filtering/sorting | Passed |
 | Error and Loading UX | RTK Query, loading state, error state, retry, UX | Passed |
-| Query with Parameters and Detail View | RTK Query, parameterized query, getPostById, useGetPostByIdQuery, skip option, detail view | — |
+| Query with Parameters and Detail View | RTK Query, parameterized query, getPostById, useGetPostByIdQuery, skip option, detail view | Not passed |
 
 ## 📋 Challenge Workflow
 

@@ -325,5 +325,21 @@
       "overall": "The implementation satisfies all functional requirements and demonstrates solid use of RTK Query patterns. The code is clean and maintainable, though a few minor refactors and type annotations would further improve clarity and robustness.",
       "requirementCompliance": 95
     }
+  },
+  {
+    "challengeId": "13-query-parameters",
+    "challengeName": "Query with Parameters and Detail View",
+    "aiReview": {
+      "challengeId": "13-query-parameters",
+      "timestamp": "2026-08-21T21:11:58.346Z",
+      "score": 0,
+      "feedback": [],
+      "strengths": [],
+      "improvements": [],
+      "readability": 0,
+      "maintainability": 0,
+      "overall": "",
+      "error": "Groq API error (429): Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kzavmthhewdbpv63r9y5hqp0` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 196096, Requested 8026. Please try again in 29m40.704s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing"
+    }
   }
 ]
