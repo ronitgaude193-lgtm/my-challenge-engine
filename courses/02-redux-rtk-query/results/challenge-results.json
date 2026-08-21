@@ -2227,5 +2227,204 @@
       "overall": "The implementation satisfies the core requirements: a filter slice, a component that combines RTK Query data with local UI state, and proper TypeScript usage. The main missing piece is the router entry for the challenge, which can be added in `App.tsx`. The code follows RTK Query best practices and is well‑structured, making it easy to extend or refactor in the future.",
       "requirementCompliance": 90
     }
+  },
+  {
+    "challengeId": "12-error-loading-ux",
+    "challengeName": "Error and Loading UX",
+    "timestamp": "2026-08-21T20:48:35.364Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 91
+    },
+    "totalScore": 83.65,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 12: Error and Loading UX"
+              ],
+              "fullName": " Challenge 12: Error and Loading UX ErrorDisplay exists with error-display and retry-btn data-testids",
+              "status": "passed",
+              "title": "ErrorDisplay exists with error-display and retry-btn data-testids",
+              "duration": 4,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 12: Error and Loading UX"
+              ],
+              "fullName": " Challenge 12: Error and Loading UX UsersList or main list uses refetch",
+              "status": "passed",
+              "title": "UsersList or main list uses refetch",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 12: Error and Loading UX"
+              ],
+              "fullName": " Challenge 12: Error and Loading UX loading or error state has visible indicator",
+              "status": "passed",
+              "title": "loading or error state has visible indicator",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787345326936,
+          "endTime": 1787345326944,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-12.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\ErrorDisplay.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\UsersList.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "useQueryHook"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/components/UsersList.tsx",
+          "patternsFound": [
+            "useQueryHook"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/ErrorDisplay.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-12.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "12-error-loading-ux",
+      "timestamp": "2026-08-21T20:49:02.317Z",
+      "score": 91,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns – each component focuses on a single responsibility.",
+        "Proper use of RTK Query hooks (`useGetUsersQuery`, `refetch`, `isLoading`, `isError`).",
+        "User‑friendly error handling with a reusable `ErrorDisplay` component and retry button."
+      ],
+      "improvements": [
+        "In `src/components/UsersList.tsx` the line `const useQueryHook = useGetUsersQuery` is unnecessary – call the hook directly: `const { data, isLoading, isError, error, refetch } = useGetUsersQuery()`.",
+        "Add an explicit `import React from 'react'` (or `import type { FC } from 'react'`) at the top of each TSX file for clarity and to satisfy stricter ESLint rules.",
+        "Add a type for the `data` returned by `useGetUsersQuery` (e.g., `User[] | undefined`) to improve type safety and readability.",
+        "Provide a graceful fallback UI when `data` is an empty array (e.g., “No users found”) to avoid rendering an empty list.",
+        "In `ErrorDisplay.tsx` consider defining a more specific error type (e.g., `unknown | { error?: string }`) and use a discriminated union for better type inference."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements and demonstrates solid use of RTK Query patterns. The code is clean and maintainable, though a few minor refactors and type annotations would further improve clarity and robustness.",
+      "requirementCompliance": 95
+    },
+    "aiResults": {
+      "challengeId": "12-error-loading-ux",
+      "timestamp": "2026-08-21T20:49:02.317Z",
+      "score": 91,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns – each component focuses on a single responsibility.",
+        "Proper use of RTK Query hooks (`useGetUsersQuery`, `refetch`, `isLoading`, `isError`).",
+        "User‑friendly error handling with a reusable `ErrorDisplay` component and retry button."
+      ],
+      "improvements": [
+        "In `src/components/UsersList.tsx` the line `const useQueryHook = useGetUsersQuery` is unnecessary – call the hook directly: `const { data, isLoading, isError, error, refetch } = useGetUsersQuery()`.",
+        "Add an explicit `import React from 'react'` (or `import type { FC } from 'react'`) at the top of each TSX file for clarity and to satisfy stricter ESLint rules.",
+        "Add a type for the `data` returned by `useGetUsersQuery` (e.g., `User[] | undefined`) to improve type safety and readability.",
+        "Provide a graceful fallback UI when `data` is an empty array (e.g., “No users found”) to avoid rendering an empty list.",
+        "In `ErrorDisplay.tsx` consider defining a more specific error type (e.g., `unknown | { error?: string }`) and use a discriminated union for better type inference."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements and demonstrates solid use of RTK Query patterns. The code is clean and maintainable, though a few minor refactors and type annotations would further improve clarity and robustness.",
+      "requirementCompliance": 95
+    }
   }
 ]

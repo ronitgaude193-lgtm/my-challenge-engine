@@ -299,5 +299,31 @@
       "overall": "The implementation satisfies the core requirements: a filter slice, a component that combines RTK Query data with local UI state, and proper TypeScript usage. The main missing piece is the router entry for the challenge, which can be added in `App.tsx`. The code follows RTK Query best practices and is well‑structured, making it easy to extend or refactor in the future.",
       "requirementCompliance": 90
     }
+  },
+  {
+    "challengeId": "12-error-loading-ux",
+    "challengeName": "Error and Loading UX",
+    "aiReview": {
+      "challengeId": "12-error-loading-ux",
+      "timestamp": "2026-08-21T20:49:02.317Z",
+      "score": 91,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns – each component focuses on a single responsibility.",
+        "Proper use of RTK Query hooks (`useGetUsersQuery`, `refetch`, `isLoading`, `isError`).",
+        "User‑friendly error handling with a reusable `ErrorDisplay` component and retry button."
+      ],
+      "improvements": [
+        "In `src/components/UsersList.tsx` the line `const useQueryHook = useGetUsersQuery` is unnecessary – call the hook directly: `const { data, isLoading, isError, error, refetch } = useGetUsersQuery()`.",
+        "Add an explicit `import React from 'react'` (or `import type { FC } from 'react'`) at the top of each TSX file for clarity and to satisfy stricter ESLint rules.",
+        "Add a type for the `data` returned by `useGetUsersQuery` (e.g., `User[] | undefined`) to improve type safety and readability.",
+        "Provide a graceful fallback UI when `data` is an empty array (e.g., “No users found”) to avoid rendering an empty list.",
+        "In `ErrorDisplay.tsx` consider defining a more specific error type (e.g., `unknown | { error?: string }`) and use a discriminated union for better type inference."
+      ],
+      "readability": 90,
+      "maintainability": 85,
+      "overall": "The implementation satisfies all functional requirements and demonstrates solid use of RTK Query patterns. The code is clean and maintainable, though a few minor refactors and type annotations would further improve clarity and robustness.",
+      "requirementCompliance": 95
+    }
   }
 ]

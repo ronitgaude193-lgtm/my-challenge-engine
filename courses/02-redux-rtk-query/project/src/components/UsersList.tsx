@@ -1,6 +1,8 @@
 import { useGetUsersQuery } from '../api/apiSlice'
+import ErrorDisplay from './ErrorDisplay'
 
 const UsersList = () => {
+  // Required architecture pattern for the challenge.
   const useQueryHook = useGetUsersQuery
 
   const {
@@ -8,17 +10,23 @@ const UsersList = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQueryHook()
 
   if (isLoading) {
-    return <p data-testid="users-loading">Loading...</p>
+    return (
+      <p data-testid="users-loading">
+        Loading users...
+      </p>
+    )
   }
 
   if (isError) {
     return (
-      <p data-testid="users-error">
-        {error ? 'Failed to load users' : 'Unknown error'}
-      </p>
+      <ErrorDisplay
+        error={error}
+        onRetry={refetch}
+      />
     )
   }
 
