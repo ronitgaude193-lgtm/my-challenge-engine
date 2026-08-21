@@ -1822,5 +1822,175 @@
       "overall": "The implementation correctly adds a mutation endpoint and a form that uses `useMutation`, satisfying the core functional requirements. The code is clean, well‑typed, and follows RTK Query best practices, but a missing route and a few small type/UX improvements prevent it from achieving a perfect score.",
       "requirementCompliance": 90
     }
+  },
+  {
+    "challengeId": "10-optimistic-updates",
+    "challengeName": "Optimistic Updates",
+    "timestamp": "2026-08-21T19:57:38.605Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 86
+    },
+    "totalScore": 82.9,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: Optimistic Updates"
+              ],
+              "fullName": " Challenge 10: Optimistic Updates API slice mutation has onQueryStarted",
+              "status": "passed",
+              "title": "API slice mutation has onQueryStarted",
+              "duration": 5,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: Optimistic Updates"
+              ],
+              "fullName": " Challenge 10: Optimistic Updates optimistic update uses queryFulfilled or updateQueryData",
+              "status": "passed",
+              "title": "optimistic update uses queryFulfilled or updateQueryData",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: Optimistic Updates"
+              ],
+              "fullName": " Challenge 10: Optimistic Updates has rollback or undo on error",
+              "status": "passed",
+              "title": "has rollback or undo on error",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787342270967,
+          "endTime": 1787342270974,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-10.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\api\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/api/apiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-10.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "10-optimistic-updates",
+      "timestamp": "2026-08-21T19:58:06.073Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Implemented optimistic update for `addPost` using `onQueryStarted` and `updateQueryData`.",
+        "Proper rollback with `patchResult.undo()` on mutation failure.",
+        "Consistent TypeScript typing across API slice and mock server."
+      ],
+      "improvements": [
+        "Use the simpler `query` option instead of `queryFn` for the `getUsers`, `getPosts`, and `addPost` endpoints – this keeps the code concise and aligns with RTK Query conventions.",
+        "Extract the repetitive error‑handling logic into a small helper (e.g., `handleApiError`) to reduce duplication and improve readability.",
+        "Add a store configuration file that imports `apiSlice.reducer` and `apiSlice.middleware` – this is required for the slice to function in the application.",
+        "Consider replacing the optimistic `id: Date.now()` with a temporary ID that can be reconciled with the server’s response in `queryFulfilled` (e.g., by patching the cache with the real ID once the mutation resolves).",
+        "Add inline comments or JSDoc to explain the purpose of `onQueryStarted` and the rollback logic for future maintainers."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies the core challenge requirements by providing an optimistic update for the `addPost` mutation and correctly rolling back on failure. The code follows RTK Query best practices for tags and cache updates, though it could be streamlined by using the `query` option and adding store integration for full application context.",
+      "requirementCompliance": 90
+    },
+    "aiResults": {
+      "challengeId": "10-optimistic-updates",
+      "timestamp": "2026-08-21T19:58:06.073Z",
+      "score": 86,
+      "feedback": [],
+      "strengths": [
+        "Implemented optimistic update for `addPost` using `onQueryStarted` and `updateQueryData`.",
+        "Proper rollback with `patchResult.undo()` on mutation failure.",
+        "Consistent TypeScript typing across API slice and mock server."
+      ],
+      "improvements": [
+        "Use the simpler `query` option instead of `queryFn` for the `getUsers`, `getPosts`, and `addPost` endpoints – this keeps the code concise and aligns with RTK Query conventions.",
+        "Extract the repetitive error‑handling logic into a small helper (e.g., `handleApiError`) to reduce duplication and improve readability.",
+        "Add a store configuration file that imports `apiSlice.reducer` and `apiSlice.middleware` – this is required for the slice to function in the application.",
+        "Consider replacing the optimistic `id: Date.now()` with a temporary ID that can be reconciled with the server’s response in `queryFulfilled` (e.g., by patching the cache with the real ID once the mutation resolves).",
+        "Add inline comments or JSDoc to explain the purpose of `onQueryStarted` and the rollback logic for future maintainers."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation satisfies the core challenge requirements by providing an optimistic update for the `addPost` mutation and correctly rolling back on failure. The code follows RTK Query best practices for tags and cache updates, though it could be streamlined by using the `query` option and adding store integration for full application context.",
+      "requirementCompliance": 90
+    }
   }
 ]

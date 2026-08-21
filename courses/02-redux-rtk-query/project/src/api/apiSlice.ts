@@ -2,6 +2,7 @@ import {
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react'
+
 import {
   mockApi,
   type User,
@@ -133,6 +134,30 @@ export const apiSlice = createApi({
           id: 'LIST',
         },
       ],
+
+      async onQueryStarted(
+        newPost,
+        { dispatch, queryFulfilled },
+      ) {
+        const patchResult = dispatch(
+          apiSlice.util.updateQueryData(
+            'getPosts',
+            undefined,
+            (draft) => {
+              draft.push({
+                ...newPost,
+                id: Date.now(),
+              })
+            },
+          ),
+        )
+
+        try {
+          await queryFulfilled
+        } catch {
+          patchResult.undo()
+        }
+      },
     }),
 
     createUser: builder.mutation<User, Omit<User, 'id'>>({
