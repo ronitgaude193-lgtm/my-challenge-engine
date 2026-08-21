@@ -165,5 +165,29 @@
       "overall": "The implementation satisfies the core requirements: an API slice with a query endpoint, proper store integration, and TypeScript usage. The code is readable and maintainable, though a few small refactors—especially simplifying the query implementation and cleaning up unused middleware—would bring it closer to best‑practice RTK Query patterns.",
       "requirementCompliance": 92
     }
+  },
+  {
+    "challengeId": "07-queries",
+    "challengeName": "Query Endpoints and useQuery Hooks",
+    "aiReview": {
+      "challengeId": "07-queries",
+      "timestamp": "2026-08-21T15:30:34.440Z",
+      "score": 75,
+      "feedback": [],
+      "strengths": [
+        "The API slice correctly defines a `getUsers` query endpoint using RTK Query’s `createApi` and exposes the generated hook `useGetUsersQuery`.",
+        "The `UsersList` component cleanly separates loading, error, and data rendering, and uses `data-testid` attributes that match the challenge specification.",
+        "Mock API logic is isolated in `mockServer.ts`, making it easy to swap out for a real backend later."
+      ],
+      "improvements": [
+        "In `src/components/UsersList.tsx`, replace the indirection `const useQueryHook = useGetUsersQuery;` with a direct call `const { data, isLoading, isError, error } = useGetUsersQuery();` to simplify the component and avoid an unnecessary variable.",
+        "Enhance error handling by displaying the actual error message: `error?.message ?? 'Unknown error'` instead of the generic string. Also consider typing the error object to match RTK Query’s `SerializedError` type.",
+        "In `src/api/apiSlice.ts`, use the standard `query` field instead of `queryFn` for the `getUsers` endpoint. This keeps the API slice consistent with typical RTK Query patterns and allows automatic handling of HTTP status codes and caching. For example:\n```ts\ngetUsers: builder.query<User[], void>({\n  query: () => '/users',\n  transformResponse: (response: User[]) => response\n})\n```"
+      ],
+      "readability": 70,
+      "maintainability": 65,
+      "overall": "The implementation satisfies the core functional requirements: a query endpoint is defined, the generated hook is used, and loading/error states are rendered. However, the code can be tightened by simplifying hook usage, improving error messaging, and aligning the API slice with standard RTK Query conventions. Once those adjustments are made, the solution will be both cleaner and more maintainable.",
+      "requirementCompliance": 85
+    }
   }
 ]

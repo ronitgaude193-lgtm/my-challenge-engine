@@ -1265,5 +1265,200 @@
       "overall": "The implementation satisfies the core requirements: an API slice with a query endpoint, proper store integration, and TypeScript usage. The code is readable and maintainable, though a few small refactors—especially simplifying the query implementation and cleaning up unused middleware—would bring it closer to best‑practice RTK Query patterns.",
       "requirementCompliance": 92
     }
+  },
+  {
+    "challengeId": "07-queries",
+    "challengeName": "Query Endpoints and useQuery Hooks",
+    "timestamp": "2026-08-21T15:30:28.599Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 75
+    },
+    "totalScore": 81.25,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 07: Query Endpoints and useQuery Hooks"
+              ],
+              "fullName": " Challenge 07: Query Endpoints and useQuery Hooks API slice has getUsers query endpoint",
+              "status": "passed",
+              "title": "API slice has getUsers query endpoint",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 07: Query Endpoints and useQuery Hooks"
+              ],
+              "fullName": " Challenge 07: Query Endpoints and useQuery Hooks UsersList uses useGetUsersQuery or generated query hook",
+              "status": "passed",
+              "title": "UsersList uses useGetUsersQuery or generated query hook",
+              "duration": 0,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 07: Query Endpoints and useQuery Hooks"
+              ],
+              "fullName": " Challenge 07: Query Endpoints and useQuery Hooks UsersList has users-list data-testid",
+              "status": "passed",
+              "title": "UsersList has users-list data-testid",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787326231228,
+          "endTime": 1787326231229,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-07.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\api\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\components\\UsersList.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "useQueryHook"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/api/apiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/components/UsersList.tsx",
+          "patternsFound": [
+            "useQueryHook"
+          ],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-07.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "07-queries",
+      "timestamp": "2026-08-21T15:30:34.440Z",
+      "score": 75,
+      "feedback": [],
+      "strengths": [
+        "The API slice correctly defines a `getUsers` query endpoint using RTK Query’s `createApi` and exposes the generated hook `useGetUsersQuery`.",
+        "The `UsersList` component cleanly separates loading, error, and data rendering, and uses `data-testid` attributes that match the challenge specification.",
+        "Mock API logic is isolated in `mockServer.ts`, making it easy to swap out for a real backend later."
+      ],
+      "improvements": [
+        "In `src/components/UsersList.tsx`, replace the indirection `const useQueryHook = useGetUsersQuery;` with a direct call `const { data, isLoading, isError, error } = useGetUsersQuery();` to simplify the component and avoid an unnecessary variable.",
+        "Enhance error handling by displaying the actual error message: `error?.message ?? 'Unknown error'` instead of the generic string. Also consider typing the error object to match RTK Query’s `SerializedError` type.",
+        "In `src/api/apiSlice.ts`, use the standard `query` field instead of `queryFn` for the `getUsers` endpoint. This keeps the API slice consistent with typical RTK Query patterns and allows automatic handling of HTTP status codes and caching. For example:\n```ts\ngetUsers: builder.query<User[], void>({\n  query: () => '/users',\n  transformResponse: (response: User[]) => response\n})\n```"
+      ],
+      "readability": 70,
+      "maintainability": 65,
+      "overall": "The implementation satisfies the core functional requirements: a query endpoint is defined, the generated hook is used, and loading/error states are rendered. However, the code can be tightened by simplifying hook usage, improving error messaging, and aligning the API slice with standard RTK Query conventions. Once those adjustments are made, the solution will be both cleaner and more maintainable.",
+      "requirementCompliance": 85
+    },
+    "aiResults": {
+      "challengeId": "07-queries",
+      "timestamp": "2026-08-21T15:30:34.440Z",
+      "score": 75,
+      "feedback": [],
+      "strengths": [
+        "The API slice correctly defines a `getUsers` query endpoint using RTK Query’s `createApi` and exposes the generated hook `useGetUsersQuery`.",
+        "The `UsersList` component cleanly separates loading, error, and data rendering, and uses `data-testid` attributes that match the challenge specification.",
+        "Mock API logic is isolated in `mockServer.ts`, making it easy to swap out for a real backend later."
+      ],
+      "improvements": [
+        "In `src/components/UsersList.tsx`, replace the indirection `const useQueryHook = useGetUsersQuery;` with a direct call `const { data, isLoading, isError, error } = useGetUsersQuery();` to simplify the component and avoid an unnecessary variable.",
+        "Enhance error handling by displaying the actual error message: `error?.message ?? 'Unknown error'` instead of the generic string. Also consider typing the error object to match RTK Query’s `SerializedError` type.",
+        "In `src/api/apiSlice.ts`, use the standard `query` field instead of `queryFn` for the `getUsers` endpoint. This keeps the API slice consistent with typical RTK Query patterns and allows automatic handling of HTTP status codes and caching. For example:\n```ts\ngetUsers: builder.query<User[], void>({\n  query: () => '/users',\n  transformResponse: (response: User[]) => response\n})\n```"
+      ],
+      "readability": 70,
+      "maintainability": 65,
+      "overall": "The implementation satisfies the core functional requirements: a query endpoint is defined, the generated hook is used, and loading/error states are rendered. However, the code can be tightened by simplifying hook usage, improving error messaging, and aligning the API slice with standard RTK Query conventions. Once those adjustments are made, the solution will be both cleaner and more maintainable.",
+      "requirementCompliance": 85
+    }
   }
 ]
