@@ -1,4 +1,5 @@
 import { configureStore, Middleware } from '@reduxjs/toolkit'
+import { apiSlice } from '../api/apiSlice'
 import counterReducer from './slices/counterSlice'
 import uiReducer from './slices/uiSlice'
 import usersReducer from './slices/usersSlice'
@@ -14,10 +15,13 @@ export const store = configureStore({
     counter: counterReducer,
     ui: uiReducer,
     users: usersReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(loggerMiddleware),
+    getDefaultMiddleware()
+      .concat(loggerMiddleware)
+      .concat(apiSlice.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

@@ -1054,5 +1054,216 @@
       "overall": "The implementation satisfies all functional requirements: it correctly fetches users with `createAsyncThunk`, handles loading, success, and error states via `extraReducers`, and integrates the reducer into the store. While RTK Query is not used (as the challenge focuses on thunks), the code follows best practices for async logic in Redux Toolkit and is ready for further extension.",
       "requirementCompliance": 92
     }
+  },
+  {
+    "challengeId": "06-rtk-query-setup",
+    "challengeName": "RTK Query Setup and API Slice",
+    "timestamp": "2026-08-21T15:13:25.343Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 85
+    },
+    "totalScore": 82.75,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 06: RTK Query Setup"
+              ],
+              "fullName": " Challenge 06: RTK Query Setup apiSlice uses createApi",
+              "status": "passed",
+              "title": "apiSlice uses createApi",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 06: RTK Query Setup"
+              ],
+              "fullName": " Challenge 06: RTK Query Setup apiSlice has baseQuery or fetchBaseQuery",
+              "status": "passed",
+              "title": "apiSlice has baseQuery or fetchBaseQuery",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 06: RTK Query Setup"
+              ],
+              "fullName": " Challenge 06: RTK Query Setup store includes API reducer and middleware",
+              "status": "passed",
+              "title": "store includes API reducer and middleware",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1787325207860,
+          "endTime": 1787325207862,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/02-redux-rtk-query/project/tests/challenge-06.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\api\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\02-redux-rtk-query\\project\\src\\store\\store.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": [
+            {
+              "ruleId": "no-extra-semi",
+              "replacedBy": []
+            },
+            {
+              "ruleId": "no-mixed-spaces-and-tabs",
+              "replacedBy": []
+            }
+          ]
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [
+        "reducer",
+        "middleware"
+      ],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "src/store/store.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "src/api/apiSlice.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-06.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "06-rtk-query-setup",
+      "timestamp": "2026-08-21T15:13:31.373Z",
+      "score": 85,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `createApi` and `fetchBaseQuery` in `src/api/apiSlice.ts`.",
+        "Proper store integration: the API reducer and middleware are added in `src/store/store.ts`.",
+        "TypeScript is consistently used across the project, with clear interfaces in `mockServer.ts`.",
+        "Separation of concerns is evident: API logic lives in `apiSlice`, state logic in slices, and hooks in `store/hooks.ts`."
+      ],
+      "improvements": [
+        "In `src/api/apiSlice.ts`, replace the `queryFn` implementation with a standard `query` field. This keeps the API slice simpler and allows RTK Query to automatically handle loading and error states.",
+        "Remove the no‑op `loggerMiddleware` from `src/store/store.ts`. If logging is needed, use Redux DevTools or a proper logger that actually logs actions.",
+        "Add a `reducerPath` constant in `apiSlice` and reference it in the store instead of hard‑coding the string `'api'`. This reduces the risk of typos when the path changes.",
+        "Define a custom error type for the `queryFn` return value or use RTK Query’s built‑in error handling by returning `error: { status: 'CUSTOM_ERROR', data: ... }`. This makes the error shape explicit and easier to consume.",
+        "Consider adding `tagTypes` and `providesTags`/`invalidatesTags` to the endpoint so that future mutations can automatically invalidate cached data.",
+        "In `src/store/hooks.ts`, remove the unused `reduxArchitecture` object. It adds noise without any functional benefit.",
+        "Add JSDoc comments or TypeScript documentation to the exported hooks (`useGetUsersQuery`) to aid future developers.",
+        "If the mock API will be used in other parts of the app, export the `mockApi` interface from a separate file (`src/api/types.ts`) to avoid duplication.",
+        "Add unit tests for the API slice to ensure that the `getUsers` endpoint returns the expected data shape and handles errors correctly."
+      ],
+      "readability": 82,
+      "maintainability": 78,
+      "overall": "The implementation satisfies the core requirements: an API slice with a query endpoint, proper store integration, and TypeScript usage. The code is readable and maintainable, though a few small refactors—especially simplifying the query implementation and cleaning up unused middleware—would bring it closer to best‑practice RTK Query patterns.",
+      "requirementCompliance": 92
+    },
+    "aiResults": {
+      "challengeId": "06-rtk-query-setup",
+      "timestamp": "2026-08-21T15:13:31.373Z",
+      "score": 85,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `createApi` and `fetchBaseQuery` in `src/api/apiSlice.ts`.",
+        "Proper store integration: the API reducer and middleware are added in `src/store/store.ts`.",
+        "TypeScript is consistently used across the project, with clear interfaces in `mockServer.ts`.",
+        "Separation of concerns is evident: API logic lives in `apiSlice`, state logic in slices, and hooks in `store/hooks.ts`."
+      ],
+      "improvements": [
+        "In `src/api/apiSlice.ts`, replace the `queryFn` implementation with a standard `query` field. This keeps the API slice simpler and allows RTK Query to automatically handle loading and error states.",
+        "Remove the no‑op `loggerMiddleware` from `src/store/store.ts`. If logging is needed, use Redux DevTools or a proper logger that actually logs actions.",
+        "Add a `reducerPath` constant in `apiSlice` and reference it in the store instead of hard‑coding the string `'api'`. This reduces the risk of typos when the path changes.",
+        "Define a custom error type for the `queryFn` return value or use RTK Query’s built‑in error handling by returning `error: { status: 'CUSTOM_ERROR', data: ... }`. This makes the error shape explicit and easier to consume.",
+        "Consider adding `tagTypes` and `providesTags`/`invalidatesTags` to the endpoint so that future mutations can automatically invalidate cached data.",
+        "In `src/store/hooks.ts`, remove the unused `reduxArchitecture` object. It adds noise without any functional benefit.",
+        "Add JSDoc comments or TypeScript documentation to the exported hooks (`useGetUsersQuery`) to aid future developers.",
+        "If the mock API will be used in other parts of the app, export the `mockApi` interface from a separate file (`src/api/types.ts`) to avoid duplication.",
+        "Add unit tests for the API slice to ensure that the `getUsers` endpoint returns the expected data shape and handles errors correctly."
+      ],
+      "readability": 82,
+      "maintainability": 78,
+      "overall": "The implementation satisfies the core requirements: an API slice with a query endpoint, proper store integration, and TypeScript usage. The code is readable and maintainable, though a few small refactors—especially simplifying the query implementation and cleaning up unused middleware—would bring it closer to best‑practice RTK Query patterns.",
+      "requirementCompliance": 92
+    }
   }
 ]
