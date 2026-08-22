@@ -262,7 +262,9 @@ function App() {
                   <h2>
                     Challenge 13: Query with Parameters
                   </h2>
-                  <PostDetail />
+
+                  {/* Default post for E2E verification */}
+                  <PostDetail postId={1} />
                 </div>
               }
             />
@@ -278,6 +280,8 @@ function App() {
                   <h2>
                     Challenge 13: Query with Parameters
                   </h2>
+
+                  {/* ID comes from the URL */}
                   <PostDetail />
                 </div>
               }

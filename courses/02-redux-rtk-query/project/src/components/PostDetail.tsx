@@ -1,10 +1,18 @@
 import { useParams } from 'react-router-dom'
 import { useGetPostByIdQuery } from '../api/apiSlice'
 
-function PostDetail() {
-  const { postId } = useParams<{ postId: string }>()
+interface PostDetailProps {
+  postId?: number
+}
 
-  const id = postId ? Number(postId) : undefined
+function PostDetail({ postId: propPostId }: PostDetailProps) {
+  const { postId: routePostId } = useParams<{
+    postId: string
+  }>()
+
+  const id = propPostId ?? (
+    routePostId ? Number(routePostId) : undefined
+  )
 
   const {
     data: post,
@@ -31,12 +39,16 @@ function PostDetail() {
   }
 
   if (!post) {
-    return <p>No post found.</p>
+    return (
+      <div data-testid="post-detail">
+        <p>No post found.</p>
+      </div>
+    )
   }
 
   return (
     <article data-testid="post-detail">
-      <h2>{post.title}</h2>
+      <h3>{post.title}</h3>
       <p>{post.body}</p>
     </article>
   )
