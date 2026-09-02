@@ -53,13 +53,13 @@ export async function runLinting(filesToCheck, projectDir, challengeMetadata = {
     // Run ESLint ONLY on specified files (not all files)
     // Use npx eslint directly to avoid npm script which checks all files
     const output = execSync(
-      `npx eslint ${filePaths.join(' ')} --format json`,
-      {
-        cwd: projectDir,
-        encoding: 'utf-8',
-        stdio: ['pipe', 'pipe', 'pipe']
-      }
-    );
+  `npx eslint ${filePaths.map(filePath => `"${filePath}"`).join(' ')} --format json`,
+  {
+    cwd: projectDir,
+    encoding: 'utf-8',
+    stdio: ['pipe', 'pipe', 'pipe']
+  }
+);
 
     const lintResults = JSON.parse(output);
     

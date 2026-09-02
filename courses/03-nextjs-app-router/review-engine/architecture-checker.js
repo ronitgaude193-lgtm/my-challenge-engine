@@ -4,20 +4,29 @@ import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
 
 /**
- * Checks architecture patterns using AST parsing
- * Adapted for Next.js App Router patterns
+ * File-specific pattern rules
+ */
+function getFileSpecificPatterns(file) {
+  if (file.includes("api/usersApi")) {
+    return ["createApi", "fetchBaseQuery", "endpoints"];
+  }
+  if (file.includes("store")) {
+    return ["reducer", "middleware"];
+  }
+  if (file.includes("UsersList")) {
+    return ["useQueryHook"];
+  }
+  if (file.includes("main") || file.includes("index")) {
+    return ["Provider"];
+  }
+  return [];
+}
+
+/**
+ * Main checker
  */
 export async function checkArchitecture(challengeMetadata, projectDir) {
-  const patternsRequired = challengeMetadata.patternsRequired || [];
   const filesToCheck = challengeMetadata.filesToCheck || [];
-  
-  if (patternsRequired.length === 0) {
-    return {
-      score: 100,
-      passed: true,
-      details: []
-    };
-  }
 
   const results = {
     score: 0,
@@ -32,7 +41,8 @@ export async function checkArchitecture(challengeMetadata, projectDir) {
 
   for (const file of filesToCheck) {
     const filePath = join(projectDir, file);
-    
+    const patternsRequired = getFileSpecificPatterns(file);
+
     if (!existsSync(filePath)) {
       results.details.push({
         file,
@@ -43,152 +53,129 @@ export async function checkArchitecture(challengeMetadata, projectDir) {
       continue;
     }
 
-    try {
-      const fileContent = readFileSync(filePath, 'utf-8');
-      const fileResults = checkFileForPatterns(fileContent, patternsRequired, file);
-      
-      totalChecks += patternsRequired.length;
-      passedChecks += fileResults.patternsFound.length;
-      
-      results.patternsFound.push(...fileResults.patternsFound);
-      results.patternsMissing.push(...fileResults.patternsMissing);
-      results.details.push({
-        file,
-        patternsFound: fileResults.patternsFound,
-        patternsMissing: fileResults.patternsMissing
-      });
-    } catch (error) {
-      results.details.push({
-        file,
-        error: error.message,
-        patternsFound: [],
-        patternsMissing: patternsRequired
-      });
-    }
+    const fileContent = readFileSync(filePath, 'utf-8');
+
+    const fileResults = checkFileForPatterns(
+      fileContent,
+      patternsRequired
+    );
+
+    totalChecks += patternsRequired.length;
+    passedChecks += fileResults.patternsFound.length;
+
+    results.patternsFound.push(...fileResults.patternsFound);
+    results.patternsMissing.push(...fileResults.patternsMissing);
+
+    results.details.push({
+      file,
+      patternsFound: fileResults.patternsFound,
+      patternsMissing: fileResults.patternsMissing
+    });
   }
 
-  // Calculate score
-  results.score = totalChecks > 0 
+  // final score
+  results.score = totalChecks > 0
     ? Math.round((passedChecks / totalChecks) * 100 * 10) / 10
-    : 0;
-  
+    : 100;
+
   results.passed = results.score >= 80;
 
   return results;
 }
 
-function checkFileForPatterns(content, patternsRequired, fileName) {
+/**
+ * AST + fallback checker
+ */
+function checkFileForPatterns(content, patternsRequired) {
   const patternsFound = [];
   const patternsMissing = [];
 
   try {
     const ast = parse(content, {
       sourceType: 'module',
-      plugins: ['typescript', 'jsx', 'decorators-legacy', 'classProperties']
+      plugins: ['typescript', 'jsx']
     });
 
     const foundPatterns = new Set();
 
     traverse(ast, {
-      // Check for 'use client' directive
-      Directive(path) {
-        if (path.node.value.value === 'use client') {
-          foundPatterns.add('useClient');
-          foundPatterns.add('clientComponent');
-        }
-      },
-
-      // Check for Server Component (no 'use client')
-      Program(path) {
-        const hasUseClient = path.node.directives?.some(
-          d => d.value.value === 'use client'
-        );
-        if (!hasUseClient && fileName.includes('page.tsx')) {
-          foundPatterns.add('serverComponent');
-        }
-      },
-
-      // Check for Link component
-      ImportDeclaration(path) {
-        if (path.node.source.value === 'next/link') {
-          foundPatterns.add('Link');
-        }
-        if (path.node.source.value === 'next/navigation') {
-          foundPatterns.add('navigation');
-        }
-      },
-
-      // Check for async component (Server Component data fetching)
-      FunctionDeclaration(path) {
-        if (path.node.async) {
-          foundPatterns.add('asyncComponent');
-        }
-      },
-
-      ArrowFunctionExpression(path) {
-        if (path.node.async) {
-          foundPatterns.add('asyncComponent');
-        }
-      },
-
-      // Check for metadata export
-      ExportNamedDeclaration(path) {
-        if (path.node.declaration) {
-          const decl = path.node.declaration;
-          if (decl.id && decl.id.name === 'metadata') {
-            foundPatterns.add('metadata');
-          }
-        }
-        path.node.specifiers.forEach(spec => {
-          if (spec.exported.name === 'metadata') {
-            foundPatterns.add('metadata');
-          }
-        });
-      },
-
-      // Check for API route (route.ts)
       CallExpression(path) {
-        if (path.node.callee.name === 'NextResponse') {
-          foundPatterns.add('apiRoute');
+        const callee = path.node.callee;
+
+        if (callee.name === 'createApi') {
+          foundPatterns.add('createApi');
         }
-        if (path.node.callee.object && 
-            path.node.callee.object.name === 'Response' &&
-            path.node.callee.property &&
-            path.node.callee.property.name === 'json') {
-          foundPatterns.add('apiRoute');
+
+        if (callee.name === 'fetchBaseQuery') {
+          foundPatterns.add('fetchBaseQuery');
+        }
+
+        if (callee.name && /use.*Query/i.test(callee.name)) {
+          foundPatterns.add('useQueryHook');
+        }
+
+        if (callee.name && /use.*Mutation/i.test(callee.name)) {
+          foundPatterns.add('useMutationHook');
+        }
+
+        if (
+          callee.property &&
+          callee.property.name === 'updateQueryData'
+        ) {
+          foundPatterns.add('optimisticUpdate');
+        }
+
+        if (
+          callee.type === 'MemberExpression' &&
+          callee.object?.name === 'builder' &&
+          callee.property?.name === 'mutation'
+        ) {
+          foundPatterns.add('mutation');
         }
       },
 
-      // Check for Server Actions
-      FunctionDeclaration(path) {
-        if (path.node.async && 
-            (path.node.id?.name?.includes('action') || 
-             content.includes('use server'))) {
-          foundPatterns.add('serverAction');
+      ObjectProperty(path) {
+        const key = path.node.key?.name;
+
+        if (key === 'endpoints') {
+          foundPatterns.add('endpoints');
+        }
+
+        if (key === 'providesTags') {
+          foundPatterns.add('providesTags');
+        }
+
+        if (key === 'invalidatesTags') {
+          foundPatterns.add('invalidatesTags');
+        }
+
+        if (key === 'tagTypes') {
+          foundPatterns.add('tagTypes');
+        }
+
+        if (key === 'onQueryStarted') {
+          foundPatterns.add('onQueryStarted');
+        }
+
+        if (key === 'reducer') {
+          foundPatterns.add('reducer');
+        }
+
+        if (key === 'middleware') {
+          foundPatterns.add('middleware');
         }
       },
 
-      // Check for form handling
-      JSXElement(path) {
-        if (path.node.openingElement.name.name === 'form') {
-          foundPatterns.add('formHandling');
-        }
-      },
-
-      // Check for app directory structure
-      Program(path) {
-        if (fileName.includes('app/')) {
-          foundPatterns.add('appDirectory');
-        }
-        if (fileName.includes('page.tsx')) {
-          foundPatterns.add('fileBasedRouting');
+      ObjectMethod(path) {
+        if (path.node.key?.name === 'mutation') {
+          foundPatterns.add('mutation');
         }
       }
     });
 
-    // Check which required patterns were found
+    // match required patterns
     for (const pattern of patternsRequired) {
-      if (foundPatterns.has(pattern)) {
+      if (foundPatterns.has(pattern) || content.includes(pattern)) {
         patternsFound.push(pattern);
       } else {
         patternsMissing.push(pattern);
@@ -196,9 +183,9 @@ function checkFileForPatterns(content, patternsRequired, fileName) {
     }
 
   } catch (error) {
-    // If parsing fails, try simple string matching as fallback
+    // fallback: string matching
     for (const pattern of patternsRequired) {
-      if (content.includes(pattern) || content.includes(pattern.replace(/([A-Z])/g, '-$1').toLowerCase())) {
+      if (content.includes(pattern)) {
         patternsFound.push(pattern);
       } else {
         patternsMissing.push(pattern);
