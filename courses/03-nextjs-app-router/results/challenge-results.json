@@ -833,5 +833,201 @@
       "maintainability": 50,
       "overall": "```json\n{\n  \"readability\": 90,\n  \"maintainability\": 85,\n  \"strengths\": [\n    \"Clear async server component that fetches data directly on the server.\",\n    \"TypeScript interface for the post data ensures type safety.\",\n    \"Graceful error handling with a fallback UI for failed fetches.\"\n  ],\n  \"improvements\": [\n    \"Add an error parameter to the catch block (e.g., `catch (error: unknown)`) so you can log or inspect the error if needed.\",\n"
     }
+  },
+  {
+    "challengeId": "04-api-route-handlers",
+    "challengeName": "API Route Handlers",
+    "timestamp": "2026-09-03T21:15:31.774Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 83
+    },
+    "totalScore": 97.45,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 04: API Route Handlers"
+              ],
+              "fullName": " Challenge 04: API Route Handlers should have API route file",
+              "status": "passed",
+              "title": "should have API route file",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 04: API Route Handlers"
+              ],
+              "fullName": " Challenge 04: API Route Handlers should export GET that returns JSON",
+              "status": "passed",
+              "title": "should export GET that returns JSON",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788470133743,
+          "endTime": 1788470133744,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-04.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\api\\posts\\route.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/api/posts/route.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-04.spec.ts",
+          "file": "challenge-04.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 04: API Route Handlers - E2E",
+              "file": "challenge-04.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should have API route that returns JSON",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 33,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-03T21:15:37.701Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "0401c8ab289c6ab836d0-7ddfff09b261747e7f47",
+                  "file": "challenge-04.spec.ts",
+                  "line": 8,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "04-api-route-handlers",
+      "timestamp": "2026-09-03T21:15:37.821Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear TypeScript interface for posts, ensuring type safety across the file.",
+        "Simple, self‑contained data array that is easy to understand and modify.",
+        "Use of `Response.json` keeps the implementation concise and aligns with Next.js API route conventions."
+      ],
+      "improvements": [
+        "Add an explicit return type to the `GET` function (e.g., `Promise<Response>` or `NextResponse`) to aid type checking and future refactoring.",
+        "Consider exporting the `Post` interface for reuse in other parts of the application (e.g., components or other API routes).",
+        "Implement a basic `POST` handler or at least a placeholder that validates the request body and returns a meaningful error if the body is missing, to satisfy the optional requirement and improve robustness."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation is clean and meets the core requirements of the challenge. With a few minor type‑safety and extensibility enhancements, it will be even more robust and maintainable."
+    },
+    "aiResults": {
+      "challengeId": "04-api-route-handlers",
+      "timestamp": "2026-09-03T21:15:37.821Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear TypeScript interface for posts, ensuring type safety across the file.",
+        "Simple, self‑contained data array that is easy to understand and modify.",
+        "Use of `Response.json` keeps the implementation concise and aligns with Next.js API route conventions."
+      ],
+      "improvements": [
+        "Add an explicit return type to the `GET` function (e.g., `Promise<Response>` or `NextResponse`) to aid type checking and future refactoring.",
+        "Consider exporting the `Post` interface for reuse in other parts of the application (e.g., components or other API routes).",
+        "Implement a basic `POST` handler or at least a placeholder that validates the request body and returns a meaningful error if the body is missing, to satisfy the optional requirement and improve robustness."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation is clean and meets the core requirements of the challenge. With a few minor type‑safety and extensibility enhancements, it will be even more robust and maintainable."
+    }
   }
 ]
