@@ -21,5 +21,28 @@
       "maintainability": 85,
       "overall": "The implementation meets the core requirements and follows best practices for a minimal Next.js App Router setup. Minor enhancements around accessibility and styling would further improve the code quality."
     }
+  },
+  {
+    "challengeId": "02-server-and-client-components",
+    "challengeName": "Server and Client Components",
+    "aiReview": {
+      "challengeId": "02-server-and-client-components",
+      "timestamp": "2026-09-03T20:36:20.779Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of server and client components – the page remains a server component while the counter is a client component.",
+        "Proper use of `'use client'` and React hooks (`useState`) to create interactive UI.",
+        "TypeScript is used consistently, and the code follows ESLint rules with no console statements."
+      ],
+      "improvements": [
+        "Add accessibility attributes to the button (e.g., `aria-label` or `role`) to improve usability for screen readers.",
+        "Consider adding a small comment above the `Counter` component explaining its purpose and why it is a client component.",
+        "If the project grows, extract the counter logic into a reusable hook or component file to keep the component file focused on UI."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets all functional requirements and demonstrates a solid grasp of Next.js App Router concepts. Minor enhancements around accessibility and documentation would make the code even more robust."
+    }
   }
 ]

@@ -327,5 +327,278 @@
       "maintainability": 85,
       "overall": "The implementation meets the core requirements and follows best practices for a minimal Next.js App Router setup. Minor enhancements around accessibility and styling would further improve the code quality."
     }
+  },
+  {
+    "challengeId": "02-server-and-client-components",
+    "challengeName": "Server and Client Components",
+    "timestamp": "2026-09-03T20:35:52.994Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 83
+    },
+    "totalScore": 97.45,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 02: Server and Client Components"
+              ],
+              "fullName": " Challenge 02: Server and Client Components should have at least one Client Component with use client",
+              "status": "passed",
+              "title": "should have at least one Client Component with use client",
+              "duration": 3,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 02: Server and Client Components"
+              ],
+              "fullName": " Challenge 02: Server and Client Components should have Client Component that uses state or event handlers",
+              "status": "passed",
+              "title": "should have Client Component that uses state or event handlers",
+              "duration": 0,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 02: Server and Client Components"
+              ],
+              "fullName": " Challenge 02: Server and Client Components should have App Router structure",
+              "status": "passed",
+              "title": "should have App Router structure",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788467760151,
+          "endTime": 1788467760155,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-02.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\components\\Counter.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\layout.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/components/Counter.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/layout.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-02.spec.ts",
+          "file": "challenge-02.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 02: Server and Client Components - E2E",
+              "file": "challenge-02.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should display home page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 2693,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-03T20:36:08.308Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "42dc79384a61c0717494-913d124fcf0db785346d",
+                  "file": "challenge-02.spec.ts",
+                  "line": 12,
+                  "column": 7
+                },
+                {
+                  "title": "should have interactive element (button or link)",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 2669,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-03T20:36:08.316Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "42dc79384a61c0717494-9726b28217a56c91520e",
+                  "file": "challenge-02.spec.ts",
+                  "line": 16,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "02-server-and-client-components",
+      "timestamp": "2026-09-03T20:36:20.779Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of server and client components – the page remains a server component while the counter is a client component.",
+        "Proper use of `'use client'` and React hooks (`useState`) to create interactive UI.",
+        "TypeScript is used consistently, and the code follows ESLint rules with no console statements."
+      ],
+      "improvements": [
+        "Add accessibility attributes to the button (e.g., `aria-label` or `role`) to improve usability for screen readers.",
+        "Consider adding a small comment above the `Counter` component explaining its purpose and why it is a client component.",
+        "If the project grows, extract the counter logic into a reusable hook or component file to keep the component file focused on UI."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets all functional requirements and demonstrates a solid grasp of Next.js App Router concepts. Minor enhancements around accessibility and documentation would make the code even more robust."
+    },
+    "aiResults": {
+      "challengeId": "02-server-and-client-components",
+      "timestamp": "2026-09-03T20:36:20.779Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of server and client components – the page remains a server component while the counter is a client component.",
+        "Proper use of `'use client'` and React hooks (`useState`) to create interactive UI.",
+        "TypeScript is used consistently, and the code follows ESLint rules with no console statements."
+      ],
+      "improvements": [
+        "Add accessibility attributes to the button (e.g., `aria-label` or `role`) to improve usability for screen readers.",
+        "Consider adding a small comment above the `Counter` component explaining its purpose and why it is a client component.",
+        "If the project grows, extract the counter logic into a reusable hook or component file to keep the component file focused on UI."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets all functional requirements and demonstrates a solid grasp of Next.js App Router concepts. Minor enhancements around accessibility and documentation would make the code even more robust."
+    }
   }
 ]
