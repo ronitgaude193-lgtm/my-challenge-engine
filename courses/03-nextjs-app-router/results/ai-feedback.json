@@ -224,5 +224,28 @@
       "maintainability": 80,
       "overall": "The implementation demonstrates a solid grasp of Next.js Server Actions and cache revalidation. The code is clean, well‑typed, and follows best practices for the App Router. Minor type‑safety and UX enhancements would elevate the solution further."
     }
+  },
+  {
+    "challengeId": "11-error-handling",
+    "challengeName": "Error Handling",
+    "aiReview": {
+      "challengeId": "11-error-handling",
+      "timestamp": "2026-09-05T17:30:02.363Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: error handling, 404 handling, and data fetching are each in their own files.",
+        "TypeScript is used consistently, providing type safety for the fetched post and component props.",
+        "The use of `notFound()` directly in the page component ensures that Next.js renders the nearest 404 page without extra routing logic."
+      ],
+      "improvements": [
+        "Wrap the fetch call in a `try/catch` block to handle network errors and avoid unhandled promise rejections.",
+        "Add a fallback UI or loading state for the page while the data is being fetched, improving user experience.",
+        "Consider extracting the fetch logic into a reusable helper or service to keep the page component focused on rendering logic."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the core requirements and demonstrates a solid grasp of Next.js error handling. Minor enhancements around error resilience and UX would elevate the solution to production‑ready quality."
+    }
   }
 ]

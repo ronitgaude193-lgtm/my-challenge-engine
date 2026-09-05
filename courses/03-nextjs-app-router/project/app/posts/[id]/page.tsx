@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 interface Post {
   id: number
   title: string
@@ -12,25 +14,28 @@ interface PostPageProps {
 
 export default async function PostPage({ params }: PostPageProps) {
   const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${params.id}`
+    `https://jsonplaceholder.typicode.com/posts/${params.id}`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    }
   )
 
   if (!response.ok) {
-    return (
-      <main>
-        <h1>Post Not Found</h1>
-        <p>Unable to find post {params.id}.</p>
-      </main>
-    )
+    notFound()
   }
 
   const post: Post = await response.json()
+
+  if (!post || !post.id) {
+    notFound()
+  }
 
   return (
     <main>
       <h1>{post.title}</h1>
       <p>{post.body}</p>
-      <p>Post ID: {params.id}</p>
     </main>
   )
 }

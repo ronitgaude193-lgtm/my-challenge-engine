@@ -2362,5 +2362,267 @@
       "maintainability": 80,
       "overall": "The implementation meets the challenge requirements with clean, readable code and proper use of caching and revalidation. Minor enhancements around typing and configuration would further improve maintainability."
     }
+  },
+  {
+    "challengeId": "11-error-handling",
+    "challengeName": "Error Handling",
+    "timestamp": "2026-09-05T17:29:54.203Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 83
+    },
+    "totalScore": 97.45,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: Error Handling"
+              ],
+              "fullName": " Challenge 11: Error Handling should have error.tsx in app or route segment",
+              "status": "passed",
+              "title": "should have error.tsx in app or route segment",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 11: Error Handling"
+              ],
+              "fullName": " Challenge 11: Error Handling should use notFound in dynamic post page",
+              "status": "passed",
+              "title": "should use notFound in dynamic post page",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788629396131,
+          "endTime": 1788629396133,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-11.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\error.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\not-found.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\[id]\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/error.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/posts/[id]/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/not-found.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-11.spec.ts",
+          "file": "challenge-11.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 11: Error Handling - E2E",
+              "file": "challenge-11.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load home page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 726,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:30:00.458Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "1017095ef2170c8a8deb-38da860916fc18c9e724",
+                  "file": "challenge-11.spec.ts",
+                  "line": 8,
+                  "column": 7
+                },
+                {
+                  "title": "should handle invalid post id (404 or error)",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 1692,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:30:00.457Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "1017095ef2170c8a8deb-aa714dc2f9a5dfb8e954",
+                  "file": "challenge-11.spec.ts",
+                  "line": 13,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "11-error-handling",
+      "timestamp": "2026-09-05T17:30:02.363Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: error handling, 404 handling, and data fetching are each in their own files.",
+        "TypeScript is used consistently, providing type safety for the fetched post and component props.",
+        "The use of `notFound()` directly in the page component ensures that Next.js renders the nearest 404 page without extra routing logic."
+      ],
+      "improvements": [
+        "Wrap the fetch call in a `try/catch` block to handle network errors and avoid unhandled promise rejections.",
+        "Add a fallback UI or loading state for the page while the data is being fetched, improving user experience.",
+        "Consider extracting the fetch logic into a reusable helper or service to keep the page component focused on rendering logic."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the core requirements and demonstrates a solid grasp of Next.js error handling. Minor enhancements around error resilience and UX would elevate the solution to production‑ready quality."
+    },
+    "aiResults": {
+      "challengeId": "11-error-handling",
+      "timestamp": "2026-09-05T17:30:02.363Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: error handling, 404 handling, and data fetching are each in their own files.",
+        "TypeScript is used consistently, providing type safety for the fetched post and component props.",
+        "The use of `notFound()` directly in the page component ensures that Next.js renders the nearest 404 page without extra routing logic."
+      ],
+      "improvements": [
+        "Wrap the fetch call in a `try/catch` block to handle network errors and avoid unhandled promise rejections.",
+        "Add a fallback UI or loading state for the page while the data is being fetched, improving user experience.",
+        "Consider extracting the fetch logic into a reusable helper or service to keep the page component focused on rendering logic."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the core requirements and demonstrates a solid grasp of Next.js error handling. Minor enhancements around error resilience and UX would elevate the solution to production‑ready quality."
+    }
   }
 ]
