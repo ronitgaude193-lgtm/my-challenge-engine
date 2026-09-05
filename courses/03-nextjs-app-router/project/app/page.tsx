@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Counter from './components/Counter'
 
 export default function HomePage() {
   return (
@@ -8,16 +9,16 @@ export default function HomePage() {
 
       <p>Welcome to the Next.js App Router challenge.</p>
 
-      <Image
-        src="https://placehold.co/600x400"
-        alt="Placeholder image"
-        width={600}
-        height={400}
-      />
-
-      <br />
-
       <Link href="/about">About</Link>
+
+      <Counter />
+
+      <Image
+        src="/next.svg"
+        alt="Next.js logo"
+        width={180}
+        height={38}
+      />
     </main>
   )
 }
