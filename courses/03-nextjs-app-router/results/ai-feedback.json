@@ -132,5 +132,28 @@
       "maintainability": 80,
       "overall": "The component correctly implements a dynamic route and fetches data based on the URL parameter. It follows TypeScript conventions and provides basic error handling. Enhancing error resilience, pre‑rendering, and separating concerns would further improve the code quality."
     }
+  },
+  {
+    "challengeId": "07-static-and-dynamic-rendering",
+    "challengeName": "Static and Dynamic Rendering",
+    "aiReview": {
+      "challengeId": "07-static-and-dynamic-rendering",
+      "timestamp": "2026-09-05T17:09:42.949Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Explicit use of `dynamic = 'force-static'` and `dynamic = 'force-dynamic'` to control rendering strategy.",
+        "Clear separation of concerns: the home page is static, while the posts page fetches data on each request.",
+        "TypeScript types are defined for the fetched data, improving type safety."
+      ],
+      "improvements": [
+        "Add a more descriptive error handling strategy (e.g., return a custom error component or log the error details) instead of a generic catch block.",
+        "Include comments or JSDoc annotations to explain the purpose of the `dynamic` exports and the fetch logic, aiding future maintainers.",
+        "Consider adding a loading state or skeleton UI for the posts page to improve UX during the data fetch."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation correctly demonstrates static and dynamic rendering in the App Router, with clean code and proper TypeScript usage. Minor enhancements around error handling and documentation would further improve maintainability and user experience."
+    }
   }
 ]

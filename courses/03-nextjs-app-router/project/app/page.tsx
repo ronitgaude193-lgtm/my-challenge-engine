@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import Counter from './components/Counter'
+
+export const dynamic = 'force-static'
 
 export default function HomePage() {
   return (
@@ -8,9 +9,11 @@ export default function HomePage() {
 
       <p>Welcome to the Next.js App Router challenge.</p>
 
-      <Link href="/about">About</Link>
-
-      <Counter />
+      <nav>
+        <Link href="/about">About</Link>
+        <br />
+        <Link href="/posts">Posts</Link>
+      </nav>
     </main>
   )
 }
