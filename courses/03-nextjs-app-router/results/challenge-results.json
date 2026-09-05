@@ -3602,5 +3602,182 @@
       "maintainability": 80,
       "overall": "The implementation correctly integrates RTK Query into a Next.js App Router project and follows best practices for TypeScript usage. With a few refinements—particularly around base URL configuration and richer error handling—the code would be even more robust and production‑ready."
     }
+  },
+  {
+    "challengeId": "17-fullstack-capstone",
+    "challengeName": "Fullstack Capstone",
+    "timestamp": "2026-09-05T17:51:05.071Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 85
+    },
+    "totalScore": 82.75,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 3,
+      "passedTests": 3,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 17: Fullstack Capstone"
+              ],
+              "fullName": " Challenge 17: Fullstack Capstone should have dynamic route page",
+              "status": "passed",
+              "title": "should have dynamic route page",
+              "duration": 2,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 17: Fullstack Capstone"
+              ],
+              "fullName": " Challenge 17: Fullstack Capstone should have error.tsx or not-found.tsx",
+              "status": "passed",
+              "title": "should have error.tsx or not-found.tsx",
+              "duration": 0,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 17: Fullstack Capstone"
+              ],
+              "fullName": " Challenge 17: Fullstack Capstone should have metadata or generateMetadata on dynamic page",
+              "status": "passed",
+              "title": "should have metadata or generateMetadata on dynamic page",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788630667077,
+          "endTime": 1788630667079,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-17.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\not-found.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\[id]\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/posts/[id]/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/posts/error.tsx",
+          "error": "File does not exist",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/not-found.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-17.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "17-fullstack-capstone",
+      "timestamp": "2026-09-05T17:51:13.873Z",
+      "score": 85,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: data fetching, metadata generation, and UI rendering are neatly organized.",
+        "Proper use of Next.js App Router features such as `generateMetadata`, `notFound()`, and client components.",
+        "TypeScript types are defined for the post data and component props, improving type safety."
+      ],
+      "improvements": [
+        "Extract the `getPost` function into a shared service or utility file to avoid duplication between `generateMetadata` and the page component.",
+        "Add explicit error handling for network failures (e.g., catch blocks) and consider returning a fallback UI or error status instead of silently returning `null`.",
+        "Consider adding a loading state or skeleton UI for the page while the async data is being fetched, especially if the fetch is slow or the network is unreliable."
+      ],
+      "readability": 88,
+      "maintainability": 82,
+      "overall": "The implementation demonstrates a solid grasp of Next.js App Router concepts and TypeScript best practices. The code is clean, well‑structured, and meets the challenge requirements. Minor refactoring and enhanced error handling would further improve maintainability and user experience."
+    },
+    "aiResults": {
+      "challengeId": "17-fullstack-capstone",
+      "timestamp": "2026-09-05T17:51:13.873Z",
+      "score": 85,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: data fetching, metadata generation, and UI rendering are neatly organized.",
+        "Proper use of Next.js App Router features such as `generateMetadata`, `notFound()`, and client components.",
+        "TypeScript types are defined for the post data and component props, improving type safety."
+      ],
+      "improvements": [
+        "Extract the `getPost` function into a shared service or utility file to avoid duplication between `generateMetadata` and the page component.",
+        "Add explicit error handling for network failures (e.g., catch blocks) and consider returning a fallback UI or error status instead of silently returning `null`.",
+        "Consider adding a loading state or skeleton UI for the page while the async data is being fetched, especially if the fetch is slow or the network is unreliable."
+      ],
+      "readability": 88,
+      "maintainability": 82,
+      "overall": "The implementation demonstrates a solid grasp of Next.js App Router concepts and TypeScript best practices. The code is clean, well‑structured, and meets the challenge requirements. Minor refactoring and enhanced error handling would further improve maintainability and user experience."
+    }
   }
 ]

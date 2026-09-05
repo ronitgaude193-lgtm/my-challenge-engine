@@ -362,5 +362,28 @@
       "maintainability": 80,
       "overall": "The implementation correctly integrates RTK Query into a Next.js App Router project and follows best practices for TypeScript usage. With a few refinements—particularly around base URL configuration and richer error handling—the code would be even more robust and production‑ready."
     }
+  },
+  {
+    "challengeId": "17-fullstack-capstone",
+    "challengeName": "Fullstack Capstone",
+    "aiReview": {
+      "challengeId": "17-fullstack-capstone",
+      "timestamp": "2026-09-05T17:51:13.873Z",
+      "score": 85,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: data fetching, metadata generation, and UI rendering are neatly organized.",
+        "Proper use of Next.js App Router features such as `generateMetadata`, `notFound()`, and client components.",
+        "TypeScript types are defined for the post data and component props, improving type safety."
+      ],
+      "improvements": [
+        "Extract the `getPost` function into a shared service or utility file to avoid duplication between `generateMetadata` and the page component.",
+        "Add explicit error handling for network failures (e.g., catch blocks) and consider returning a fallback UI or error status instead of silently returning `null`.",
+        "Consider adding a loading state or skeleton UI for the page while the async data is being fetched, especially if the fetch is slow or the network is unreliable."
+      ],
+      "readability": 88,
+      "maintainability": 82,
+      "overall": "The implementation demonstrates a solid grasp of Next.js App Router concepts and TypeScript best practices. The code is clean, well‑structured, and meets the challenge requirements. Minor refactoring and enhanced error handling would further improve maintainability and user experience."
+    }
   }
 ]
