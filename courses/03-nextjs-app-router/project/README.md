@@ -64,12 +64,12 @@ npm run review -- --challenge=01-app-router-pages-layout
 
 ## 📊 Progress Evidence
 
-*Auto-updated when you run review. Last run: 9/5/2026, 10:46:02 PM*
+*Auto-updated when you run review. Last run: 9/5/2026, 10:50:12 PM*
 
 | Metric | Value |
 |--------|-------|
 | Challenges completed | 8 / 17 (47.1%) |
-| Average score | 97% |
+| Average score | 94.8% |
 
 | Challenge | Skills covered | Status |
 |-----------|----------------|--------|
@@ -81,7 +81,7 @@ npm run review -- --challenge=01-app-router-pages-layout
 | Dynamic Routes | Dynamic Routes, [id], params, generateStaticParams | Passed |
 | Static and Dynamic Rendering | Static Rendering, Dynamic Rendering, force-static, force-dynamic | Passed |
 | SSR (Server-Side Rendering) | SSR, force-dynamic, cache: no-store, Server-side rendering | Passed |
-| Server Actions and Revalidation | Server Actions, 'use server', revalidatePath, revalidateTag | — |
+| Server Actions and Revalidation | Server Actions, 'use server', revalidatePath, revalidateTag | Not passed |
 | Caching and Revalidating | fetch cache, revalidate, revalidatePath, revalidateTag | — |
 | Error Handling | error.tsx, notFound(), not-found.tsx, Error boundaries | — |
 | Metadata and SEO | metadata, generateMetadata, Open Graph, SEO | — |

@@ -1,3 +1,4 @@
+import AddPostForm from '../components/AddPostForm'
 interface Post {
   id: number
   title: string

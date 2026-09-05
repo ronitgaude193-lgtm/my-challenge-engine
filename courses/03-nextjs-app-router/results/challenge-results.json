@@ -1863,5 +1863,260 @@
       "maintainability": 80,
       "overall": "The component is well‑structured, readable, and meets most of the challenge criteria. Adding the explicit no‑store cache option and a more descriptive error handling approach will make it fully compliant and easier to maintain."
     }
+  },
+  {
+    "challengeId": "09-server-actions-and-revalidation",
+    "challengeName": "Server Actions and Revalidation",
+    "timestamp": "2026-09-05T17:20:03.901Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 50
+    },
+    "totalScore": 77.5,
+    "passed": false,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Server Actions and Revalidation"
+              ],
+              "fullName": " Challenge 09: Server Actions and Revalidation should have use server in a file",
+              "status": "passed",
+              "title": "should have use server in a file",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 09: Server Actions and Revalidation"
+              ],
+              "fullName": " Challenge 09: Server Actions and Revalidation should call revalidatePath or revalidateTag",
+              "status": "passed",
+              "title": "should call revalidatePath or revalidateTag",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788628805720,
+          "endTime": 1788628805721,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-09.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\actions.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\components\\AddPostForm.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/actions.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/posts/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/components/AddPostForm.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 1,
+      "passedTests": 0,
+      "failedTests": 1,
+      "details": [
+        {
+          "title": "challenge-09.spec.ts",
+          "file": "challenge-09.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 09: Server Actions and Revalidation - E2E",
+              "file": "challenge-09.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should have form or button on posts page",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 596,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-09.spec.ts:13:34",
+                            "location": {
+                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-09.spec.ts",
+                              "column": 34,
+                              "line": 13
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 11 |\u001b[39m     \u001b[36mconst\u001b[39m hasForm \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'form'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39misVisible()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mconst\u001b[39m hasButton \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'button'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39misVisible()\u001b[33m.\u001b[39m\u001b[36mcatch\u001b[39m(() \u001b[33m=>\u001b[39m \u001b[36mfalse\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     expect(hasForm \u001b[33m||\u001b[39m hasButton)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 16 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-09.spec.ts",
+                                "column": 34,
+                                "line": 13
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  11 |     const hasForm = await page.locator('form').first().isVisible().catch(() => false);\n  12 |     const hasButton = await page.getByRole('button').first().isVisible().catch(() => false);\n> 13 |     expect(hasForm || hasButton).toBe(true);\n     |                                  ^\n  14 |   });\n  15 | });\n  16 |\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-09.spec.ts:13:34"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:20:09.905Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\test-results\\challenge-09-Challenge-09--e3c3a-orm-or-button-on-posts-page-chromium\\test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\test-results\\challenge-09-Challenge-09--e3c3a-orm-or-button-on-posts-page-chromium\\error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-09.spec.ts",
+                            "column": 34,
+                            "line": 13
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "a1b04685a79f6082459c-d957e8fad4ed5eda426d",
+                  "file": "challenge-09.spec.ts",
+                  "line": 8,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-09.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "09-server-actions-and-revalidation",
+      "timestamp": "2026-09-05T17:20:10.718Z",
+      "score": 50,
+      "feedback": [],
+      "strengths": [
+        "Code structure is reasonable"
+      ],
+      "improvements": [
+        "Code structure is reasonable"
+      ],
+      "readability": 50,
+      "maintainability": 50,
+      "overall": ""
+    },
+    "aiResults": {
+      "challengeId": "09-server-actions-and-revalidation",
+      "timestamp": "2026-09-05T17:20:10.718Z",
+      "score": 50,
+      "feedback": [],
+      "strengths": [
+        "Code structure is reasonable"
+      ],
+      "improvements": [
+        "Code structure is reasonable"
+      ],
+      "readability": 50,
+      "maintainability": 50,
+      "overall": ""
+    }
   }
 ]
