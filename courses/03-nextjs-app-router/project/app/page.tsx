@@ -1,50 +1,23 @@
-export const dynamic = 'force-dynamic'
+import Image from 'next/image'
+import Link from 'next/link'
 
-type Post = {
-  id: number
-  title: string
-  body: string
-}
+export default function HomePage() {
+  return (
+    <main>
+      <h1>Home Page</h1>
 
-export default async function PostsPage() {
-  try {
-    const response = await fetch(
-      'https://jsonplaceholder.typicode.com/posts',
-      {
-        cache: 'no-store',
-      }
-    )
+      <p>Welcome to the Next.js App Router challenge.</p>
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch posts')
-    }
+      <Image
+        src="https://placehold.co/600x400"
+        alt="Placeholder image"
+        width={600}
+        height={400}
+      />
 
-    const posts: Post[] = await response.json()
+      <br />
 
-    return (
-      <main>
-        <h1>Posts</h1>
-
-        {posts.length === 0 ? (
-          <p>No posts found.</p>
-        ) : (
-          <ul>
-            {posts.map((post) => (
-              <li key={post.id}>
-                <h2>{post.title}</h2>
-                <p>{post.body}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-      </main>
-    )
-  } catch {
-    return (
-      <main>
-        <h1>Posts</h1>
-        <p>Unable to load posts.</p>
-      </main>
-    )
-  }
+      <Link href="/about">About</Link>
+    </main>
+  )
 }

@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
   title: 'Next.js App Router',
@@ -14,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={inter.className}>
         <nav>
           <Link href="/">Home</Link>
           {' | '}

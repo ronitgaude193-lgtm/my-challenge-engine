@@ -270,5 +270,28 @@
       "maintainability": 80,
       "overall": "The implementation meets the core challenge requirements and demonstrates solid coding practices. Minor refactoring and additional metadata would elevate the solution to a higher standard."
     }
+  },
+  {
+    "challengeId": "13-images-and-fonts",
+    "challengeName": "Images and Fonts",
+    "aiReview": {
+      "challengeId": "13-images-and-fonts",
+      "timestamp": "2026-09-05T17:36:14.490Z",
+      "score": 90,
+      "feedback": [],
+      "strengths": [
+        "Correct use of `next/image` with required props (`src`, `alt`, `width`, `height`).",
+        "Proper integration of `next/font` by importing a Google font and applying its `className` to the `<body>` element.",
+        "Clear, concise component structure with TypeScript types for the layout props."
+      ],
+      "improvements": [
+        "Wrap the main content in a `<main>` element inside `RootLayout` for better semantic structure and accessibility.",
+        "Add a descriptive `alt` attribute for the placeholder image or replace it with a real image from the `public/` folder to better demonstrate image optimization.",
+        "Consider extracting the navigation into its own component or using a `<header>` element to keep the layout file focused on layout concerns."
+      ],
+      "readability": 92,
+      "maintainability": 88,
+      "overall": "The implementation meets all challenge requirements and follows best practices for Next.js App Router. Minor semantic and accessibility enhancements would further improve the code quality."
+    }
   }
 ]
