@@ -2118,5 +2118,241 @@
       "maintainability": 50,
       "overall": ""
     }
+  },
+  {
+    "challengeId": "10-caching-and-revalidating",
+    "challengeName": "Caching and Revalidating",
+    "timestamp": "2026-09-05T17:23:16.647Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 83
+    },
+    "totalScore": 82.45,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 10: Caching and Revalidating"
+              ],
+              "fullName": " Challenge 10: Caching and Revalidating should have fetch with cache options or revalidate",
+              "status": "passed",
+              "title": "should have fetch with cache options or revalidate",
+              "duration": 2,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788628998504,
+          "endTime": 1788628998506,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-10.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\actions.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/posts/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/actions.ts",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 1,
+      "passedTests": 0,
+      "failedTests": 1,
+      "details": [
+        {
+          "title": "challenge-10.spec.ts",
+          "file": "challenge-10.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 10: Caching and Revalidating - E2E",
+              "file": "challenge-10.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load posts page",
+                  "ok": false,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 6108,
+                          "error": {
+                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('body')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('body')\u001b[22m\n\u001b[2m    14 × locator resolved to <body>…</body>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n",
+                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('body')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('body')\u001b[22m\n\u001b[2m    14 × locator resolved to <body>…</body>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-10.spec.ts:10:40",
+                            "location": {
+                              "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-10.spec.ts",
+                              "column": 40,
+                              "line": 10
+                            },
+                            "snippet": "\u001b[0m \u001b[90m  8 |\u001b[39m   test(\u001b[32m'should load posts page'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m  9 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/posts'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 11 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-10.spec.ts",
+                                "column": 40,
+                                "line": 10
+                              },
+                              "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('body')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('body')\u001b[22m\n\u001b[2m    14 × locator resolved to <body>…</body>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n\n   8 |   test('should load posts page', async ({ page }) => {\n   9 |     await page.goto('/posts');\n> 10 |     await expect(page.locator('body')).toBeVisible();\n     |                                        ^\n  11 |   });\n  12 | });\n  13 |\n    at C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-10.spec.ts:10:40"
+                            }
+                          ],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:23:22.620Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\test-results\\challenge-10-Challenge-10--94da9--E2E-should-load-posts-page-chromium\\test-failed-1.png"
+                            },
+                            {
+                              "name": "error-context",
+                              "contentType": "text/markdown",
+                              "path": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\test-results\\challenge-10-Challenge-10--94da9--E2E-should-load-posts-page-chromium\\error-context.md"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\tests\\e2e\\challenge-10.spec.ts",
+                            "column": 40,
+                            "line": 10
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "2b6a150d93e258235d20-c14a17c89c6252f46f58",
+                  "file": "challenge-10.spec.ts",
+                  "line": 8,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-10.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "10-caching-and-revalidating",
+      "timestamp": "2026-09-05T17:23:28.948Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear use of Next.js App Router fetch with `next: { revalidate: 60 }` for caching.",
+        "Server Action correctly triggers on-demand revalidation via `revalidatePath('/posts')`.",
+        "TypeScript usage throughout ensures type safety."
+      ],
+      "improvements": [
+        "Add explicit return types for `PostsPage` and `addPost` to improve type inference and documentation.",
+        "Extract hard‑coded URLs and paths into constants or a config file to ease future changes.",
+        "Provide more granular error handling (e.g., differentiate network vs. API errors) and consider a loading state for better UX."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the challenge requirements with clean, readable code and proper use of caching and revalidation. Minor enhancements around typing and configuration would further improve maintainability."
+    },
+    "aiResults": {
+      "challengeId": "10-caching-and-revalidating",
+      "timestamp": "2026-09-05T17:23:28.948Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear use of Next.js App Router fetch with `next: { revalidate: 60 }` for caching.",
+        "Server Action correctly triggers on-demand revalidation via `revalidatePath('/posts')`.",
+        "TypeScript usage throughout ensures type safety."
+      ],
+      "improvements": [
+        "Add explicit return types for `PostsPage` and `addPost` to improve type inference and documentation.",
+        "Extract hard‑coded URLs and paths into constants or a config file to ease future changes.",
+        "Provide more granular error handling (e.g., differentiate network vs. API errors) and consider a loading state for better UX."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the challenge requirements with clean, readable code and proper use of caching and revalidation. Minor enhancements around typing and configuration would further improve maintainability."
+    }
   }
 ]

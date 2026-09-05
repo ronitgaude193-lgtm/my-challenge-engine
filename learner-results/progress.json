@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-09-05T17:20:20.561Z",
+  "lastUpdated": "2026-09-05T17:23:30.008Z",
   "pathway": {
     "name": "Modern React Engineer",
     "version": "1.0.0",
-    "overallScore": 88.6,
-    "completionPercentage": 83,
+    "overallScore": 88.2,
+    "completionPercentage": 84.9,
     "badgeLevel": "silver",
     "totalChallenges": 53,
-    "completedChallenges": 44
+    "completedChallenges": 45
   },
   "courses": {
     "01-react-fundamentals": {
@@ -575,11 +575,11 @@
     "03-nextjs-app-router": {
       "courseId": "03-nextjs-app-router",
       "courseName": "Next.js App Router",
-      "averageScore": 94.8,
-      "completionPercentage": 47.1,
-      "badgeLevel": "none",
+      "averageScore": 93.6,
+      "completionPercentage": 52.9,
+      "badgeLevel": "bronze",
       "totalChallenges": 17,
-      "completedChallenges": 8,
+      "completedChallenges": 9,
       "challenges": {
         "01-app-router-pages-layout": {
           "challengeId": "01-app-router-pages-layout",
@@ -714,6 +714,21 @@
             "bestPractices": 100,
             "e2eTests": 0,
             "aiReview": 50
+          }
+        },
+        "10-caching-and-revalidating": {
+          "challengeId": "10-caching-and-revalidating",
+          "challengeName": "Caching and Revalidating",
+          "passed": true,
+          "score": 82.45,
+          "lastRun": "2026-09-05T17:23:16.647Z",
+          "scores": {
+            "functionalTests": 100,
+            "codeQuality": 100,
+            "architecture": 100,
+            "bestPractices": 100,
+            "e2eTests": 0,
+            "aiReview": 83
           }
         }
       }

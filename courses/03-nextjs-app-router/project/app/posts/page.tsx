@@ -1,16 +1,20 @@
 import AddPostForm from '../components/AddPostForm'
+
 interface Post {
   id: number
   title: string
   body: string
 }
 
-export const dynamic = 'force-dynamic'
-
 export default async function PostsPage() {
   try {
     const response = await fetch(
-      'https://jsonplaceholder.typicode.com/posts'
+      'https://jsonplaceholder.typicode.com/posts',
+      {
+        next: {
+          revalidate: 60,
+        },
+      }
     )
 
     if (!response.ok) {
@@ -22,6 +26,8 @@ export default async function PostsPage() {
     return (
       <main>
         <h1>Posts</h1>
+
+        <AddPostForm />
 
         {posts.length === 0 ? (
           <p>No posts found.</p>

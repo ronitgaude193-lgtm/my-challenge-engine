@@ -599,16 +599,17 @@ example 10 or 11
 
 
 
+
 ## 📈 Progress Summary
 
-**Last updated:** 9/5/2026, 10:50:20 PM
+**Last updated:** 9/5/2026, 10:53:30 PM
 
 ### Pathway
 
 | Metric | Value |
 |--------|-------|
-| Challenges completed | 44 / 53 (83%) |
-| Overall score | 88.6% |
+| Challenges completed | 45 / 53 (84.9%) |
+| Overall score | 88.2% |
 
 ### By course
 
@@ -616,5 +617,5 @@ example 10 or 11
 |--------|-----------|-------|--------|
 | React Fundamentals | 23/23 (100%) | 88% | Pass |
 | Redux & RTK Query | 13/13 (100%) | 82.9% | Pass |
-| Next.js App Router | 8/17 (47.1%) | 94.8% | Fail |
+| Next.js App Router | 9/17 (52.9%) | 93.6% | Fail |
 

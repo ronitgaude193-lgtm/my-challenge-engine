@@ -197,5 +197,28 @@
       "maintainability": 50,
       "overall": ""
     }
+  },
+  {
+    "challengeId": "10-caching-and-revalidating",
+    "challengeName": "Caching and Revalidating",
+    "aiReview": {
+      "challengeId": "10-caching-and-revalidating",
+      "timestamp": "2026-09-05T17:23:28.948Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear use of Next.js App Router fetch with `next: { revalidate: 60 }` for caching.",
+        "Server Action correctly triggers on-demand revalidation via `revalidatePath('/posts')`.",
+        "TypeScript usage throughout ensures type safety."
+      ],
+      "improvements": [
+        "Add explicit return types for `PostsPage` and `addPost` to improve type inference and documentation.",
+        "Extract hard‑coded URLs and paths into constants or a config file to ease future changes.",
+        "Provide more granular error handling (e.g., differentiate network vs. API errors) and consider a loading state for better UX."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the challenge requirements with clean, readable code and proper use of caching and revalidation. Minor enhancements around typing and configuration would further improve maintainability."
+    }
   }
 ]
