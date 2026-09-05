@@ -155,5 +155,28 @@
       "maintainability": 80,
       "overall": "The implementation correctly demonstrates static and dynamic rendering in the App Router, with clean code and proper TypeScript usage. Minor enhancements around error handling and documentation would further improve maintainability and user experience."
     }
+  },
+  {
+    "challengeId": "08-ssr-dynamic-rendering",
+    "challengeName": "SSR (Server-Side Rendering)",
+    "aiReview": {
+      "challengeId": "08-ssr-dynamic-rendering",
+      "timestamp": "2026-09-05T17:16:01.767Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Explicitly forces dynamic rendering with `export const dynamic = 'force-dynamic'`.",
+        "Clear TypeScript typing for the `Post` interface and fetched data.",
+        "Graceful error handling that provides user feedback without crashing."
+      ],
+      "improvements": [
+        "Add `{ cache: 'no-store' }` to the `fetch` call to guarantee request‑time data and satisfy the challenge requirement.",
+        "Include a descriptive error parameter in the `catch` block (e.g., `catch (error)`) to aid debugging and potential logging.",
+        "Consider extracting the fetch logic into a separate async function or a custom hook for easier testing and reuse."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The component is well‑structured, readable, and meets most of the challenge criteria. Adding the explicit no‑store cache option and a more descriptive error handling approach will make it fully compliant and easier to maintain."
+    }
   }
 ]

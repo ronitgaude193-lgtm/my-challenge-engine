@@ -1672,5 +1672,196 @@
       "maintainability": 80,
       "overall": "The implementation correctly demonstrates static and dynamic rendering in the App Router, with clean code and proper TypeScript usage. Minor enhancements around error handling and documentation would further improve maintainability and user experience."
     }
+  },
+  {
+    "challengeId": "08-ssr-dynamic-rendering",
+    "challengeName": "SSR (Server-Side Rendering)",
+    "timestamp": "2026-09-05T17:15:53.722Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 83
+    },
+    "totalScore": 97.45,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 08: SSR (Server-Side Rendering)"
+              ],
+              "fullName": " Challenge 08: SSR (Server-Side Rendering) should have page with force-dynamic or cache no-store",
+              "status": "passed",
+              "title": "should have page with force-dynamic or cache no-store",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788628555676,
+          "endTime": 1788628555677,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-08.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/posts/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/dashboard/page.tsx",
+          "error": "File does not exist",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-08.spec.ts",
+          "file": "challenge-08.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 08: SSR - E2E",
+              "file": "challenge-08.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load posts or dashboard page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1009,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:16:00.537Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "cc4b1dfc0eb6cfe77aae-bc51cad160854582eafe",
+                  "file": "challenge-08.spec.ts",
+                  "line": 8,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "08-ssr-dynamic-rendering",
+      "timestamp": "2026-09-05T17:16:01.767Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Explicitly forces dynamic rendering with `export const dynamic = 'force-dynamic'`.",
+        "Clear TypeScript typing for the `Post` interface and fetched data.",
+        "Graceful error handling that provides user feedback without crashing."
+      ],
+      "improvements": [
+        "Add `{ cache: 'no-store' }` to the `fetch` call to guarantee request‑time data and satisfy the challenge requirement.",
+        "Include a descriptive error parameter in the `catch` block (e.g., `catch (error)`) to aid debugging and potential logging.",
+        "Consider extracting the fetch logic into a separate async function or a custom hook for easier testing and reuse."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The component is well‑structured, readable, and meets most of the challenge criteria. Adding the explicit no‑store cache option and a more descriptive error handling approach will make it fully compliant and easier to maintain."
+    },
+    "aiResults": {
+      "challengeId": "08-ssr-dynamic-rendering",
+      "timestamp": "2026-09-05T17:16:01.767Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Explicitly forces dynamic rendering with `export const dynamic = 'force-dynamic'`.",
+        "Clear TypeScript typing for the `Post` interface and fetched data.",
+        "Graceful error handling that provides user feedback without crashing."
+      ],
+      "improvements": [
+        "Add `{ cache: 'no-store' }` to the `fetch` call to guarantee request‑time data and satisfy the challenge requirement.",
+        "Include a descriptive error parameter in the `catch` block (e.g., `catch (error)`) to aid debugging and potential logging.",
+        "Consider extracting the fetch logic into a separate async function or a custom hook for easier testing and reuse."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The component is well‑structured, readable, and meets most of the challenge criteria. Adding the explicit no‑store cache option and a more descriptive error handling approach will make it fully compliant and easier to maintain."
+    }
   }
 ]
