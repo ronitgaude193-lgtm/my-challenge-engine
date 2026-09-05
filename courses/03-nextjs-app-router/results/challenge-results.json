@@ -3327,5 +3327,280 @@
       "maintainability": 80,
       "overall": "The implementation satisfies the core requirements of setting up Redux Toolkit with Next.js App Router and demonstrates good TypeScript practices. Adding typed hooks and a concrete component that consumes the store will complete the challenge and improve clarity for future developers."
     }
+  },
+  {
+    "challengeId": "16-rtk-query-with-nextjs",
+    "challengeName": "RTK Query with Next.js",
+    "timestamp": "2026-09-05T17:48:44.777Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 75,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 83
+    },
+    "totalScore": 94.95,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 16: RTK Query with Next.js"
+              ],
+              "fullName": " Challenge 16: RTK Query with Next.js should have createApi and fetchBaseQuery",
+              "status": "passed",
+              "title": "should have createApi and fetchBaseQuery",
+              "duration": 1,
+              "failureMessages": []
+            },
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 16: RTK Query with Next.js"
+              ],
+              "fullName": " Challenge 16: RTK Query with Next.js should add API reducer and middleware to store",
+              "status": "passed",
+              "title": "should add API reducer and middleware to store",
+              "duration": 0,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788630526781,
+          "endTime": 1788630526783,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-16.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\PostsList.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\store\\apiSlice.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\store\\store.ts",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 75,
+      "passed": false,
+      "patternsFound": [
+        "reducer",
+        "reducer",
+        "middleware"
+      ],
+      "patternsMissing": [
+        "middleware"
+      ],
+      "details": [
+        {
+          "file": "app/store/apiSlice.ts",
+          "patternsFound": [
+            "reducer"
+          ],
+          "patternsMissing": [
+            "middleware"
+          ]
+        },
+        {
+          "file": "app/store/store.ts",
+          "patternsFound": [
+            "reducer",
+            "middleware"
+          ],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/posts/PostsList.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 2,
+      "passedTests": 2,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-16.spec.ts",
+          "file": "challenge-16.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 16: RTK Query with Next.js - E2E",
+              "file": "challenge-16.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should load app",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 3303,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:48:57.824Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3923c1b5135bbbcbba41-0e9a6faf507f8632a2f4",
+                  "file": "challenge-16.spec.ts",
+                  "line": 8,
+                  "column": 7
+                },
+                {
+                  "title": "should load posts or data page",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 1,
+                          "status": "passed",
+                          "duration": 3362,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:48:57.805Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "3923c1b5135bbbcbba41-fa78fb4a2a79576d2e05",
+                  "file": "challenge-16.spec.ts",
+                  "line": 13,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "16-rtk-query-with-nextjs",
+      "timestamp": "2026-09-05T17:49:01.609Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: API slice, store, and client component are neatly organized.",
+        "Proper use of RTK Query hooks in a client component, demonstrating correct Next.js App Router usage.",
+        "TypeScript types are defined for the Post model, ensuring type safety across the slice."
+      ],
+      "improvements": [
+        "The `baseUrl` in `fetchBaseQuery` is set to `'/'`, which can be ambiguous in a Next.js environment. Consider using an absolute URL or an environment variable to avoid potential CORS or routing issues.",
+        "Add more detailed error handling in the component (e.g., display the error message returned by RTK Query) to aid debugging and improve user feedback.",
+        "Extend the API slice with a mutation endpoint (e.g., `addPost`) and demonstrate its usage in a client component to fully showcase RTK Query’s capabilities."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation correctly integrates RTK Query into a Next.js App Router project and follows best practices for TypeScript usage. With a few refinements—particularly around base URL configuration and richer error handling—the code would be even more robust and production‑ready."
+    },
+    "aiResults": {
+      "challengeId": "16-rtk-query-with-nextjs",
+      "timestamp": "2026-09-05T17:49:01.609Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: API slice, store, and client component are neatly organized.",
+        "Proper use of RTK Query hooks in a client component, demonstrating correct Next.js App Router usage.",
+        "TypeScript types are defined for the Post model, ensuring type safety across the slice."
+      ],
+      "improvements": [
+        "The `baseUrl` in `fetchBaseQuery` is set to `'/'`, which can be ambiguous in a Next.js environment. Consider using an absolute URL or an environment variable to avoid potential CORS or routing issues.",
+        "Add more detailed error handling in the component (e.g., display the error message returned by RTK Query) to aid debugging and improve user feedback.",
+        "Extend the API slice with a mutation endpoint (e.g., `addPost`) and demonstrate its usage in a client component to fully showcase RTK Query’s capabilities."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation correctly integrates RTK Query into a Next.js App Router project and follows best practices for TypeScript usage. With a few refinements—particularly around base URL configuration and richer error handling—the code would be even more robust and production‑ready."
+    }
   }
 ]

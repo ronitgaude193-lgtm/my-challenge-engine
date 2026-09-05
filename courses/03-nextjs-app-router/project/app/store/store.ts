@@ -3,6 +3,7 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit'
+import { api } from './apiSlice'
 
 interface CounterState {
   value: number
@@ -37,11 +38,14 @@ export const {
 export const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
+
+    // RTK Query reducer
+    [api.reducerPath]: api.reducer,
   },
 
-  // Explicitly configure Redux middleware
+  // RTK Query middleware
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware(),
+    getDefaultMiddleware().concat(api.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>
