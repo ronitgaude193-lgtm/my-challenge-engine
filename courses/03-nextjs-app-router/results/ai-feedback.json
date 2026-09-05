@@ -109,5 +109,28 @@
       "maintainability": 85,
       "overall": "The implementation meets the challenge requirements with clean, readable code and solid error handling. Minor refactoring and optional Suspense usage could further improve maintainability and user experience."
     }
+  },
+  {
+    "challengeId": "06-dynamic-routes",
+    "challengeName": "Dynamic Routes",
+    "aiReview": {
+      "challengeId": "06-dynamic-routes",
+      "timestamp": "2026-09-05T17:06:40.876Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear use of async/await and TypeScript types for the page props and post data.",
+        "Dynamic route parameter (`params.id`) is correctly accessed and displayed in the UI.",
+        "Graceful handling of non‑OK responses with a user‑friendly message."
+      ],
+      "improvements": [
+        "Add a `try/catch` block around the fetch to handle network errors and provide a fallback UI.",
+        "Introduce `generateStaticParams` to pre‑render known post IDs and improve performance.",
+        "Consider extracting the data fetching logic into a separate service or hook for easier testing and reuse."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The component correctly implements a dynamic route and fetches data based on the URL parameter. It follows TypeScript conventions and provides basic error handling. Enhancing error resilience, pre‑rendering, and separating concerns would further improve the code quality."
+    }
   }
 ]
