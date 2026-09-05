@@ -180,25 +180,6 @@
     }
   },
   {
-    "challengeId": "09-server-actions-and-revalidation",
-    "challengeName": "Server Actions and Revalidation",
-    "aiReview": {
-      "challengeId": "09-server-actions-and-revalidation",
-      "timestamp": "2026-09-05T17:20:10.718Z",
-      "score": 50,
-      "feedback": [],
-      "strengths": [
-        "Code structure is reasonable"
-      ],
-      "improvements": [
-        "Code structure is reasonable"
-      ],
-      "readability": 50,
-      "maintainability": 50,
-      "overall": ""
-    }
-  },
-  {
     "challengeId": "10-caching-and-revalidating",
     "challengeName": "Caching and Revalidating",
     "aiReview": {
@@ -219,6 +200,29 @@
       "readability": 85,
       "maintainability": 80,
       "overall": "The implementation meets the challenge requirements with clean, readable code and proper use of caching and revalidation. Minor enhancements around typing and configuration would further improve maintainability."
+    }
+  },
+  {
+    "challengeId": "09-server-actions-and-revalidation",
+    "challengeName": "Server Actions and Revalidation",
+    "aiReview": {
+      "challengeId": "09-server-actions-and-revalidation",
+      "timestamp": "2026-09-05T17:25:24.626Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear separation of concerns: server actions are isolated in `app/actions.ts` and client logic in `AddPostForm.tsx`.",
+        "Effective use of Next.js App Router features (`'use server'`, `revalidatePath`, `useActionState`) to keep the UI responsive and data fresh.",
+        "TypeScript usage throughout, with explicit types for form state and server action return shape."
+      ],
+      "improvements": [
+        "Add explicit return type to `addPost` (e.g., `Promise<ActionState>`) and define a `Post` type for the simulated mutation to improve type safety.",
+        "Consider using `revalidateTag` for more granular cache invalidation if the app grows beyond a single posts page.",
+        "Provide user‑friendly error handling in the client component (e.g., display validation errors or network failures) instead of only a generic message."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation demonstrates a solid grasp of Next.js Server Actions and cache revalidation. The code is clean, well‑typed, and follows best practices for the App Router. Minor type‑safety and UX enhancements would elevate the solution further."
     }
   }
 ]
