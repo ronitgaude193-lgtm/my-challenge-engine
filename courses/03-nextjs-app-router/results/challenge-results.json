@@ -2624,5 +2624,222 @@
       "maintainability": 80,
       "overall": "The implementation meets the core requirements and demonstrates a solid grasp of Next.js error handling. Minor enhancements around error resilience and UX would elevate the solution to production‑ready quality."
     }
+  },
+  {
+    "challengeId": "12-metadata-and-seo",
+    "challengeName": "Metadata and SEO",
+    "timestamp": "2026-09-05T17:31:39.963Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 100,
+      "aiReview": 83
+    },
+    "totalScore": 97.45,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 12: Metadata and SEO"
+              ],
+              "fullName": " Challenge 12: Metadata and SEO should export metadata or generateMetadata with title/description",
+              "status": "passed",
+              "title": "should export metadata or generateMetadata with title/description",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788629501845,
+          "endTime": 1788629501846,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-12.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\layout.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        },
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/layout.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        },
+        {
+          "file": "app/posts/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "title": "challenge-12.spec.ts",
+          "file": "challenge-12.spec.ts",
+          "column": 0,
+          "line": 0,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Challenge 12: Metadata and SEO - E2E",
+              "file": "challenge-12.spec.ts",
+              "line": 7,
+              "column": 6,
+              "specs": [
+                {
+                  "title": "should have page title",
+                  "ok": true,
+                  "tags": [],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 467,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-09-05T17:31:45.900Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "f77a26b762255a776dfc-a2def7c6e30580f05958",
+                  "file": "challenge-12.spec.ts",
+                  "line": 8,
+                  "column": 7
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "screenshots": []
+    },
+    "aiReviewResults": {
+      "challengeId": "12-metadata-and-seo",
+      "timestamp": "2026-09-05T17:31:46.557Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Metadata is correctly exported in the root layout, ensuring SEO basics are covered.",
+        "Async data fetching is handled cleanly with proper error handling and no console statements.",
+        "The code follows TypeScript best practices and is well‑structured with clear component boundaries."
+      ],
+      "improvements": [
+        "Extract the duplicated fetch logic and Post type into a shared utility or type file to reduce repetition and improve maintainability.",
+        "Add `metadata` (or `generateMetadata`) to `app/page.tsx` or `app/posts/page.tsx` for page‑specific SEO, which would also satisfy the test requirement more explicitly.",
+        "Optionally include Open Graph fields in the metadata to enhance social sharing previews."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the core challenge requirements and demonstrates solid coding practices. Minor refactoring and additional metadata would elevate the solution to a higher standard."
+    },
+    "aiResults": {
+      "challengeId": "12-metadata-and-seo",
+      "timestamp": "2026-09-05T17:31:46.557Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Metadata is correctly exported in the root layout, ensuring SEO basics are covered.",
+        "Async data fetching is handled cleanly with proper error handling and no console statements.",
+        "The code follows TypeScript best practices and is well‑structured with clear component boundaries."
+      ],
+      "improvements": [
+        "Extract the duplicated fetch logic and Post type into a shared utility or type file to reduce repetition and improve maintainability.",
+        "Add `metadata` (or `generateMetadata`) to `app/page.tsx` or `app/posts/page.tsx` for page‑specific SEO, which would also satisfy the test requirement more explicitly.",
+        "Optionally include Open Graph fields in the metadata to enhance social sharing previews."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The implementation meets the core challenge requirements and demonstrates solid coding practices. Minor refactoring and additional metadata would elevate the solution to a higher standard."
+    }
   }
 ]
