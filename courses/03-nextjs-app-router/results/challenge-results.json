@@ -3001,5 +3001,138 @@
       "maintainability": 88,
       "overall": "The implementation meets all challenge requirements and follows best practices for Next.js App Router. Minor semantic and accessibility enhancements would further improve the code quality."
     }
+  },
+  {
+    "challengeId": "14-search-and-pagination",
+    "challengeName": "Search and Pagination",
+    "timestamp": "2026-09-05T17:38:32.407Z",
+    "scores": {
+      "functionalTests": 100,
+      "codeQuality": 100,
+      "architecture": 100,
+      "bestPractices": 100,
+      "e2eTests": 0,
+      "aiReview": 83
+    },
+    "totalScore": 82.45,
+    "passed": true,
+    "errors": [],
+    "warnings": [],
+    "testResults": {
+      "score": 100,
+      "passed": true,
+      "totalTests": 1,
+      "passedTests": 1,
+      "failedTests": 0,
+      "details": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "",
+                "Challenge 14: Search and Pagination"
+              ],
+              "fullName": " Challenge 14: Search and Pagination should have page that receives searchParams",
+              "status": "passed",
+              "title": "should have page that receives searchParams",
+              "duration": 1,
+              "failureMessages": []
+            }
+          ],
+          "startTime": 1788629914202,
+          "endTime": 1788629914203,
+          "status": "passed",
+          "message": "",
+          "name": "C:/Users/Asus/OneDrive/Desktop/internship work/challenge-engine-react/courses/03-nextjs-app-router/project/tests/challenge-14.test.tsx"
+        }
+      ]
+    },
+    "lintResults": {
+      "score": 100,
+      "passed": true,
+      "totalIssues": 0,
+      "errors": 0,
+      "warnings": 0,
+      "details": [
+        {
+          "filePath": "C:\\Users\\Asus\\OneDrive\\Desktop\\internship work\\challenge-engine-react\\courses\\03-nextjs-app-router\\project\\app\\posts\\page.tsx",
+          "messages": [],
+          "suppressedMessages": [],
+          "errorCount": 0,
+          "fatalErrorCount": 0,
+          "warningCount": 0,
+          "fixableErrorCount": 0,
+          "fixableWarningCount": 0,
+          "usedDeprecatedRules": []
+        }
+      ]
+    },
+    "architectureResults": {
+      "score": 100,
+      "passed": true,
+      "patternsFound": [],
+      "patternsMissing": [],
+      "details": [
+        {
+          "file": "app/posts/page.tsx",
+          "patternsFound": [],
+          "patternsMissing": []
+        }
+      ]
+    },
+    "bestPracticesResults": {
+      "score": 100,
+      "passed": true,
+      "issues": [],
+      "details": [],
+      "note": "No best practices requirements specified in challenge"
+    },
+    "e2eResults": {
+      "score": 0,
+      "passed": false,
+      "totalTests": 0,
+      "passedTests": 0,
+      "failedTests": 0,
+      "details": [],
+      "error": "Command failed: npx playwright test \"tests/e2e/challenge-14.spec.ts\" --reporter=json"
+    },
+    "aiReviewResults": {
+      "challengeId": "14-search-and-pagination",
+      "timestamp": "2026-09-05T17:38:39.552Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear handling of search and pagination using `searchParams` and `Link` navigation.",
+        "Robust error handling with a graceful fallback UI.",
+        "TypeScript types are defined for posts and props, improving type safety."
+      ],
+      "improvements": [
+        "Extract the data‑fetching logic into a separate helper or hook to keep the component focused on rendering.",
+        "Replace hard‑coded values (e.g., `postsPerPage = 10`) with constants or configuration, and consider using `URLSearchParams` for building query strings to avoid manual string concatenation.",
+        "Add a `use client` directive if the component needs client‑side interactivity (e.g., form handling) and include `aria-label` attributes on navigation links for better accessibility."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The component effectively implements search and pagination with clean TypeScript usage and solid error handling. Minor refactoring and accessibility improvements would raise its maintainability and polish."
+    },
+    "aiResults": {
+      "challengeId": "14-search-and-pagination",
+      "timestamp": "2026-09-05T17:38:39.552Z",
+      "score": 83,
+      "feedback": [],
+      "strengths": [
+        "Clear handling of search and pagination using `searchParams` and `Link` navigation.",
+        "Robust error handling with a graceful fallback UI.",
+        "TypeScript types are defined for posts and props, improving type safety."
+      ],
+      "improvements": [
+        "Extract the data‑fetching logic into a separate helper or hook to keep the component focused on rendering.",
+        "Replace hard‑coded values (e.g., `postsPerPage = 10`) with constants or configuration, and consider using `URLSearchParams` for building query strings to avoid manual string concatenation.",
+        "Add a `use client` directive if the component needs client‑side interactivity (e.g., form handling) and include `aria-label` attributes on navigation links for better accessibility."
+      ],
+      "readability": 85,
+      "maintainability": 80,
+      "overall": "The component effectively implements search and pagination with clean TypeScript usage and solid error handling. Minor refactoring and accessibility improvements would raise its maintainability and polish."
+    }
   }
 ]
